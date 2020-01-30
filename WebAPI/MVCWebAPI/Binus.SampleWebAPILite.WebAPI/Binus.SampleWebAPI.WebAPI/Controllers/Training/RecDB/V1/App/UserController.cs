@@ -34,5 +34,6 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         }
 
         //method xddd baru saya disiniii coyyy eh gajadi deh pengen buat conflict gw lmao
+        //ini di buat oleh piemod
     }
 }
