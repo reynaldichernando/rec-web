@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "1cc85fac-3d34-430d-a0a6-ae0eee3ab277",
+		"name": "BookDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Username",
+							"value": "Arya",
+							"type": "text"
+						},
+						{
+							"key": "Password",
+							"value": "123"
+						},
+						{
+							"key": "grant_type",
+							"value": "password"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8795/oauth2/BookDB/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8795",
+					"path": [
+						"oauth2",
+						"BookDB",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8795/api/Training/BookDB/v1/App/Book/InsertBook?BookName=Buku Math&BookDesc=Buku untuk Math&BookQty=5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "vO-FVX44I2sxZkDheLkBOv7VsrXHkqTYMUajw94RSG-TetQ72FOgFaHH1HhENnXQ28mq9dug3zuOcC7ANIiileBSey1qmB1BhFMl4zjO69ixT6CBhNHdN4BExLw61r7plYdyeLlyfaCX0HF5FkxdBxrw4i6CdVkuhUx4Hnb6O8pG_3rotTnQKMkB2UaYdYSo-pDeM5izLaalOt1WaYzDManH83EAGrx8YxgH72jBZxACv2mJsBuwtJdK4qT5OZmYKgWSh8ikGSXudTk_piUqHNarHv1g399hf0rHaykR2tia67Zx0O5jVDmLe9UC91iy",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8795/api/Training/BookDB/v1/App/Book/InsertBook?BookName=Buku Math&BookDesc=Buku untuk Math&BookQty=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8795",
+					"path": [
+						"api",
+						"Training",
+						"BookDB",
+						"v1",
+						"App",
+						"Book",
+						"InsertBook"
+					],
+					"query": [
+						{
+							"key": "BookName",
+							"value": "Buku Math"
+						},
+						{
+							"key": "BookDesc",
+							"value": "Buku untuk Math"
+						},
+						{
+							"key": "BookQty",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8795/api/Training/BookDB/v1/App/Book/GetAllBook",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Y0yA4r9Mzi9k-C-_6MSifRlUn56T6QwJdD8Kz--hvSrNAhipuBgAsOKgFzOHFWdpFJP79T4s0Zu10TKAW7GZzHfExXKUTG0m5g583gdvp1ZT7Xe0mabKi4UaK9wMhJq2Kw987vmtt5NFYacErqbgTyyibFbiBlZN_ssS4eD1gbAgYnrbDLLk6Juhr9q6OopGRzUtiEWxlzJdRdJgRvbRxfqQusZmFcecKtQR_XsA1BfPPmb_0vzEHjAdge0WXNA01c1HI5me7qSYzx_3hdjiACFg325q5im0Z6KTwiRkxiVugfx0euUUYsB5JaBkVmmX",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8795/api/Training/BookDB/v1/App/Book/GetAllBook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8795",
+					"path": [
+						"api",
+						"Training",
+						"BookDB",
+						"v1",
+						"App",
+						"Book",
+						"GetAllBook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8795/api/Training/BookDB/v1/App/Book/InsertBookWithModel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "SoerZ3JrhdV48MAeiE0vwDCn5cySS_43p0P3icTpi7eXb2bZwhdWiQlLStCO1wKbasCJGOkiLfry8q_vpSLzGohUYIV5R6GiNwb45vamMhSIA-dk1V8jRrwolv95JG8Wc147rhqXfnJ7-cNcoD8Pqzw0R1mLvdAqspCSlzHmG11vUbSh1lky-WN3I2O2PRZxCJ2D14R8cszo7UjgjYniJ8oKI84V4wclq1-jGLh0siqWDShUlep9xlBITErYOF9ecqo--Imo_m8RvUV254gln7itr_qU6Xu7qVZbfR40Mizr8Zile2Hsyo4bFtPSdkLu",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/javascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"BookName\": \"Buku Biologi\",\n\t\"BookDesc\": \"Buku untuk Bio\",\n\t\"BookQty\": 20\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8795/api/Training/BookDB/v1/App/Book/InsertBookWithModel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8795",
+					"path": [
+						"api",
+						"Training",
+						"BookDB",
+						"v1",
+						"App",
+						"Book",
+						"InsertBookWithModel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8795/api/Training/BookDB/v1/App/Book/GetOneBook?BookID=2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "VCyFcF3wBrMC6WWxDa8g1Ud8SQcZQnSQYd4iKncfkz7VHSYPZoy7uXtuvWpnZgYZJEcec1IJxFG6cuhKnHtzjn5gIvbJM-Ues8v-3kuHiQKFc7I6dIvfvWW5oKMFooDtes3l-0n2OT8X7nS9V1lCsQbV5WWCoI6EQih1C6sG2yMtYqBSJysWqumSVpZMkmvJYWk3Q5hg1RUteii-OY_L_4dVzS9U9DoRn3KWrpBSzrQU3k5HlRbkywe-gItU67AmCLG53S5tntM8O2LxSFHDZcK15wx8Yi8WrkAiK-DEx8t788nUlj2Se1yWzI1DOalv",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8795/api/Training/BookDB/v1/App/Book/GetOneBook?BookID=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8795",
+					"path": [
+						"api",
+						"Training",
+						"BookDB",
+						"v1",
+						"App",
+						"Book",
+						"GetOneBook"
+					],
+					"query": [
+						{
+							"key": "BookID",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8795/api/Training/BookDB/v1/App/Book/DeleteBook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Y0yA4r9Mzi9k-C-_6MSifRlUn56T6QwJdD8Kz--hvSrNAhipuBgAsOKgFzOHFWdpFJP79T4s0Zu10TKAW7GZzHfExXKUTG0m5g583gdvp1ZT7Xe0mabKi4UaK9wMhJq2Kw987vmtt5NFYacErqbgTyyibFbiBlZN_ssS4eD1gbAgYnrbDLLk6Juhr9q6OopGRzUtiEWxlzJdRdJgRvbRxfqQusZmFcecKtQR_XsA1BfPPmb_0vzEHjAdge0WXNA01c1HI5me7qSYzx_3hdjiACFg325q5im0Z6KTwiRkxiVugfx0euUUYsB5JaBkVmmX",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "BookID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8795/api/Training/BookDB/v1/App/Book/DeleteBook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8795",
+					"path": [
+						"api",
+						"Training",
+						"BookDB",
+						"v1",
+						"App",
+						"Book",
+						"DeleteBook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8795/api/Training/BookDB/v1/App/Book/UpdateBook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "s7jWoaYVISWyAT_Ogxmv4357ZL9bC7vX3bKxn1VvkKgfu0Dvd6_7DAVh3aRLjkpeqjY4mPuanj-D2IsX28_zjas68go_YawtJmdCyK-aoZ80dly0JSnoVD7pGshguBvWlFI4Ez6nY42eX-78-mRDIu9i4Nr-xlNClYaSU9Hq3DqwrG_pAZPHG0XAviGDsSXkDU7MbYzo4jAZ4mvEgCi_IaWOiSkjuHKsww_v7yrazm6ni7FzYVXQ7BTVEWvNTfwz9OZB1SC8h_BnZqHrS734bhc7KswpFMqmaimv27Uk1ERhxVvuK_5CLupjHFM1bQlN",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "BookID",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "BookName",
+							"value": "BukuBukuBuku",
+							"type": "text"
+						},
+						{
+							"key": "BookDesc",
+							"value": "BukuBukuBuku",
+							"type": "text"
+						},
+						{
+							"key": "BookQty",
+							"value": "50",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8795/api/Training/BookDB/v1/App/Book/UpdateBook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8795",
+					"path": [
+						"api",
+						"Training",
+						"BookDB",
+						"v1",
+						"App",
+						"Book",
+						"UpdateBook"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,33 @@
+﻿@model Binus.SampleWebAPI.Web.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("New Book", "NewBook", "Home", new { @class = "btn btn-info"})
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Book Title</td>
+            <td>Book Desc</td>
+            <td>Book Qty</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var Data in Model.ListBook)
+        {
+            <tr>
+                <td>@Data.BookName</td>
+                <td>@Data.BookDesc</td>
+                <td>@Data.BookQty</td>
+                <td>
+                    @Html.ActionLink("Detail", "Detail", "Home", new { BookID = Data.BookID }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Delete", "Delete", "Home", new { BookID = Data.BookID }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Update", "Update", "Home", new { BookID = Data.BookID }, new { @class = "btn btn-success" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

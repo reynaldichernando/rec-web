@@ -1,0 +1,6 @@
+projectKey=org.sonarqube:sonarqube-scanner-msbuild
+serverUrl=http://localhost:9000
+serverVersion=6.5.0.27846
+dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:sonarqube-scanner-msbuild
+ceTaskId=AV4ImDEOWJxiWt_TaE17
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AV4ImDEOWJxiWt_TaE17

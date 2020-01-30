@@ -1,0 +1,22 @@
+ß
+ùC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\BasicAuthenticationAttribute.csutf-8ó
+çC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\BundleConfig.csutf-8õ
+ëC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\CustomViewEngine.csutf-8ó
+çC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\FilterConfig.csutf-8ô
+èC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\IdentityConfig.csutf-8ñ
+åC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\RouteConfig.csutf-8ó
+çC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\Startup.Auth.csutf-8ó
+çC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\App_Start\WebApiConfig.csutf-8ç
+ÉC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Class\Global.csutf-8≥
+©C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Controllers\Backend\msBook\msBookMongoDBController.csutf-8≤
+®C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Controllers\Backend\msBook\msBookOracleController.csutf-8±
+ßC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Controllers\Backend\msBook\msBookMSSQLController.csutf-8¢
+òC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Controllers\Login\LoginController.csutf-8å
+ÇC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Global.asax.csutf-8ô
+èC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Models\AccountViewModels.csutf-8ñ
+åC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Models\IdentityModels.csutf-8ò
+éC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Models\ManageViewModels.csutf-8ò
+éC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Properties\AssemblyInfo.csutf-8á
+~C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Startup.csutf-8£
+ôC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\ViewModels\msBooks\msBookViewModel.csutf-8û
+îC:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\ViewModels\User\UserViewModel.csutf-8

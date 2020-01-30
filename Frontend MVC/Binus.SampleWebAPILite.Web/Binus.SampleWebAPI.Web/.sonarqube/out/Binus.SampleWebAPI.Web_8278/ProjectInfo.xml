@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>Binus.SampleWebAPI.Web</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Product</ProjectType>
+  <ProjectGuid>00ba2857-9174-4122-8d7b-0e2b412fcc70</ProjectGuid>
+  <FullPath>C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResults>
+    <AnalysisResult Id="FilesToAnalyze" Location="C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\.sonarqube\out\\Binus.SampleWebAPI.Web_8278\FilesToAnalyze.txt" />
+  </AnalysisResults>
+  <AnalysisSettings>
+    <Property Name="sonar.cs.roslyn.reportFilePath">C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\bin\Binus.SampleWebAPI.Web.dll.RoslynCA.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPath">C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\.sonarqube\out\\Binus.SampleWebAPI.Web_8278</Property>
+    <Property Name="sonar.stylecop.projectFilePath">C:\Users\Hendry\Documents\Visual Studio 2015\Projects\WebAPIMVCSample\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web\Binus.SampleWebAPI.Web.csproj</Property>
+  </AnalysisSettings>
+</ProjectInfo>

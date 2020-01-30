@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binus.SampleWebAPILite.Web", "Binus.SampleWebAPI.Web\Binus.SampleWebAPILite.Web.csproj", "{00BA2857-9174-4122-8D7B-0E2B412FCC70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binus.SampleWebAPILite.Model", "Binus.SampleWebAPI.Model\Binus.SampleWebAPILite.Model.csproj", "{67B720CB-47FF-4787-B085-DE0DA485BE63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00BA2857-9174-4122-8D7B-0E2B412FCC70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00BA2857-9174-4122-8D7B-0E2B412FCC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00BA2857-9174-4122-8D7B-0E2B412FCC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00BA2857-9174-4122-8D7B-0E2B412FCC70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67B720CB-47FF-4787-B085-DE0DA485BE63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67B720CB-47FF-4787-B085-DE0DA485BE63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67B720CB-47FF-4787-B085-DE0DA485BE63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67B720CB-47FF-4787-B085-DE0DA485BE63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
