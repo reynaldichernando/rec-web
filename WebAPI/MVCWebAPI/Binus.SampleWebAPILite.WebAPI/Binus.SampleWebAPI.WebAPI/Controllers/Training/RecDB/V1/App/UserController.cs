@@ -33,6 +33,6 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(await _UserService.RegisterUser(User));
         }
 
-        //method baru saya disiniii coyyy
+        //method xddd baru saya disiniii coyyy eh gajadi deh pengen buat conflict gw lmao
     }
 }
