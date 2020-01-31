@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App
+namespace Binus.SampleWebAPI.Model.AppModel
 {
     public class AnswerModel
     {
@@ -13,5 +13,6 @@ namespace Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App
         public int AnswerID { get; set; }
         public DateTime DateUploaded { get; set; }
         public string AnswerFilepath { get; set; }
+        string test;
     }
 }
