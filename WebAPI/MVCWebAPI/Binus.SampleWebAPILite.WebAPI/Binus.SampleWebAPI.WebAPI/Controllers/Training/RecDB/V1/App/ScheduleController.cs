@@ -1,11 +1,18 @@
-﻿using Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App;
+﻿using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App;
+using Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App;
+using Binus.WebAPI.Model.MSSQL;
 using Microsoft.Web.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
 {
-    //[Authorize]
     [ApiVersion("1.0")]
+    [Authorize]
     public class ScheduleController : ApiController
     {
         private readonly IScheduleService _ScheduleService;
@@ -15,6 +22,36 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             this._ScheduleService = _ScheduleService;
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAllSchedule()
+        {
+            List<ScheduleModel> ListSchedule = (await _ScheduleService.GetAllSchedule());
 
+            return Json(ListSchedule);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertSchedule(ScheduleModel Model)
+        {
+            ExecuteResult Result = (await _ScheduleService.InsertSchedule(Model));
+
+            return Json(Result);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteSchedule(ScheduleModel Model)
+        {
+            ExecuteResult Result = (await _ScheduleService.DeleteSchedule(Model));
+
+            return Json(Result);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateSchedule(ScheduleModel Model)
+        {
+            ExecuteResult Result = (await _ScheduleService.UpdateSchedule(Model));
+
+            return Json(Result);
+        }
     }
 }

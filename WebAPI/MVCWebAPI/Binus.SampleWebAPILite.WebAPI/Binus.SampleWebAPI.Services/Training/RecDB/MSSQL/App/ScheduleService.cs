@@ -100,4 +100,3 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         }
     }
 }
-}
