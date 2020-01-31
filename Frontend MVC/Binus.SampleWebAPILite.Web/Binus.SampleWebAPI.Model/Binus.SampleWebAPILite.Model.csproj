@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppModel\BookModel.cs" />
     <Compile Include="AppModel\UserModel.cs" />
     <Compile Include="Base\DateConverter.cs" />
     <Compile Include="Base\ObjectIdConverter.cs" />

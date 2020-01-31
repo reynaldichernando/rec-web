@@ -20,106 +20,32 @@ namespace Binus.SampleWebAPI.Web.Controllers
         public ActionResult Index()
         {
 
-            try
-            {
-                HomeViewModel VM = new HomeViewModel();
-
-                RESTResult Result = new REST(
-                    Global.WebAPIBaseURL,
-                    "api/Training/BookDB/V1/App/Book/GetAllBook",
-                    REST.Method.GET).Result;
-
-                if (Result.Success)
-                {
-                    VM.ListBook = Result.Deserialize<List<BookModel>>();
-                }
-                else
-                {
-                    VM.ListBook = new List<BookModel>();
-                }
-                return View(VM);
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        } 
-
-        public ActionResult NewBook()
-        {
             return View();
-        }
 
-        public ActionResult Insert(BookModel book)
-        {
-            RESTResult Result = new REST(
-                        Global.WebAPIBaseURL,
-                        "/api/Training/BookDB/V1/App/Book/InsertBookWithModel",
-                        REST.Method.POST,
-                        ConfigurationManager.AppSettings["OAuthBookDB"],
-                        book
-                    ).Result;
-            return RedirectToAction("Index");
-        }
+            //try
+            //{
+            //    HomeViewModel VM = new HomeViewModel();
 
-        public ActionResult Update(int BookID)
-        {
-            RESTResult Result = new REST(
-                        Global.WebAPIBaseURL,
-                        $"/api/Training/BookDB/V1/App/Book/GetOneBook?BookID={BookID}",
-                        REST.Method.GET,
-                        ConfigurationManager.AppSettings["OAuthBookDB"]
-                    ).Result;
-            BookModel book = Result.Deserialize<BookModel>();
-            return View("Update", book);
-        }
+            //    RESTResult Result = new REST(
+            //        Global.WebAPIBaseURL,
+            //        "api/Training/BookDB/V1/App/Book/GetAllBook",
+            //        REST.Method.GET).Result;
 
-        public ActionResult UpdateBook(BookModel book)
-        {
-            RESTResult ResultDel = new REST(
-                        Global.WebAPIBaseURL,
-                        "/api/Training/BookDB/V1/App/Book/UpdateBook",
-                        REST.Method.POST,
-                        ConfigurationManager.AppSettings["OAuthBookDB"],
-                        book
-                    ).Result;
-            return RedirectToAction("Index");
-        }
+            //    if (Result.Success)
+            //    {
+            //        VM.ListBook = Result.Deserialize<List<BookModel>>();
+            //    }
+            //    else
+            //    {
+            //        VM.ListBook = new List<BookModel>();
+            //    }
+            //    return View(VM);
 
-        public ActionResult Detail(int BookID)
-        {
-            RESTResult Result = new REST(
-                        Global.WebAPIBaseURL,
-                        $"/api/Training/BookDB/V1/App/Book/GetOneBook?BookID={BookID}",
-                        REST.Method.GET,
-                        ConfigurationManager.AppSettings["OAuthBookDB"]
-                    ).Result;
-            BookModel book = Result.Deserialize<BookModel>();
-            return View("Detail",book);
-        }
-
-        public ActionResult Delete(int BookID)
-        {
-            RESTResult Result = new REST(
-                        Global.WebAPIBaseURL,
-                        $"/api/Training/BookDB/V1/App/Book/GetOneBook?BookID={BookID}",
-                        REST.Method.GET,
-                        ConfigurationManager.AppSettings["OAuthBookDB"]
-                    ).Result;
-            BookModel book = Result.Deserialize<BookModel>();
-
-            RESTResult ResultDel = new REST(
-                        Global.WebAPIBaseURL,
-                        "/api/Training/BookDB/V1/App/Book/DeleteBook",
-                        REST.Method.POST,
-                        ConfigurationManager.AppSettings["OAuthBookDB"],
-                        book
-                    ).Result;
-            return RedirectToAction("Index");
-        }
-
-        
-
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+        } 
     }
 }
