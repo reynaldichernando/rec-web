@@ -202,7 +202,6 @@
     <Compile Include="Class\Global.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,7 +239,6 @@
     <Content Include="Sources\PageJS\Backend\msBookOracle.js" />
     <Content Include="Sources\PageJS\Backend\msBookMSSQL.js" />
     <Content Include="Sources\PageJS\Login\login.js" />
-    <Content Include="Sources\PageJS\Register\reigster.js" />
     <Content Include="Sources\Scripts\bootstrap.js" />
     <Content Include="Sources\Scripts\bootstrap.min.js" />
     <None Include="Sources\Scripts\jquery-3.1.1.intellisense.js" />
@@ -274,10 +272,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\NewBook.cshtml" />
-    <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\Home\Update.cshtml" />
-    <Content Include="Views\Register\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
