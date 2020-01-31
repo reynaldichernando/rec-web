@@ -130,3 +130,5 @@ select * from [User]
 GO
 INSERT INTO [User] VALUES
 ('Reynaldi', 'reynaldi@chernando.com', 'chernando', 'admin')
+
+
