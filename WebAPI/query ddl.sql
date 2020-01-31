@@ -129,4 +129,5 @@ select * from [User]
 
 GO
 INSERT INTO [User] VALUES
-('Reynaldi', 'reynaldi@chernando.com', 'chernando', 'admin')
+('Reynaldi', 'reynaldi@chernando.com', 'chernando', 'admin'),
+('luis', 'luis@luis.com', 'luis', 'admin')
