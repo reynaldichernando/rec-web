@@ -1,4 +1,4 @@
-﻿using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App;
+using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App;
 using Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App;
 using Binus.WebAPI.Model.MSSQL;
 using Microsoft.Web.Http;
@@ -21,6 +21,7 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         {
             this._AnswerService = _AnswerService;
         }
+
 
         [HttpGet]
         public async Task<IHttpActionResult> GetAllAnswer()

@@ -56,7 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppModel\BookModel.cs" />
+    <Compile Include="AppModel\AnswerModel.cs" />
+    <Compile Include="AppModel\AssignmentModel.cs" />
+    <Compile Include="AppModel\PostModel.cs" />
+    <Compile Include="AppModel\ScheduleModel.cs" />
+    <Compile Include="AppModel\ThreadModel.cs" />
     <Compile Include="AppModel\UserModel.cs" />
     <Compile Include="Base\DateConverter.cs" />
     <Compile Include="Base\ObjectIdConverter.cs" />

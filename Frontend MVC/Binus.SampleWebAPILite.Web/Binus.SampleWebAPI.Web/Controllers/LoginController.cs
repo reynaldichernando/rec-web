@@ -22,7 +22,6 @@ namespace Binus.SampleWebAPI.Web.Controllers
             Session.RemoveAll();
             //3 cara untuk hapus session
             return RedirectToAction("Index");
-            return View("Index");
         }
 
         [ValidateAntiForgeryToken]
@@ -35,12 +34,13 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 try
                 {
                     AuthUser UserData = new AuthUser();
+                    UserData.Email = Username;
                     UserData.Username = Username;
                     UserData.Password = Password;
 
                     RESTResult Result = new REST(
                         Global.WebAPIBaseURL,
-                        "/api/Training/BookDB/V1/App/User/GetUserLogin",
+                        "/api/Training/RecDB/V1/App/User/GetUserLogin",
                         REST.Method.POST,
                         ConfigurationManager.AppSettings["OAuthBookDB"],
                         UserData

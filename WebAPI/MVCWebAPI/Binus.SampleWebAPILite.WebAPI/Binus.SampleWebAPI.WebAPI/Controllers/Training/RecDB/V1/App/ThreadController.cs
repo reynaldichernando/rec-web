@@ -1,4 +1,5 @@
-﻿using Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App;
+﻿using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App;
+using Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App;
 using Microsoft.Web.Http;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,34 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             this._ThreadService = _ThreadService;
         }
 
-   
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAllThread()
+        {
+            List<ThreadModel> ListThread = (await _ThreadService.GetAllThread());
+            return Json(ListThread);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertThread(ThreadModel Thread, int UserID)
+        {
+            return Json(await _ThreadService.InsertThread(Thread, UserID));
+
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateThread(ThreadModel Thread)
+        {
+            return Json(await _ThreadService.UpdateThread(Thread));
+
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteThread(ThreadModel Thread)
+        {
+            return Json(await _ThreadService.DeleteThread(Thread));
+
+        }
+
+
     }
 }

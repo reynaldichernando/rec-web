@@ -1,0 +1,339 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# Compiler",
+        "version": "1.3.1.0",
+        "fileVersion": "1.3.1.60616",
+        "semanticVersion": "1.3.1",
+        "language": "en-US"
+      },
+      "results": [
+        {
+          "ruleId": "CS0168",
+          "level": "warning",
+          "message": "The variable 'EX' is declared but never used",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/ObjectIdConverter.cs",
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 34,
+                  "endLine": 51,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0168",
+          "level": "warning",
+          "message": "The variable 'Ex' is declared but never used",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/DateConverter.cs",
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 29,
+                  "endLine": 42,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/DateConverter.cs",
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 13,
+                  "endLine": 53,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/ObjectIdConverter.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 13,
+                  "endLine": 23,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/ObjectIdConverter.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 17,
+                  "endLine": 56,
+                  "endColumn": 55
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/ObjectIdConverter.cs",
+                "region": {
+                  "startLine": 67,
+                  "startColumn": 13,
+                  "endLine": 67,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'msUser' to match camel case naming rules, consider using 'MsUser'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Backend/User/msUser.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 18,
+                  "endLine": 8,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'msBookMSSQLOracle' to match camel case naming rules, consider using 'MsBookMssqlOracle'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Backend/msBook/msBookMSSQLOracle.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 18,
+                  "endLine": 9,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'msBookMonggoDB' to match camel case naming rules, consider using 'MsBookMonggoDb'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Backend/msBook/msBookMonggoDB.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 18,
+                  "endLine": 13,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S108",
+          "level": "warning",
+          "message": "Either remove or fill this block of code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/ObjectIdConverter.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 17,
+                  "endLine": 54,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3217",
+          "level": "warning",
+          "message": "Either change the type of 'Item' to 'JToken' or iterate on a generic collection of type 'JObject'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/ObjectIdConverter.cs",
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 30,
+                  "endLine": 37,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2486",
+          "level": "warning",
+          "message": "Handle the exception or explain in a comment why it can be ignored.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Hendry/Documents/Visual%20Studio%202015/Projects/WebAPIMVCSample/Binus.SampleWebAPI.Web/Binus.SampleWebAPI.Model/Base/ObjectIdConverter.cs",
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 17,
+                  "endLine": 54,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CS0168": {
+          "id": "CS0168",
+          "shortDescription": "Variable is declared but never used",
+          "defaultLevel": "warning",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "S101": {
+          "id": "S101",
+          "shortDescription": "Types should be named in camel case",
+          "fullDescription": "Shared naming conventions allow teams to collaborate efficiently. This rule checks whether or not type names are camel cased. To reduce noise, two consecutive upper case characters are allowed unless they form the whole type name. So, MyXClass is compliant, but XC on its own is not.",
+          "defaultLevel": "warning",
+          "helpUri": "http://vs.sonarlint.org/rules/index.html#version=6.3.0.2862&ruleId=S101",
+          "properties": {
+            "category": "Sonar Code Smell",
+            "isEnabledByDefault": true
+          }
+        },
+        "S108": {
+          "id": "S108",
+          "shortDescription": "Nested blocks of code should not be left empty",
+          "fullDescription": "Most of the time a block of code is empty when a piece of code is really missing. So such empty block must be either filled or removed.",
+          "defaultLevel": "warning",
+          "helpUri": "http://vs.sonarlint.org/rules/index.html#version=6.3.0.2862&ruleId=S108",
+          "properties": {
+            "category": "Sonar Code Smell",
+            "isEnabledByDefault": true
+          }
+        },
+        "S125": {
+          "id": "S125",
+          "shortDescription": "Sections of code should not be \"commented out\"",
+          "fullDescription": "Programmers should not comment out code as it bloats programs and reduces readability.",
+          "defaultLevel": "warning",
+          "helpUri": "http://vs.sonarlint.org/rules/index.html#version=6.3.0.2862&ruleId=S125",
+          "properties": {
+            "category": "Sonar Code Smell",
+            "isEnabledByDefault": true
+          }
+        },
+        "S2486": {
+          "id": "S2486",
+          "shortDescription": "Generic exceptions should not be ignored",
+          "fullDescription": "When exceptions occur, it is usually a bad idea to simply ignore them. Instead, it is better to handle them properly, or at least to log them.",
+          "defaultLevel": "warning",
+          "helpUri": "http://vs.sonarlint.org/rules/index.html#version=6.3.0.2862&ruleId=S2486",
+          "properties": {
+            "category": "Sonar Code Smell",
+            "isEnabledByDefault": true
+          }
+        },
+        "S3217": {
+          "id": "S3217",
+          "shortDescription": "\"Explicit\" conversions of \"foreach\" loops should not be used",
+          "fullDescription": "The foreach statement was introduced in the C# language prior to generics to make it easier to work with the non-generic collections available at that time such as ArrayList. The foreach statements allows you to downcast elements of a collection of Objects to any other type. The problem is that to achieve the cast, the foreach statements silently performs explicit type conversion, which at runtime can result in an InvalidCastException.",
+          "defaultLevel": "warning",
+          "helpUri": "http://vs.sonarlint.org/rules/index.html#version=6.3.0.2862&ruleId=S3217",
+          "properties": {
+            "category": "Sonar Code Smell",
+            "isEnabledByDefault": true
+          }
+        }
+      }
+    }
+  ]
+}
