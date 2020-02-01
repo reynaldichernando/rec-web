@@ -63,9 +63,9 @@ create table Schedule(
 
 select * from Schedule
 
-INSERT INTO Schedule VALUES
-('2020-01-20 20:59:59.999', '2020-01-21 20:59:59.999', 'Sunib bruh', 'Test test', 'This is test'),
-('2020-02-20 23:59:59.999', '2020-02-22 01:59:59.999', 'Curhat Sunib', 'Test test 2', 'This is da test')
+--INSERT INTO Schedule VALUES
+--('2020-01-20 20:59:59.999', '2020-01-21 20:59:59.999', 'Sunib bruh', 'Test test', 'This is test'),
+--('2020-02-20 23:59:59.999', '2020-02-22 01:59:59.999', 'Curhat Sunib', 'Test test 2', 'This is da test')
 
 GO
 CREATE PROC bn_RecDB_GetUserLogin
@@ -136,6 +136,3 @@ select * from [User]
 GO
 INSERT INTO [User] VALUES
 ('Reynaldi', 'reynaldi@chernando.com', 'chernando', 'admin')
-
-
-
