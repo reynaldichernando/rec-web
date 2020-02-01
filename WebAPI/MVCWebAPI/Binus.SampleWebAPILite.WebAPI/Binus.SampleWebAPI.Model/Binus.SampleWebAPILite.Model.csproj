@@ -77,7 +77,6 @@
     <Compile Include="Training\RecDB\MSSQL\App\AssignmentModel.cs" />
     <Compile Include="Training\RecDB\MSSQL\App\PostModel.cs" />
     <Compile Include="Training\RecDB\MSSQL\App\ScheduleModel.cs" />
-    <Compile Include="Training\RecDB\MSSQL\App\TestModel.cs" />
     <Compile Include="Training\RecDB\MSSQL\App\ThreadModel.cs" />
     <Compile Include="Training\RecDB\MSSQL\User\UserModel.cs" />
   </ItemGroup>
