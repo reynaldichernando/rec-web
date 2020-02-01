@@ -39,7 +39,7 @@ namespace Binus.SampleWebAPI.Model.Base
                     return epoch;
                 }
             }
-            catch(Exception Ex)
+            catch (Exception)
             {
                 return epoch;
             }
