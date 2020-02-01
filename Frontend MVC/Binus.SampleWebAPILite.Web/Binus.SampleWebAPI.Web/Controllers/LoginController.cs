@@ -56,7 +56,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                             {
                                 Status = "Success",
                                 Message = "Login Success",
-                                URL = Global.BaseURL + "/Home"
+                                URL = Global.BaseURL + "/Schedule/Index"
                             });
                         }else
                         {

@@ -14,8 +14,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
     {
         public ActionResult Index()
         {
-            //try
-            //{
+            //try {
             //    HomeViewModel VM = new HomeViewModel();
 
             //    RESTResult Result = new REST(
@@ -23,15 +22,12 @@ namespace Binus.SampleWebAPI.Web.Controllers
             //        "api/Training/RecDB/V1/App/Thread/GetAllThread",
             //        REST.Method.GET).Result;
 
-            //    if (Result.Success)
-            //    {
+            //    if (Result.Success) {
             //        VM.ListThread = Result.Deserialize<List<ThreadModel>>();
-            //    }
-            //    else
-            //    {
+            //    } else {
             //        VM.ThreadBook = new List<ThreadModel>();
             //    }
-            return View();
+                return View();
 
             //}
             //catch (Exception ex)
