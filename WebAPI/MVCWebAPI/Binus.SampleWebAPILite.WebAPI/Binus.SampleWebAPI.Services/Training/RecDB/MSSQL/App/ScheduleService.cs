@@ -12,7 +12,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
     {
         Task<List<ScheduleModel>> GetAllSchedule();
         Task<ExecuteResult> InsertSchedule(ScheduleModel Model);
-        Task<ExecuteResult> DeleteSchedule(int ScheduleID);
+        Task<ExecuteResult> DeleteSchedule(ScheduleModel Schedule);
         Task<ExecuteResult> UpdateSchedule(ScheduleModel Model);
 
     }
@@ -33,11 +33,11 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             return ListSchedule;
         }
 
-        public async Task<ExecuteResult> DeleteSchedule(int ScheduleID)
+        public async Task<ExecuteResult> DeleteSchedule(ScheduleModel Schedule)
         {
             var Param = new SqlParameter[]
             {
-                new SqlParameter("@ScheduleID",ScheduleID)
+                new SqlParameter("@ScheduleID",Schedule.ScheduleID)
             };
 
             List<StoredProcedure> Data = new List<StoredProcedure>();

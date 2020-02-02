@@ -39,9 +39,9 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> DeleteSchedule(int ScheduleID)
+        public async Task<IHttpActionResult> DeleteSchedule(ScheduleModel Schedule)
         {
-            ExecuteResult Result = (await _ScheduleService.DeleteSchedule(ScheduleID));
+            ExecuteResult Result = (await _ScheduleService.DeleteSchedule(Schedule));
 
             return Json(Result);
         }

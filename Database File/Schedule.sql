@@ -1,4 +1,5 @@
-create proc bn_RecDB_InsertSchedule
+alter proc bn_RecDB_InsertSchedule 
+'12/31/2020 12:59:00 PM' , '12/31/2020 12:59:00 PM', 'place','toicc','desc'
 @StartTime datetime,
 @EndTime datetime,
 @Place varchar(30),
@@ -9,7 +10,8 @@ begin
 	insert into Schedule (StartTime,EndTime,Place,Topic,[Description]) values(@StartTime,@EndTime,@Place,@Topic,@Description)
 end
 
-create proc bn_BookDB_UpdateSchedule
+
+create proc bn_RecDB_UpdateSchedule
 @ScheduleID int,
 @StartTime datetime,
 @EndTime datetime,
@@ -24,4 +26,11 @@ begin
 	Topic = @Topic,
 	Description = @Description
 	where ScheduleID = @ScheduleID
+end
+
+create proc bn_RecDB_DeleteSchedule
+@ScheduleID int
+as
+begin
+	delete from Schedule where ScheduleID = @ScheduleID
 end
