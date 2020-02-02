@@ -12,7 +12,6 @@
 
     <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="@Address/Sources/CSS/signin.css" rel="stylesheet" />
-    @*<link href="@Address/Sources/CSS/bootstrap.css" rel="stylesheet" />*@
 
     <link rel="shortcut icon" href="@Address/Sources/src/hanzo-icon.png" type="image/x-icon">
 
@@ -21,16 +20,14 @@
 <body>
     <div class="split left">
         <img src="@Address/Sources/src/shimada.jpg" class="logo d-block rounded" alt="" style="margin-left: 48px; margin-top: 35px">
-        <div id="carousel" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner bg-dark mx-5 w-auto rounded">
-                <p class="bg-dark">Carousel Inner</p>
                 <div class="carousel-item active p-5 position-relative">
-                    <p>Carousel item</p>
                     <div class="carousel-caption d-none d-md-block position-absolute" style="left: 10%; width: 50%; top: 20%">
                         <h2>Be There or Be Square</h2>
                         <p>To see the place and time of any activity, go to schedule section. See you there, partner!</p>
@@ -39,7 +36,7 @@
                          alt="calendar">
 
                 </div>
-                @*<div class="carousel-item p-5 position-relative">
+                <div class="carousel-item p-5 position-relative">
                     <div class="carousel-caption d-none d-md-block position-absolute" style="left: 10%; width: 50%; top: 20%">
                         <h2>Get Your Latest Assignment!!</h2>
                         <p>Go to Assignment Section and see what's task to be done. Don't forget to submit before due date!</p>
@@ -59,7 +56,7 @@
                     <img src="@Address/Sources/src/question-icon.png" class="d-block" style="max-width: 240px; margin-right: 10%; float: right;"
                          alt="question">
 
-                </div>*@
+                </div>
 
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -107,14 +104,17 @@
             <a class="dropdown-item" href="#">Request Account</a>
         </div>
     </div>
-    @*<script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
-        <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
-        <script src="@Address/Sources/Scripts/jquery.form.js"></script>
-        <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-        <script src="@Address/Sources/Scripts/respond.js"></script>
-        <script src="@Address/Sources/PageJS/Login/login.js"></script>*@
+
+    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
+    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
 
     <script src="@Address/Sources/Scripts/jquery-3.4.1.slim.min.js"></script>
     <script src="@Address/Sources/Scripts/bootstrap.min.js"></script>
+
+    <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    <script src="@Address/Sources/Scripts/respond.js"></script>
+
+
 </body>
 </html>
