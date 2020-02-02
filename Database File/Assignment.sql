@@ -49,3 +49,5 @@ BEGIN
 	DELETE FROM msAssignment
 	WHERE AssignmentID = @AssignmentID
 END
+
+EXEC bn_RecDB_GetUserLogin 'reynaldichernando@gmail.com', 'chernando'
