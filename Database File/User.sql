@@ -4,25 +4,29 @@ CREATE PROC bn_RecDB_GetUserLogin
 as
 BEGIN
 	SELECT *
-	FROM [User]
-	where Email = @Email and [Password] = @Password
+	FROM [msUser]
+	where Email = @Email
+	AND [Password] = @Password
+	AND [Role] IN ('approved', 'admin')
 END
 
 GO
 create PROC bn_RecDB_UpdatePassword
 @Email varchar(50),
-@Password varchar(30)
+@Password varchar(50)
 as
 begin
-	update [User] set [Password] = @Password where Email = @Email
+	update [msUser] set [Password] = @Password
+	where Email = @Email
 end
 
-create proc bn_RecDB_RegisterUser
+GO
+CREATE PROC bn_RecDB_RegisterUser
 @Name varchar(50),
 @Email varchar(50),
 @Password varchar(50),
-@Role varchar(10) = 'Recruitee'
+@Role varchar(10) = 'unapproved'
 as
 begin
-	insert into [User] values (@Name,@Email,@Password,@Role)
+	insert into [msUser] values (@Name,@Email,@Password,@Role)
 end
