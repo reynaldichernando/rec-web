@@ -27,6 +27,7 @@ begin
 	where ScheduleID = @ScheduleID
 end
 
+GO
 create proc bn_RecDB_DeleteSchedule
 @ScheduleID int
 as
