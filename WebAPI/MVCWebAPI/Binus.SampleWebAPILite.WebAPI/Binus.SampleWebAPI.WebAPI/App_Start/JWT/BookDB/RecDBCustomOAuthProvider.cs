@@ -49,9 +49,9 @@ namespace Binus.SampleWebAPI.WebAPI.App_Start.JWT.RecDB
 
                 return Task.FromResult<object>(null);
             }
-            catch (Exception Ex)
+            catch (Exception _)
             {
-                throw Ex;
+                throw _;
             }
         }
    
