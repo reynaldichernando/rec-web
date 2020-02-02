@@ -6,9 +6,11 @@ create proc bn_RecDB_InsertSchedule
 @Description varchar(max)
 as
 begin
-	insert into Schedule (StartTime,EndTime,Place,Topic,[Description]) values(@StartTime,@EndTime,@Place,@Topic,@Description)
+	insert into msSchedule (StartTime,EndTime,Place,Topic,[Description]) 
+	values(@StartTime,@EndTime,@Place,@Topic,@Description)
 end
 
+GO
 create proc bn_BookDB_UpdateSchedule
 @ScheduleID int,
 @StartTime datetime,
@@ -18,7 +20,7 @@ create proc bn_BookDB_UpdateSchedule
 @Description varchar(50)
 as
 begin
-	update Schedule set StartTime=@StartTime,
+	update msSchedule set StartTime=@StartTime,
 	EndTime=@EndTime,
 	Place = @Place,
 	Topic = @Topic,

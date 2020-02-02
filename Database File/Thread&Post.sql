@@ -4,7 +4,8 @@ CREATE PROC bn_RecDB_InsertThread
 @Content varchar(max)
 as
 begin
-	insert into Thread (UserID,Title,Content) values(@UserID,@Title,@Content)
+	insert into trThread VALUES
+	(@UserID,@Title,@Content)
 end
 
 GO
@@ -14,5 +15,6 @@ CREATE PROC bn_RecDB_InsertPost
 @Content varchar(max)
 as
 begin
-	insert into Post values(@ThreadID,@UserID,@Content)
+	insert into trPost values
+	(@ThreadID,@UserID,@Content)
 end

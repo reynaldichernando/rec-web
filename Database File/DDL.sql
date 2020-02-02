@@ -1,54 +1,57 @@
+--USE master
+--GO
+--DROP DATABASE RecDB
+
 create database RecDB
 GO
 use RecDB
 
 GO
-create table [User](
+create table [msUser](
 	UserID INT PRIMARY KEY IDENTITY(1,1),
 	[Name] varchar(50),
 	Email varchar(50),
 	[Password] varchar(50),
-	[Role] varchar(10)
+	[Role] varchar(10) CHECK([Role] IN ('approved', 'unapproved', 'admin')) DEFAULT('unapproved')
 )
 
 GO
-create table Assignment(
+create table msAssignment(
 	AssignmentID int primary key identity(1,1),
 	Title varchar(30),
-	Duedate datetime,
+	DateDue datetime,
 	DateUploaded datetime default(GETDATE()),
 	[Description] varchar(max),
-	AssignmentFilepath varchar(50)
+	AssignmentFilepath varchar(MAX)
 )
 
 GO
-create table Answer(
+create table trAnswer(
 	AnswerID int primary key identity(1,1),
-	UserID int REFERENCES [User](UserID),
-	AssignmentID int REFERENCES Assignment(AssignmentID),
-	AnswerFilepath varchar(50),
+	UserID int REFERENCES [msUser](UserID),
+	AssignmentID int REFERENCES msAssignment(AssignmentID),
+	AnswerFilepath varchar(MAX),
 	DateUploaded datetime default(GETDATE())
 )
 
 GO
-create table Thread(
+create table trThread(
 	ThreadID int primary key identity(1,1),
-	UserID int REFERENCES [User](UserID),
+	UserID int REFERENCES [msUser](UserID),
 	Title varchar(20),
-	Content varchar(MAX),
-	isPinned smallint default(0)
-)
-
-GO
-create table Post(
-	PostID int primary key identity(1,1),
-	ThreadID int REFERENCES Thread(ThreadID),
-	UserID int REFERENCES [User](UserID),
 	Content varchar(MAX)
 )
 
 GO
-create table Schedule(
+create table trPost(
+	PostID int primary key identity(1,1),
+	ThreadID int REFERENCES trThread(ThreadID),
+	UserID int REFERENCES [msUser](UserID),
+	Content varchar(MAX)
+)
+
+GO
+create table msSchedule(
 	ScheduleID int primary key identity(1,1),
 	[StartTime] datetime,
 	[EndTime] datetime,
