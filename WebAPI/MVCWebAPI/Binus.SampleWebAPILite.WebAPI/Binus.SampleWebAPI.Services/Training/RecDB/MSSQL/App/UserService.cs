@@ -43,7 +43,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         {
             var Param = new SqlParameter[]
             {
-                new SqlParameter("@Username", User.Email),
+                new SqlParameter("@Email", User.Email),
                 new SqlParameter("@Password", User.Password),
                 new SqlParameter("@Name", User.Name)
             };
@@ -51,7 +51,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_RecDB_RegisterUser @Username, @Password, @Name",
+                SPName = "bn_RecDB_RegisterUser @Name, @Email, @Password",
                 SQLParam = Param
             });
 
