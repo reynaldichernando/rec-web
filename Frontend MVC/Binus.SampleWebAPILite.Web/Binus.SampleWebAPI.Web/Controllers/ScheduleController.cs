@@ -32,14 +32,15 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return View();
         }
 
-    public ActionResult DeleteSchedule(int ScheduleID)
+    public ActionResult DeleteSchedule(ScheduleModel Schedule)
         {
+
             try {
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
                     "api/Training/RecDB/V1/App/Schedule/DeleteSchedule",
                     REST.Method.POST,
-                    ScheduleID).Result;
+                    Schedule).Result;
                 System.Diagnostics.Debug.WriteLine(Result.Message);
             } catch(Exception ex) {
                 throw ex;

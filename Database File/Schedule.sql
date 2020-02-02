@@ -9,7 +9,6 @@ begin
 	insert into msSchedule (StartTime,EndTime,Place,Topic,[Description]) 
 	values(@StartTime,@EndTime,@Place,@Topic,@Description)
 end
-
 GO
 create proc bn_BookDB_UpdateSchedule
 @ScheduleID int,
@@ -26,4 +25,11 @@ begin
 	Topic = @Topic,
 	Description = @Description
 	where ScheduleID = @ScheduleID
+end
+
+create proc bn_RecDB_DeleteSchedule
+@ScheduleID int
+as
+begin
+	delete from Schedule where ScheduleID = @ScheduleID
 end
