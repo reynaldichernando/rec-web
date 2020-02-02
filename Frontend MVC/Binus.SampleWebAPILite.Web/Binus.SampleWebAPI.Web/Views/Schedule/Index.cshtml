@@ -1,0 +1,67 @@
+﻿@model Binus.SampleWebAPI.Web.ViewModels.ScheduleViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Book Title</td>
+            <td>Book Desc</td>
+            <td>Book Qty</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Data in Model.ListSchedule) {
+            <tr>
+                <td>@Data.ScheduleID</td>
+                <td>@Data.Place</td>
+                <td>@Data.Topic</td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateSchedule", new { Data.ScheduleID })
+                    @Html.ActionLink("Delete", "DeleteSchedule", new { Data.ScheduleID })
+                    @Html.ActionLink("Create", "CreateSchedule")
+                    <div class="wrapper">
+
+                        @using (Html.BeginForm("UpdateSchedule", "Schedule", FormMethod.Post)) {
+                            @Html.HiddenFor(x=>x.Schedule.ScheduleID)
+                            <label>Topic</label>
+                            @Html.TextBoxFor(x => x.Schedule.Topic)
+                            <label>Desc</label>
+                            @Html.TextBoxFor(x=>x.Schedule.Description)
+                            <button type="submit">submit</button>
+                        }
+                    </div>
+
+
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*utk update schedule nanti bikin pop upnya aja*@
+@*<div class="wrapper">
+    @using (Ajax.BeginForm("UpdateSchedule", "Schedule", new AjaxOptions {
+        HttpMethod = "POST",
+        OnBegin = "Loader"
+    }, new { id = "form2", @class = "form-signin" })) {
+        @Html.AntiForgeryToken()
+        <h2 class="form-signin-heading">Sign In</h2>
+        <input type="text" class="form-control" name="Place" placeholder="place" required="">
+        <input type="text" class="form-control" name="Topic" placeholder="topic" required="">
+        <input type="text" class="form-control" name="Description" placeholder="desc" required="">
+        <input type="password" class="form-control" name="Password" placeholder="Password" required="">
+        <span id="divMessage" style="color:red"></span>
+        <button class="btn btn-lg btn-danger btn-block" type="submit" id="btnLoginDB" name="DB">Login</button>
+        <br />
+        <p>Login Information: U:admin P:admin</p>
+    }
+</div>*@

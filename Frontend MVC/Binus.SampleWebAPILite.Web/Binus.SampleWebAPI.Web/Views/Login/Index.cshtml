@@ -17,24 +17,42 @@
 </head>
 <body>
     <div class="wrapper">
-      @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
-      {
-          HttpMethod = "POST",
-          OnSuccess = "LoadResult(data)",
-          OnBegin = "Loader"
-      }, new { id = "form1", @class = "form-signin" }))
-      {
+        @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions {
+            HttpMethod = "POST",
+            OnSuccess = "LoadResult(data)",
+            OnBegin = "Loader"
+        }, new { id = "form1", @class = "form-signin" })) {
             @Html.AntiForgeryToken()
             <h2 class="form-signin-heading">Sign In</h2>
             <input type="text" class="form-control" name="UserName" placeholder="Username" required="">
             <input type="password" class="form-control" name="Password" placeholder="Password" required="">
             <span id="divMessage" style="color:red"></span>
             <button class="btn btn-lg btn-danger btn-block" type="submit" id="btnLoginDB" name="DB">Login</button>
-            <br/>
+            <br />
             <p>Login Information: U:admin P:admin</p>
-      }
+        }
     </div>
-  
+
+    <div class="wrapper">
+        @using (Ajax.BeginForm("Register", "Login", new AjaxOptions {
+            HttpMethod = "POST",
+            OnSuccess = "LoadResult(data)",
+            OnBegin = "Loader"
+        }, new { id = "form2", @class = "form-signin" })) {
+            @Html.AntiForgeryToken()
+            <h2 class="form-signin-heading">Sign In</h2>
+            <input type="text" class="form-control" name="Name" placeholder="Name" required="">
+
+            <input type="text" class="form-control" name="Email" placeholder="Email" required="">
+            <input type="password" class="form-control" name="Password" placeholder="Password" required="">
+            <span id="divMessage" style="color:red"></span>
+            <button class="btn btn-lg btn-danger btn-block" type="submit" id="btnLoginDB" name="DB">Login</button>
+            <br />
+            <p>Login Information: U:admin P:admin</p>
+        }
+    </div>
+
+
     <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
     <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="@Address/Sources/Scripts/jquery.form.js"></script>

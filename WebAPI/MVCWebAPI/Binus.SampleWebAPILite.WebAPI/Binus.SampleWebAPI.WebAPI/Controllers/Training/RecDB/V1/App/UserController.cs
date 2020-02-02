@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
 {
-    [Authorize]
+    //[Authorize]
     [ApiVersion("1.0")]
     public class UserController : ApiController
     {
