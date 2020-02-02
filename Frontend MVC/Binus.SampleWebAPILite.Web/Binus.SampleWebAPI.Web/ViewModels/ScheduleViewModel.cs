@@ -1,4 +1,5 @@
-﻿using Binus.SampleWebAPI.Model.AppModel;
+﻿
+using Binus.SampleWebAPI.Model.AppModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Binus.SampleWebAPI.Web.ViewModels
 {
     public class ScheduleViewModel
     {
-        public List<ScheduleModel> ListSchedule;
+        public List<ScheduleModel> ListSchedule { get; set; }
+        public ScheduleModel Schedule;
     }
 }

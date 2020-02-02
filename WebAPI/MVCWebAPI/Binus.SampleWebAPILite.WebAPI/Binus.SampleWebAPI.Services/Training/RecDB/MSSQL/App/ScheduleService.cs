@@ -43,7 +43,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_ScheduleDB_DeleteSchedule @ScheduleID",
+                SPName = "bn_RecDB_DeleteSchedule @ScheduleID",
                 SQLParam = Param
             }); ; ;
 
@@ -66,7 +66,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_ScheduleDB_InsertSchedule @StartTime, @EndTime, @Place, @Topic, @Description",
+                SPName = "bn_RecDB_InsertSchedule @StartTime, @EndTime, @Place, @Topic, @Description",
                 SQLParam = Param
             });
 
@@ -90,7 +90,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_BookDB_UpdateSchedule @ScheduleID, @StartTime, @EndTime, @Place, @Topic, @Description",
+                SPName = "bn_RecDB_UpdateSchedule @ScheduleID, @StartTime, @EndTime, @Place, @Topic, @Description",
                 SQLParam = Param
             });
 

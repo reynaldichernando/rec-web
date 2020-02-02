@@ -21,13 +21,15 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 Global.WebAPIBaseURL,
                 "api/Training/RecDB/V1/App/Schedule/GetAllSchedule",
                 REST.Method.GET).Result;
-                if (Result.Success) VM.ListSchedule = Result.Deserialize<List<ScheduleModel>>();
-              
+                if (Result.Success) {
+                    VM.ListSchedule = Result.Deserialize<List<ScheduleModel>>();
+                    return View(VM);
+                }
             } catch(Exception ex) {
                 throw ex;
             }
 
-            return View(VM);
+            return View();
         }
 
     public ActionResult DeleteSchedule(int ScheduleID)
@@ -47,6 +49,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
         }
         public ActionResult UpdateSchedule(ScheduleModel Schedule)
         {
+            
             try {
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
