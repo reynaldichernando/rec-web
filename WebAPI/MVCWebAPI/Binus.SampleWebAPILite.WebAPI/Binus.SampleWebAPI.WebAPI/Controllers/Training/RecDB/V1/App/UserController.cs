@@ -33,6 +33,11 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         {
             return Json(await _UserService.RegisterUser(User));
         }
-        
+
+        [HttpPost]
+        public async Task<IHttpActionResult> ResetPassword(UserModel User)
+        {
+            return Json(await _UserService.RegisterUser(User));
+        }
     }
 }

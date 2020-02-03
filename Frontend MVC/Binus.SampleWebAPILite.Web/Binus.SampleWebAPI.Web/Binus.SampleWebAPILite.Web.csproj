@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
     <Compile Include="Global.asax.cs">
@@ -805,7 +806,6 @@
     <Content Include="Views\Home\NewBook.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Update.cshtml" />
-    <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Thread\Index.cshtml" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js.map" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js.map" />
@@ -815,6 +815,8 @@
     <Content Include="Sources\Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Views\Assignment\Index.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
