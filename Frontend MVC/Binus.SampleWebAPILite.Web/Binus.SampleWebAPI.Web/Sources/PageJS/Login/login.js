@@ -15,10 +15,11 @@ function LoadResult(Data)
     }
 }
 
-function Loader()
-{
+function Loader() {
     $("#divMessage").text("");
-   
+
     $('#btnLogin').attr('disabled', 'disabled');
     $('#btnLoginDB').attr('disabled', 'disabled');
+
+
 }

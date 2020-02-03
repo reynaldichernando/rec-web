@@ -5,6 +5,10 @@ using Binus.WebAPI.REST;
 using System;
 using System.Configuration;
 using System.Web.Mvc;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Binus.SampleWebAPI.Web.Controllers
 {
@@ -24,8 +28,11 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(string Name,string Email, string Password)
+        public ActionResult ResetPassword()
+        {
+            return View("ResetPassword");
+        }
+        public ActionResult ResetPassworded(string Email, string Password)
         {
             JsonResult Retdata = new JsonResult();
 
@@ -33,59 +40,71 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 try {
                     UserModel UserData = new UserModel {
                         Email = Email,
-                        Name = Name,
+                        Name = "name",
                         Password = Password,
-                        Role = "admin",
-                        UserID = 1,
+                        Role = "unapproved",
                         Username = Email
                     };
                     RESTResult Result = new REST(
                         Global.WebAPIBaseURL,
-                        "/api/Training/RecDB/V1/App/User/RegisterUser",
+                        "/api/Training/RecDB/V1/App/User/ResetPassword",
                         REST.Method.POST,
                         ConfigurationManager.AppSettings["OAuthBookDB"],
                         UserData
                     ).Result;
                     if (Result.Success) {
-                        UserModel User = Result.Deserialize<UserModel>();
-
-                        if (User != null) {
-                            Retdata = Json(new {
-                                Status = "Success",
-                                Message = "Regis Success",
-                                URL = Global.BaseURL
-                            });
-                        } else {
-                            Retdata = Json(new {
-                                Status = "Failed",
-                                Message = "User not found"
-                            });
-                        }
+                       
+                            System.Diagnostics.Debug.WriteLine("succ");
+                            return View("Index");
 
                     } else {
-                        Retdata = Json(new {
-                            Status = "Failed",
-                            Message = Result.Message
-                        });
+                      
                     }
 
                 } catch (Exception ex) {
-                    Retdata = Json(new {
-                        Status = "Failed",
-                        Message = ex.Message
-                    });
+                
                 }
             } else {
-                Retdata = Json(new {
-                    Status = "Failed",
-                    Message = "Username or Password cannot be empty"
-                });
+            
+            }
+            return View("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SendAsync(string Email)
+        {
+            MailMessage message = new MailMessage();
+
+            message.To.Add(Email);
+            message.Subject = "Reset your password";
+            //message.Body = "<form> <label>Topic</label> <input type='text' name='Topic' placeholder='Topic'/> <button type = 'submit' onsubmit='window.location.href = 'http://localhost:14033/Schedule/Index'> submit </button> </form>";
+            //message.Body = "<form onsubmit='window.open(http://localhost:14033/Schedule/Index)'> <label>Topic</label> <input type='text' name='Topic' placeholder='Topic'/> <button type = 'submit' > submit </button> </form>";
+            //commented by cs. email ga ngebolehin window.open/window.location.href ke halaman lain, there goes my 30 mins of time
+            message.Body = "Please click the link below to reset your password <br> http://localhost:14033/Login/ResetPassword";
+            message.BodyEncoding = System.Text.Encoding.UTF8;
+            message.From = new MailAddress("c.soetanto37@gmail.com");
+            message.SubjectEncoding = System.Text.Encoding.UTF8;
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient()) {
+                var credential = new NetworkCredential {
+                    UserName = "c.soetanto37@gmail.com",
+                    Password = "ASDFGHJKLzxcvbnm!@#"
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+
             }
 
-            Retdata.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Retdata;
+            return View();
         }
 
+       
+
+  
         [ValidateAntiForgeryToken]
         public ActionResult Auth(string Username, string Password)
         {
