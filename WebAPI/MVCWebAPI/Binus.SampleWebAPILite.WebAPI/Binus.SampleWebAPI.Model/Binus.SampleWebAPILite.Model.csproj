@@ -80,8 +80,34 @@
     <Compile Include="Training\RecDB\MSSQL\App\ThreadModel.cs" />
     <Compile Include="Training\RecDB\MSSQL\User\UserModel.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Content Include="bin\Debug\Binus.SampleWebAPILite.Model.dll" />
+    <Content Include="bin\Debug\Binus.SampleWebAPILite.Model.pdb" />
+    <Content Include="bin\Debug\MongoDB.Bson.dll" />
+    <Content Include="bin\Debug\MongoDB.Bson.xml" />
+    <Content Include="bin\Debug\MongoDB.Driver.Core.dll" />
+    <Content Include="bin\Debug\MongoDB.Driver.Core.xml" />
+    <Content Include="bin\Debug\MongoDB.Driver.dll" />
+    <Content Include="bin\Debug\MongoDB.Driver.xml" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\System.ComponentModel.DataAnnotations.dll" />
+    <Content Include="bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="bin\Release\Binus.SampleWebAPILite.Model.dll" />
+    <Content Include="bin\Release\Binus.SampleWebAPILite.Model.pdb" />
+    <Content Include="bin\Release\MongoDB.Bson.dll" />
+    <Content Include="bin\Release\MongoDB.Bson.xml" />
+    <Content Include="bin\Release\MongoDB.Driver.Core.dll" />
+    <Content Include="bin\Release\MongoDB.Driver.Core.xml" />
+    <Content Include="bin\Release\MongoDB.Driver.dll" />
+    <Content Include="bin\Release\MongoDB.Driver.xml" />
+    <Content Include="bin\Release\Newtonsoft.Json.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.xml" />
+    <Content Include="bin\Release\System.ComponentModel.DataAnnotations.dll" />
+    <Content Include="bin\Release\System.Runtime.InteropServices.RuntimeInformation.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\desktop.ini" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
