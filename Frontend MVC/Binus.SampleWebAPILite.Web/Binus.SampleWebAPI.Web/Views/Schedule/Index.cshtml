@@ -57,7 +57,7 @@
                     <td>
                         @Html.ActionLink("Delete", "DeleteSchedule", Data)
                         <div class="wrapper">
-
+                            
                             @using (Html.BeginForm("UpdateSchedule", "Schedule", FormMethod.Post, new {
                                 id = "form1",
                                 onSubmit = "convertDate()",
