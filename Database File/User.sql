@@ -30,3 +30,6 @@ as
 begin
 	insert into [msUser] values (@Name,@Email,@Password,@Role)
 end
+
+use RecDB
+select * from msUser

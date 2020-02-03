@@ -54,20 +54,25 @@
                     <td>@Data.Place</td>
                     <td>@Data.Topic</td>
                     <td>
-                        @Html.ActionLink("Delete", "Schedule", Data)
+                        @Html.ActionLink("Delete", "DeleteSchedule", Data)
                         <div class="wrapper">
 
-                            @using (Html.BeginForm("UpdateSchedule", "Schedule", FormMethod.Post)) {
+                            @using (Html.BeginForm("UpdateSchedule", "Schedule", FormMethod.Post, new {
+                                id = "form1",
+                                onSubmit = "convertDate()",
+                                
+                            })) {
+                                <script>console.log(@Data.StartTime)</script>
                                 <label>@Data.ScheduleID</label>
-                                <input type="hidden" name="ScheduleID" value="@Data.ScheduleID"/>
+                                <input type="hidden" name="ScheduleID" value="@Data.ScheduleID" />
                                 <label>Topic</label>
-                                <input type="text" name="Topic" placeholder="Topic" />
+                                <input type="text" name="Topic" placeholder="Topic" value="@Data.Topic" />
                                 <label>Desc</label>
-                                <input type="text" name="Description" placeholder="Decscscscs" />
+                                <input type="text" name="Description" placeholder="Decscscscs" value="@Data.Description" />
                                 <label>place</label>
-                                <input type="text" name="Place" placeholder="ples" />
-                                <input type="datetime-local" value="12/31/2020 12:59:00 PM" name="StartTime" />
-                                <input type="datetime-local" value="12/31/2020 12:59:00 PM" name="EndTime" />
+                                <input type="text" name="Place" placeholder="ples" value="@Data.Place" />
+                                <input type="datetime-local" value="@Data.StartTime" id="StartTime" name="StartTime" />
+                                <input type="datetime-local" value="@Data.EndTime" id="EndTime" name="EndTime" />
                                 <button type="submit">submit</button>
                             }
                         </div>
@@ -103,6 +108,39 @@
     <script src="@Address/Sources/Scripts/jquery.form.js"></script>
     <script src="@Address/Sources/Scripts/bootstrap.js"></script>
     <script src="@Address/Sources/Scripts/respond.js"></script>
+    <script>
+        function convertDate() {
+
+            var d = new Date($("#StartTime").val());
+            console.log(d);
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            console.log([year, month, day].join('/'));
+            $("#StartTime").val([year, month, day].join('/'));
+
+            var e = new Date($("#EndTime").val());
+            console.log(e);
+            month = '' + (e.getMonth() + 1),
+            day = '' + e.getDate(),
+            year = e.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            console.log([year, month, day].join('/'));
+             $("#EndTime").val([year, month, day].join('/'));
+
+        }
+    </script>
 </body>
 
 </html>
