@@ -1,4 +1,4 @@
-CREATE PROC bn_RecDB_GetUserLogin
+ALTER PROC bn_RecDB_GetUserLogin
 @Email varchar(50),
 @Password varchar(30)
 as
@@ -7,7 +7,7 @@ BEGIN
 	FROM [msUser]
 	where Email = @Email
 	AND [Password] = @Password
-	AND [Role] IN ('approved', 'admin')
+	--AND [Role] IN ('approved', 'admin')
 END
 
 GO

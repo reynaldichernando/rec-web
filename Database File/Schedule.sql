@@ -1,3 +1,10 @@
+CREATE PROC bn_RecDB_GetAllSchedule
+AS
+BEGIN
+	SET NOCOUNT ON
+	SELECT * FROM msSchedule
+END
+
 create proc bn_RecDB_InsertSchedule
 @StartTime datetime,
 @EndTime datetime,
@@ -27,6 +34,7 @@ begin
 	where ScheduleID = @ScheduleID
 end
 
+GO
 create proc bn_RecDB_DeleteSchedule
 @ScheduleID int
 as

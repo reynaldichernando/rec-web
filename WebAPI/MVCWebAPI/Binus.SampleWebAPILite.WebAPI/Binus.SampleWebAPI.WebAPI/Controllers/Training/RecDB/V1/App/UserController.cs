@@ -21,6 +21,7 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             this._UserService = _UserService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IHttpActionResult> GetUserLogin(UserModel User)
         {

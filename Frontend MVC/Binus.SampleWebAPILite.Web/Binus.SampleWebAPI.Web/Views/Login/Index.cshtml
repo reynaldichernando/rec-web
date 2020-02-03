@@ -1,65 +1,120 @@
-﻿
-@{
+﻿@{
     Layout = null;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web API Sample</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recruitee Signin Page</title>
 
     <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="@Address/Sources/CSS/signin.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="@Address/Sources/src/hanzo-icon.png" type="image/x-icon">
+
+
 </head>
 <body>
-    <div class="wrapper">
-        @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions {
-            HttpMethod = "POST",
-            OnSuccess = "LoadResult(data)",
-            OnBegin = "Loader"
-        }, new { id = "form1", @class = "form-signin" })) {
-            @Html.AntiForgeryToken()
-            <h2 class="form-signin-heading">Sign In</h2>
-            <input type="text" class="form-control" name="UserName" placeholder="Username" required="">
-            <input type="password" class="form-control" name="Password" placeholder="Password" required="">
-            <span id="divMessage" style="color:red"></span>
-            <button class="btn btn-lg btn-danger btn-block" type="submit" id="btnLoginDB" name="DB">Login</button>
-            <br />
-            <p>Login Information: U:admin P:admin</p>
-        }
+    <div class="split left">
+        <img src="@Address/Sources/src/shimada.jpg" class="logo d-block rounded" alt="" style="margin-left: 48px; margin-top: 35px">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner bg-dark mx-5 w-auto rounded">
+                <div class="carousel-item active p-5 position-relative">
+                    <div class="carousel-caption d-none d-md-block position-absolute" style="left: 10%; width: 50%; top: 20%">
+                        <h2>Be There or Be Square</h2>
+                        <p>To see the place and time of any activity, go to schedule section. See you there, partner!</p>
+                    </div>
+                    <img src="@Address/Sources/src/calendar-icon.png" class="d-block" style="max-width: 240px; margin-right: 10%; float: right;"
+                         alt="calendar">
+
+                </div>
+                <div class="carousel-item p-5 position-relative">
+                    <div class="carousel-caption d-none d-md-block position-absolute" style="left: 10%; width: 50%; top: 20%">
+                        <h2>Get Your Latest Assignment!!</h2>
+                        <p>Go to Assignment Section and see what's task to be done. Don't forget to submit before due date!</p>
+                    </div>
+                    <img src="@Address/Sources/src/assignment-icon.png" class="d-block" style="max-width: 240px; margin-right: 10%; float: right;"
+                         alt="assignment">
+
+                </div>
+                <div class="carousel-item p-5 position-relative">
+                    <div class="carousel-caption d-none d-md-block position-absolute" style="left: 10%; width: 50%; top: 20%">
+                        <h2>Any Question?</h2>
+                        <p>
+                            If you have any question or two about assignment, schedule or else, ask fellow colleague and admin on QnA
+                            section.
+                        </p>
+                    </div>
+                    <img src="@Address/Sources/src/question-icon.png" class="d-block" style="max-width: 240px; margin-right: 10%; float: right;"
+                         alt="question">
+
+                </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div>
+    </div>
+    <div class="split right border border-dark">
+        <div class="centered">
+            <form class="form-signin">
+                @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "LoadResult(data)",
+                    OnBegin = "Loader"
+                }, new { id = "form1", @class = "form-signin" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
+
+                    <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Password" required>
+                    <div class="checkbox mb-3">
+                        <label class="text-dark">
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                }
+            </form>
+            <div class="dropdown-divider mt-2"></div>
+            <a class="dropdown-item" href="#">Forgot password?</a>
+
+            <div class="dropdown-divider mt-5"></div>
+            <a class="dropdown-item" href="#">Request Account</a>
+        </div>
     </div>
 
-    <div class="wrapper">
-        @using (Ajax.BeginForm("Register", "Login", new AjaxOptions {
-            HttpMethod = "POST",
-            OnSuccess = "LoadResult(data)",
-            OnBegin = "Loader"
-        }, new { id = "form2", @class = "form-signin" })) {
-            @Html.AntiForgeryToken()
-            <h2 class="form-signin-heading">Sign In</h2>
-            <input type="text" class="form-control" name="Name" placeholder="Name" required="">
-
-            <input type="text" class="form-control" name="Email" placeholder="Email" required="">
-            <input type="password" class="form-control" name="Password" placeholder="Password" required="">
-            <span id="divMessage" style="color:red"></span>
-            <button class="btn btn-lg btn-danger btn-block" type="submit" id="btnLoginDB" name="DB">Login</button>
-            <br />
-            <p>Login Information: U:admin P:admin</p>
-        }
-    </div>
-
-
-    <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
     <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="@Address/Sources/Scripts/jquery.form.js"></script>
     <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-    <script src="@Address/Sources/Scripts/respond.js"></script>
+
+    <script src="@Address/Sources/Scripts/jquery-3.4.1.slim.min.js"></script>
+    <script src="@Address/Sources/Scripts/bootstrap.min.js"></script>
+
     <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    <script src="@Address/Sources/Scripts/respond.js"></script>
+
+
 </body>
-
-
 </html>
