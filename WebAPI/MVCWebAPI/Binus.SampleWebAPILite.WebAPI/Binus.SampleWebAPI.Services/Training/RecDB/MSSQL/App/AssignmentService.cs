@@ -57,8 +57,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             var Param = new SqlParameter[]
             {
                 new SqlParameter("@Title", Model.Title),
-                new SqlParameter("@Duedate", Model.Duedate),
-                new SqlParameter("@DateUploaded", Model.DateUploaded),
+                new SqlParameter("@DateDue", Model.DateDue),
                 new SqlParameter("@Description", Model.Description),
                 new SqlParameter("@AssignmentFilePath", Model.AssignmentFilepath)
             };
@@ -66,7 +65,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_AssignmentDB_InsertAssignment @UserID, @AssignmentID, @AssignmentFilePath, @DateUploaded",
+                SPName = "bn_AssignmentDB_InsertAssignment @Title, @Description, @AssignmentFilePath, @DateDue",
                 SQLParam = Param
             });
 
@@ -81,8 +80,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             {
                 new SqlParameter("@AssignmentID", Model.AssignmentID),
                 new SqlParameter("@Title", Model.Title),
-                new SqlParameter("@Duedate", Model.Duedate),
-                new SqlParameter("@DateUploaded", Model.DateUploaded),
+                new SqlParameter("@DateDue", Model.DateDue),
                 new SqlParameter("@Description", Model.Description),
                 new SqlParameter("@AssignmentFilePath", Model.AssignmentFilepath)
             };
@@ -90,7 +88,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_BookDB_UpdateAssignment @AnsweID, @UserID, @AssignmentID, @AssignmentFilePath, @DateUploaded",
+                SPName = "bn_AssignmentDB_UpdateAssignment @AssignmentID, @Title, @Description, @AssignmentFilePath, @DateDue",
                 SQLParam = Param
             });
 

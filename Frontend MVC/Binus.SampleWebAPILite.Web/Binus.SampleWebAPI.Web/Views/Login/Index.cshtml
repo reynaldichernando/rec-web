@@ -72,31 +72,56 @@
     </div>
     <div class="split right border border-dark">
         <div class="centered">
-            <form class="form-signin">
-                @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
-                {
-                    HttpMethod = "POST",
-                    OnSuccess = "LoadResult(data)",
-                    OnBegin = "Loader"
-                }, new { id = "form1", @class = "form-signin" }))
-                {
-                    @Html.AntiForgeryToken()
+            @*<form class="form-signin">
+            @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "LoadResult(data)",
+                OnBegin = "Loader"
+            }, new { id = "form1", @class = "form-signin" }))
+            {
+                @Html.AntiForgeryToken()
 
-                    <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
+                <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
 
-                    <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Password" required>
-                    <div class="checkbox mb-3">
-                        <label class="text-dark">
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                }
-            </form>
+                <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Password" required>
+                <div class="checkbox mb-3">
+                    <label class="text-dark">
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            }
+        </form>*@
+            @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "LoadResult(data)",
+                OnBegin = "Loader"
+            }, new { id = "form1", @class = "form-signin" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
+
+                <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control mb-2" name="Username" placeholder="Email address" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
+                <div class="checkbox mb-3">
+                    <label class="text-dark">
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <span id="divMessage" style="color:red"></span>
+                <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Sign in</button>
+            }
+
             <div class="dropdown-divider mt-2"></div>
             <a class="dropdown-item" href="#">Forgot password?</a>
 
@@ -105,15 +130,21 @@
         </div>
     </div>
 
+    @*<script src="@Address/Sources/Scripts/jquery-3.4.1.slim.min.js"></script>
     <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="@Address/Sources/Scripts/jquery.form.js"></script>
     <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-
-    <script src="@Address/Sources/Scripts/jquery-3.4.1.slim.min.js"></script>
-    <script src="@Address/Sources/Scripts/bootstrap.min.js"></script>
-
     <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    <script src="@Address/Sources/Scripts/respond.js"></script>*@
+    @* Commented by cher, karena jquery slim min js gaada ajax thanks *@
+
+    <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
+    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
     <script src="@Address/Sources/Scripts/respond.js"></script>
+    <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    
 
 
 </body>
