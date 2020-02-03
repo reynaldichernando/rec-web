@@ -97,8 +97,12 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             }
         </form>*@
-
-            @using (Html.BeginForm("Auth", "Login", FormMethod.Post))
+            @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "LoadResult(data)",
+                OnBegin = "Loader"
+            }, new { id = "form1", @class = "form-signin" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -114,8 +118,10 @@
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <span id="divMessage" style="color:red"></span>
+                <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Sign in</button>
             }
+
             <div class="dropdown-divider mt-2"></div>
             <a class="dropdown-item" href="#">Forgot password?</a>
 
@@ -124,14 +130,21 @@
         </div>
     </div>
 
-    <script src="@Address/Sources/Scripts/jquery-3.4.1.slim.min.js"></script>
+    @*<script src="@Address/Sources/Scripts/jquery-3.4.1.slim.min.js"></script>
     <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="@Address/Sources/Scripts/jquery.form.js"></script>
     <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-    <script src="@Address/Sources/Scripts/bootstrap.min.js"></script>
-
     <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    <script src="@Address/Sources/Scripts/respond.js"></script>*@
+    @* Commented by cher, karena jquery slim min js gaada ajax thanks *@
+
+    <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
+    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
     <script src="@Address/Sources/Scripts/respond.js"></script>
+    <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    
 
 
 </body>
