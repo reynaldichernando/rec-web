@@ -28,11 +28,12 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ResetPassword()
+        public ActionResult ResetPassword(string Email)
         {
+            ViewBag.email = Email;
             return View("ResetPassword");
         }
-        public ActionResult ResetPassworded(string Email, string Password)
+        public ActionResult ChangePassword(string Email, string Password)
         {
             JsonResult Retdata = new JsonResult();
 
@@ -57,7 +58,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                             System.Diagnostics.Debug.WriteLine("succ");
                             return View("Index");
 
-                    } else {
+                    } else {    
                       
                     }
 
@@ -80,7 +81,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
             //message.Body = "<form> <label>Topic</label> <input type='text' name='Topic' placeholder='Topic'/> <button type = 'submit' onsubmit='window.location.href = 'http://localhost:14033/Schedule/Index'> submit </button> </form>";
             //message.Body = "<form onsubmit='window.open(http://localhost:14033/Schedule/Index)'> <label>Topic</label> <input type='text' name='Topic' placeholder='Topic'/> <button type = 'submit' > submit </button> </form>";
             //commented by cs. email ga ngebolehin window.open/window.location.href ke halaman lain, there goes my 30 mins of time
-            message.Body = "Please click the link below to reset your password <br> http://localhost:14033/Login/ResetPassword";
+            message.Body = "Please click the link below to reset your password <br> http://localhost:14033/Login/ResetPassword?Email="+Email;
             message.BodyEncoding = System.Text.Encoding.UTF8;
             message.From = new MailAddress("c.soetanto37@gmail.com");
             message.SubjectEncoding = System.Text.Encoding.UTF8;

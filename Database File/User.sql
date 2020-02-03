@@ -11,7 +11,7 @@ BEGIN
 END
 
 GO
-create PROC bn_RecDB_UpdatePassword
+create PROC bn_RecDB_UpdatePassword 'email@email.com123','password'
 @Email varchar(50),
 @Password varchar(50)
 as
@@ -30,6 +30,13 @@ as
 begin
 	insert into [msUser] values (@Name,@Email,@Password,@Role)
 end
+
+create proc bn_RecDB_GetUnapprovedUser
+as
+begin
+	select * from msUser where Role = 'unapproved'
+end
+
 
 use RecDB
 select * from msUser
