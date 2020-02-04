@@ -14,7 +14,7 @@ CREATE PROC bn_RecDB_GetAllThread
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT ThreadID, trThread.UserID, Title, Content, [Name] 
+	SELECT ThreadID, trThread.UserID, Title, Content, [Name]
 	FROM trThread JOIN msUser ON trThread.UserID = msUser.UserID 
 END
 
@@ -25,7 +25,7 @@ CREATE PROC bn_RecDB_GetOneThread
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT ThreadID, trThread.UserID, Title, Content, [Name] 
+	SELECT ThreadID, trThread.UserID, Title, Content, [Name]
 	FROM trThread JOIN msUser ON trThread.UserID = msUser.UserID 
 	WHERE ThreadID = @ThreadID
 END
