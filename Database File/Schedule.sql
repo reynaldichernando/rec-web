@@ -17,7 +17,7 @@ begin
 	values(@StartTime,@EndTime,@Place,@Topic,@Description)
 end
 GO
-create proc bn_BookDB_UpdateSchedule
+create proc bn_RecDB_UpdateSchedule
 @ScheduleID int,
 @StartTime datetime,
 @EndTime datetime,
@@ -35,9 +35,11 @@ begin
 end
 
 GO
-create proc bn_RecDB_DeleteSchedule
+alter proc bn_RecDB_DeleteSchedule
 @ScheduleID int
 as
 begin
-	delete from Schedule where ScheduleID = @ScheduleID
+	delete from msSchedule where ScheduleID = @ScheduleID
 end
+
+use RecDB
