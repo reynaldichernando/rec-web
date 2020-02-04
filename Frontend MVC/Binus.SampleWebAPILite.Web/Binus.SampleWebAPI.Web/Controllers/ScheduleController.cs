@@ -7,6 +7,7 @@ using Binus.SampleWebAPI.Web.Class;
 using Binus.SampleWebAPI.Web.ViewModels;
 using Binus.WebAPI.REST;
 using System.Web.Mvc;
+using System.Configuration;
 
 namespace Binus.SampleWebAPI.Web.Controllers
 {
