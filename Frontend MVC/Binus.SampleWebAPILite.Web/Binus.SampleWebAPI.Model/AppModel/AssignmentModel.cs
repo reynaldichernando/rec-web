@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Binus.SampleWebAPI.Model.AppModel
 {
@@ -14,6 +15,5 @@ namespace Binus.SampleWebAPI.Model.AppModel
         public DateTime DateUploaded { get; set; }
         public string Description { get; set; }
         public string AssignmentFilepath { get; set; }
-
     }
 }

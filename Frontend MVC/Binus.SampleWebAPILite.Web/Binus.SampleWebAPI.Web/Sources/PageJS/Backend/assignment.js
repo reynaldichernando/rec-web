@@ -1,4 +1,52 @@
 ﻿$(document).ready(function () {
+    $('input[type="file"]').change(function (e) {
+        var file = e.target.files[0];
+        let fileName = file.name;
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('path', $('#txtTitle').val());
+    
+        //alert('The file "' + fileName + '" has been selected.');
+        $('#txtAssignmentFilePath').val(fileName);
+        $.ajax({
+            // Your server script to process the upload
+            url: Address + '/Assignment/Upload',
+            type: 'POST',
+
+            // Form data
+            data: formData,
+
+            // Tell jQuery not to process data or worry about content-type
+            // You *must* include these options!
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                //alert(data);
+            },
+            error: function (data) {
+                console.log("Error: " + data)
+            }
+
+            // Custom XMLHttpRequest
+            //xhr: function () {
+            //    var myXhr = $.ajaxSettings.xhr();
+            //    if (myXhr.upload) {
+            //        // For handling the progress of the upload
+            //        myXhr.upload.addEventListener('progress', function (e) {
+            //            if (e.lengthComputable) {
+            //                $('progress').attr({
+            //                    value: e.loaded,
+            //                    max: e.total,
+            //                });
+            //            }
+            //        }, false);
+            //    }
+            //    return myXhr;
+            //}
+        });
+    });
+
     $('#MessageContainer').hide();
     $('#insertModal').on('show.bs.modal', function (event) {
         CleanForm();

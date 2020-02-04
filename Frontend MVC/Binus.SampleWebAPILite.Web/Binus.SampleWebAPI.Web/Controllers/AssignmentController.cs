@@ -10,6 +10,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Binus.SampleWebAPI.Web.Controllers
 {
@@ -46,6 +48,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
             try
             {
                 RESTResult Result;
+                Model.AssignmentFilepath = "./Assignment/" + Model.Title + "/" + Model.AssignmentFilepath;
                 if (Model.AssignmentID == 0)
                 {
                     Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/InsertAssignment", REST.Method.POST, Model)).Result;
@@ -54,6 +57,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 {
                     Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/UpdateAssignment", REST.Method.POST, Model)).Result;
                 }
+
 
                 if (Result.Success)
                 {
@@ -154,6 +158,59 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 });
             }
             return retData;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Upload(HttpPostedFileBase file, String path)
+        {
+
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=recprojectstorage;AccountKey=wMy00xgnLUx0QVAE+ulUMOt0512O1VFheAflKAfuNqqXv2z6m1EtgVTx9Bcf/TED3WKJa3uTsqxmskoFRewnQQ==;EndpointSuffix=core.windows.net");
+            CloudBlobClient BlobClient = storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer storageContainer = BlobClient.GetContainerReference("test");
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string fileName = "./Assignment/" + path+ "/" + Path.GetFileName(file.FileName);
+                    CloudBlockBlob blockBlob = storageContainer.GetBlockBlobReference(fileName);
+                    await blockBlob.UploadFromStreamAsync(file.InputStream);
+                    ViewBag.Message = fileName;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return new EmptyResult();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> DownloadFile(string fileName)
+        {
+            MemoryStream ms = new MemoryStream();
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=recprojectstorage;AccountKey=wMy00xgnLUx0QVAE+ulUMOt0512O1VFheAflKAfuNqqXv2z6m1EtgVTx9Bcf/TED3WKJa3uTsqxmskoFRewnQQ==;EndpointSuffix=core.windows.net");
+            CloudBlobClient BlobClient = storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer container = BlobClient.GetContainerReference("test");
+
+            if (await container.ExistsAsync())
+            {
+                CloudBlob file = container.GetBlobReference(fileName);
+
+                if (await file.ExistsAsync())
+                {
+                    await file.DownloadToStreamAsync(ms);
+                    Stream blobStream = file.OpenReadAsync().Result;
+                    return File(blobStream, file.Properties.ContentType, file.Name);
+                }
+                else
+                {
+                    return Content("File does not exist");
+                }
+            }
+            else
+            {
+                return Content("Container does not exist");
+            }
         }
     }
 }

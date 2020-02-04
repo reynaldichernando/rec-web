@@ -41,7 +41,7 @@
     {
         HttpMethod = "POST",
         OnSuccess = "LoadResult(data)"
-    }, new { id = "form" }))
+    }, new { id = "form", enctype="multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -76,7 +76,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="txtAssignmentFilePath">File:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtAssignmentFilePath" name="AssignmentFilePath">
+                                    <input type="file" class="form-control input-lg" required name="postedFile"/>
+                                    <input type="hidden" id="txtAssignmentFilePath" name="AssignmentFilePath" />
                                 </div>
                             </div>
                         </div>

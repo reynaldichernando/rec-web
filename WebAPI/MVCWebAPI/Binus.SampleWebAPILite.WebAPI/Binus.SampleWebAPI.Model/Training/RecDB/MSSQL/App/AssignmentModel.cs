@@ -15,6 +15,5 @@ namespace Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App
         public DateTime DateUploaded { get; set; }
         public string Description { get; set; }
         public string AssignmentFilepath { get; set; }
-
     }
 }
