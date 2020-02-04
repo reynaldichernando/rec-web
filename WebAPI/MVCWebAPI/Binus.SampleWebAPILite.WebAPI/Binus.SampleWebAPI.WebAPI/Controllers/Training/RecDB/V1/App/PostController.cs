@@ -1,12 +1,13 @@
 ﻿using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App;
 using Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App;
 using Microsoft.Web.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
 {
-    //[Authorize]
+    [Authorize]
     [ApiVersion("1.0")]
     public class PostController : ApiController
     {
@@ -18,9 +19,9 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> InsertPost(PostModel Post,int UserID)
+        public async Task<IHttpActionResult> InsertPost(PostModel Post)
         {
-            return Json(await _PostService.InsertPost(Post,UserID));
+            return Json(await _PostService.InsertPost(Post));
 
         }
 
@@ -41,7 +42,8 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         [HttpGet]
         public async Task<IHttpActionResult> GetPost(int ThreadID)
         {
-            return Json(await _PostService.GetPost(ThreadID));
+            List<PostModel> ListPost = (await _PostService.GetPost(ThreadID));
+            return Json(ListPost);
         }
 
     }

@@ -1,4 +1,4 @@
-ALTER PROC bn_RecDB_GetUserLogin
+CREATE PROC bn_RecDB_GetUserLogin
 @Email varchar(50),
 @Password varchar(30)
 as

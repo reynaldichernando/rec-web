@@ -1,4 +1,4 @@
-﻿@model Binus.SampleWebAPI.Web.ViewModels.ThreadViewModel
+﻿@model Binus.SampleWebAPI.Web.ViewModels.PostViewModel
 @{
 
     ViewBag.Title = "Index";
@@ -22,48 +22,52 @@
 
 <body>
 
-    <div class="wrapper">
+    <strong>
+        @Model.Thread.Title by @Model.Thread.Name
+    </strong>
 
-        @using (Html.BeginForm("CreateThread", "Thread", FormMethod.Post))
+    <p>
+        @Model.Thread.Content
+    </p>
+
+
+    <div class="wrapper">
+        @using (Html.BeginForm("CreatePost", "Post", FormMethod.Post))
         {
+            <input type="hidden" name="ThreadID" value="" />
             <input type="hidden" name="UserID" value="" />
-            <label>Title</label>
-            <input type="text" name="Title" placeholder="Title" />
-            <label>Content</label>
-            <input type="text" name="Content" placeholder="Content" />
-            <button type="submit">submit</button>
+            <label>Reply</label>
+            <input type="text" name="Content" placeholder="Reply" />
+            <button type="submit">send</button>
         }
     </div>
-    <h1>Forum</h1>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <td>Thread</td>
+                <td>Reply</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
 
-            @foreach (var Data in Model.ListThread)
+            @foreach (var Data in Model.ListPost)
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(@Data.Title, "ToPost", Data) by @Data.Name
-                        <br />
+                        @Data.Name replies:
                         <p>@Data.Content</p>
                     </td>
                     <td>
-                        @Html.ActionLink("Delete", "DeleteThread", Data)
+                        @Html.ActionLink("Delete", "DeletePost", Data)
                         <div class="wrapper">
-                            @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
+                            @using (Html.BeginForm("UpdatePost", "Post", FormMethod.Post))
                             {
+                                <input type="hidden" name="PostID" value="@Data.PostID" />
                                 <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
-                                <input type="hidden" name="UserID" value="@Data.UserID" />
-                                <label>Title</label>
-                                <input type="text" name="Title" placeholder="Title" value="@Data.Title" />
-                                <label>Content</label>
-                                <input type="text" name="Content" placeholder="Content" value="@Data.Content" />
-                                <button type="submit">submit</button>
+                                <input type="hidden" name="UserID" value="@Data.Content" />
+                                <label>Reply</label>
+                                <input type="text" name="Content" placeholder="Reply" value="@Data.Content" />
+                                <button type="submit">edit</button>
                             }
                         </div>
 

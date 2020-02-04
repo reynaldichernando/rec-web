@@ -13,7 +13,6 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
     public interface IUserService
     {
         Task<UserModel> GetUserLogin(UserModel Data);
-
         Task<ExecuteResult> RegisterUser(UserModel User);
     }
 

@@ -1,6 +1,5 @@
 USE RecDB
 
-
 GO
 CREATE PROC bn_RecDB_GetAllAssignment
 AS
