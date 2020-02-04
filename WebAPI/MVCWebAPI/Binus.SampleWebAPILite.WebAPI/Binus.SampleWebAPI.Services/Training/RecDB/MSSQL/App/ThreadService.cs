@@ -11,7 +11,8 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
     public interface IThreadService
     {
         Task<List<ThreadModel>> GetAllThread();
-        Task<ExecuteResult> InsertThread(ThreadModel Thread,int UserID);
+        Task<ThreadModel> GetOneThread(int ThreadID);
+        Task<ExecuteResult> InsertThread(ThreadModel Thread);
         Task<ExecuteResult> UpdateThread(ThreadModel Thread);
         Task<ExecuteResult> DeleteThread(ThreadModel Thread);
     }
@@ -48,12 +49,23 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<ThreadModel> ListThread = (await _ThreadRepo.ExecSPToListAsync("bn_RecDB_GetAllThread")).ToList();
             return ListThread;
         }
-
-        public async Task<ExecuteResult> InsertThread(ThreadModel Thread,int UserID)
+        public async Task<ThreadModel> GetOneThread(int ThreadID)
         {
             var Param = new SqlParameter[]
             {
-                new SqlParameter("@UserID", UserID),
+                new SqlParameter("@ThreadID", ThreadID)
+            };
+
+            ThreadModel Thread = (await _ThreadRepo.ExecSPToSingleAsync("bn_RecDB_GetOneThread @ThreadID", Param));
+
+            return Thread;
+        }
+
+        public async Task<ExecuteResult> InsertThread(ThreadModel Thread)
+        {
+            var Param = new SqlParameter[]
+            {
+                new SqlParameter("@UserID", Thread.UserID),
                 new SqlParameter("@Title",Thread.Title),
                 new SqlParameter("@Content", Thread.Content)
             };

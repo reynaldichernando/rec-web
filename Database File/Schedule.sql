@@ -35,7 +35,7 @@ begin
 end
 
 GO
-alter proc bn_RecDB_DeleteSchedule
+CREATE proc bn_RecDB_DeleteSchedule
 @ScheduleID int
 as
 begin

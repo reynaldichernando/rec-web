@@ -10,20 +10,26 @@ using System.Web.Mvc;
 
 namespace Binus.SampleWebAPI.Web.Controllers
 {
-    public class ThreadController:Controller
+    public class PostController : Controller
     {
         public ActionResult Index()
         {
-            ThreadViewModel VM = new ThreadViewModel();
+            PostViewModel VM = new PostViewModel();
             try
             {
+                int ThreadID = Convert.ToInt32(Session["ThreadID"]);
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
-                    "api/Training/RecDB/V1/App/Thread/GetAllThread",
+                    "api/Training/RecDB/V1/App/Post/GetPost?ThreadID="+ ThreadID,
                     REST.Method.GET).Result;
-                if (Result.Success)
+                RESTResult Result2 = new REST(
+                    Global.WebAPIBaseURL,
+                    "api/Training/RecDB/V1/App/Thread/GetOneThread?ThreadID=" + ThreadID,
+                    REST.Method.GET).Result;
+                if (Result.Success && Result2.Success)
                 {
-                    VM.ListThread = Result.Deserialize<List<ThreadModel>>();
+                    VM.ListPost = Result.Deserialize<List<PostModel>>();
+                    VM.Thread = Result2.Deserialize<ThreadModel>();
                     return View(VM);
                 }
             }
@@ -35,15 +41,15 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return View();
         }
 
-        public ActionResult DeleteThread(ThreadModel Thread)
+        public ActionResult DeletePost(PostModel Post)
         {
             try
             {
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
-                    "api/Training/RecDB/V1/App/Thread/DeleteThread",
+                    "api/Training/RecDB/V1/App/Post/DeletePost",
                     REST.Method.POST,
-                    Thread).Result;
+                    Post).Result;
                 System.Diagnostics.Debug.WriteLine(Result.Message);
             }
             catch (Exception ex)
@@ -53,39 +59,15 @@ namespace Binus.SampleWebAPI.Web.Controllers
 
             return RedirectToAction("Index");
         }
-        public ActionResult UpdateThread(ThreadModel Thread)
-        {
-
-            try
-            {
-                Thread.UserID = Convert.ToInt32(Thread.UserID);
-                Thread.ThreadID = Convert.ToInt32(Thread.ThreadID);
-
-                RESTResult Result = new REST(
-                    Global.WebAPIBaseURL,
-                    "api/Training/RecDB/V1/App/Thread/UpdateThread",
-                    REST.Method.POST,
-                    Thread).Result;
-                System.Diagnostics.Debug.WriteLine(Result.Message);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult CreateThread(ThreadModel Thread)
+        public ActionResult UpdatePost(PostModel Post)
         {
             try
             {
-                Thread.UserID = Convert.ToInt32(Session["UserID"]);
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
-                    "api/Training/RecDB/V1/App/Thread/InsertThread",
+                    "api/Training/RecDB/V1/App/Post/UpdatePost",
                     REST.Method.POST,
-                    Thread).Result;
+                    Post).Result;
                 System.Diagnostics.Debug.WriteLine(Result.Message);
             }
             catch (Exception ex)
@@ -96,12 +78,25 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ToPost(ThreadModel Thread)
+        public ActionResult CreatePost(PostModel Post)
         {
-            Session["ThreadID"] = Thread.ThreadID;
+            try
+            {
+                Post.ThreadID = Convert.ToInt32(Session["ThreadID"]);
+                Post.UserID = Convert.ToInt32(Session["UserID"]);
+                RESTResult Result = new REST(
+                    Global.WebAPIBaseURL,
+                    "api/Training/RecDB/V1/App/Post/InsertPost",
+                    REST.Method.POST,
+                    Post).Result;
+                System.Diagnostics.Debug.WriteLine(Result.Message);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-            return RedirectToAction("Index", "Post");
+            return RedirectToAction("Index");
         }
-
     }
 }

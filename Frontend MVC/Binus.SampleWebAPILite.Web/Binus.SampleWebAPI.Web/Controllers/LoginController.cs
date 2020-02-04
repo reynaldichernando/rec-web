@@ -131,14 +131,14 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     if(Result.Success)
                     {
                         UserModel User = Result.Deserialize<UserModel>();
-
-                        if(User != null)
+                        Session["UserID"] = User.UserID;
+                        if (User != null)
                         {
                             Retdata = Json(new
                             {
                                 Status = "Success",
                                 Message = "Login Success",
-                                URL = Global.BaseURL + "/Schedule/Index"
+                                URL = Global.BaseURL + "/Thread/Index"
                             });
                         }else
                         {

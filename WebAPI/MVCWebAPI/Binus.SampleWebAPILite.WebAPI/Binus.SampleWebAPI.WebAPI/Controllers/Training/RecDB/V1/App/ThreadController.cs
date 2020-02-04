@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
 {
-    //[Authorize]
+    [Authorize]
     [ApiVersion("1.0")]
     public class ThreadController : ApiController
     {
@@ -28,10 +28,17 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(ListThread);
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> InsertThread(ThreadModel Thread, int UserID)
+        [HttpGet]
+        public async Task<IHttpActionResult> GetOneThread(int ThreadID)
         {
-            return Json(await _ThreadService.InsertThread(Thread, UserID));
+            ThreadModel Thread = (await _ThreadService.GetOneThread(ThreadID));
+            return Json(Thread);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertThread(ThreadModel Thread)
+        {
+            return Json(await _ThreadService.InsertThread(Thread));
 
         }
 
@@ -48,7 +55,5 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(await _ThreadService.DeleteThread(Thread));
 
         }
-
-
     }
 }

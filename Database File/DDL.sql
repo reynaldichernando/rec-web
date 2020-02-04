@@ -15,6 +15,11 @@ create table [msUser](
 	[Role] varchar(10) CHECK([Role] IN ('approved', 'unapproved', 'admin')) DEFAULT('unapproved')
 )
 
+go
+
+insert into [msUser] values('Luis', 'Luis@luis.com', '123', 'unapproved')
+insert into [msUser] values('Bruh', 'Bruh@bruh.com', '123', 'unapproved')
+
 GO
 create table msAssignment(
 	AssignmentID int primary key identity(1,1),
