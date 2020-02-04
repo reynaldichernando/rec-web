@@ -30,6 +30,14 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(ListAssignment);
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAssignment(int AssignmentID)
+        {
+            AssignmentModel assignment = (await _AssignmentService.GetAssignment(AssignmentID));
+
+            return Json(assignment);
+        }
+
         [HttpPost]
         public async Task<IHttpActionResult> InsertAssignment(AssignmentModel Model)
         {

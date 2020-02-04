@@ -11,6 +11,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
     public interface IAssignmentService
     {
         Task<List<AssignmentModel>> GetAllAssignment();
+        Task<AssignmentModel> GetAssignment(int AssignmentID);
         Task<ExecuteResult> InsertAssignment(AssignmentModel Model);
         Task<ExecuteResult> DeleteAssignment(AssignmentModel Model);
         Task<ExecuteResult> UpdateAssignment(AssignmentModel Model);
@@ -33,6 +34,18 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             return ListAssignment;
         }
 
+        public async Task<AssignmentModel> GetAssignment(int AssignmentID)
+        {
+            var Param = new SqlParameter[]
+            {
+                new SqlParameter("@AssignmentID", AssignmentID)
+            };
+
+            AssignmentModel assigment = await _AssignmentRepository.ExecSPToSingleAsync("bn_RecDB_GetAssignment @AssignmentID", Param);
+
+            return assigment;
+        }
+
         public async Task<ExecuteResult> DeleteAssignment(AssignmentModel Model)
         {
             var Param = new SqlParameter[]
@@ -43,7 +56,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_AssignmentDB_DeleteAssignment @AssignmentID",
+                SPName = "bn_RecDB_DeleteAssignment @AssignmentID",
                 SQLParam = Param
             }); ; ;
 
@@ -65,7 +78,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_AssignmentDB_InsertAssignment @Title, @Description, @AssignmentFilePath, @DateDue",
+                SPName = "bn_RecDB_InsertAssignment @Title, @Description, @AssignmentFilePath, @DateDue",
                 SQLParam = Param
             });
 
@@ -88,7 +101,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_AssignmentDB_UpdateAssignment @AssignmentID, @Title, @Description, @AssignmentFilePath, @DateDue",
+                SPName = "bn_RecDB_UpdateAssignment @AssignmentID, @Title, @Description, @AssignmentFilePath, @DateDue",
                 SQLParam = Param
             });
 

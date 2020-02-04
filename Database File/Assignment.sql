@@ -9,7 +9,7 @@ BEGIN
 END
 
 GO
-CREATE PROC bn_AssignmentDB_InsertAssignment 
+CREATE PROC bn_RecDB_InsertAssignment 
 @Title VARCHAR(30),
 @Description VARCHAR(MAX),
 @AssignmentFilePath VARCHAR(MAX),
@@ -22,7 +22,7 @@ BEGIN
 END
 
 GO
-CREATE PROC bn_AssignmentDB_UpdateAssignment
+CREATE PROC bn_RecDB_UpdateAssignment
 @AssignmentID INT,
 @Title VARCHAR(30),
 @Description VARCHAR(MAX),
@@ -40,7 +40,7 @@ BEGIN
 END
 
 GO
-CREATE PROC bn_AssignmentDB_DeleteAssignment
+CREATE PROC bn_RecDB_DeleteAssignment
 @AssignmentID INT
 AS
 BEGIN
@@ -49,4 +49,15 @@ BEGIN
 	WHERE AssignmentID = @AssignmentID
 END
 
-EXEC bn_RecDB_GetUserLogin 'reynaldichernando@gmail.com', 'chernando'
+GO
+CREATE PROC bn_RecDB_GetAssignment
+@AssignmentID INT
+AS
+BEGIN
+	SET NOCOUNT ON
+	SELECT * FROM msAssignment
+	WHERE AssignmentID = @AssignmentID
+END
+
+EXEC bn_RecDB_GetAllAssignment
+EXEC bn_RecDB_GetAssignment 5

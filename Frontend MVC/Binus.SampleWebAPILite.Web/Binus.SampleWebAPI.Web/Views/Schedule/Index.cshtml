@@ -22,6 +22,9 @@
 
 <body>
 
+ 
+
+
     <div class="wrapper">
 
         @using (Html.BeginForm("CreateSchedule", "Schedule", FormMethod.Post)) {
@@ -54,7 +57,7 @@
                     <td>
                         @Html.ActionLink("Delete", "DeleteSchedule", Data)
                         <div class="wrapper">
-
+                            
                             @using (Html.BeginForm("UpdateSchedule", "Schedule", FormMethod.Post, new {
                                 id = "form1",
                                 onSubmit = "convertDate()",
