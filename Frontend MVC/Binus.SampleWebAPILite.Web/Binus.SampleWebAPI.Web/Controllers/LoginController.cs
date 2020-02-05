@@ -134,6 +134,8 @@ namespace Binus.SampleWebAPI.Web.Controllers
                         Session["UserID"] = User.UserID;
                         if (User != null)
                         {
+                            Session["UserID"] = User.UserID;
+                            Session["Role"] = User.Role;
                             Retdata = Json(new
                             {
                                 Status = "Success",

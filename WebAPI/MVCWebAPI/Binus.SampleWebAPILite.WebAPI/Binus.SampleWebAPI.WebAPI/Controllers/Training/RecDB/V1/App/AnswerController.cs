@@ -24,11 +24,19 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
 
 
         [HttpGet]
-        public async Task<IHttpActionResult> GetAllAnswer()
+        public async Task<IHttpActionResult> GetAllAnswer(int AssignmentID)
         {
-            List<AnswerModel> ListAnswer = (await _AnswerService.GetAllAnswer());
+            List<AnswerModel> ListAnswer = (await _AnswerService.GetAllAnswer(AssignmentID));
 
             return Json(ListAnswer);
+        }
+
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAnswer(int AssignmentID, int UserID)
+        {
+            AnswerModel answer = (await _AnswerService.GetAnswer(AssignmentID, UserID));
+
+            return Json(answer);
         }
 
         [HttpPost]

@@ -10,7 +10,8 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
 {
     public interface IAnswerService
     {
-        Task<List<AnswerModel>> GetAllAnswer();
+        Task<List<AnswerModel>> GetAllAnswer(int AssignmentID);
+        Task<AnswerModel> GetAnswer(int AssignmentID, int UserID);
         Task<ExecuteResult> InsertAnswer(AnswerModel Model);
         Task<ExecuteResult> DeleteAnswer(AnswerModel Model);
         Task<ExecuteResult> UpdateAnswer(AnswerModel Model);
@@ -26,9 +27,14 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             this._AnswerRepository = _AnswerRepository;
         }
 
-        public async Task<List<AnswerModel>> GetAllAnswer()
+        public async Task<List<AnswerModel>> GetAllAnswer(int AssignmentID)
         {
-            List<AnswerModel> ListAnswer = (await _AnswerRepository.ExecSPToListAsync("bn_RecDB_GetAllAnswer")).ToList();
+            var Param = new SqlParameter[]
+            {
+                new SqlParameter("@AssignmentID", AssignmentID)
+            };
+
+            List<AnswerModel> ListAnswer = (await _AnswerRepository.ExecSPToListAsync("bn_RecDB_GetAllAnswer @AssignmentID", Param)).ToList();
 
             return ListAnswer;
         }
@@ -58,14 +64,13 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             {
                 new SqlParameter("@UserID", Model.UserID),
                 new SqlParameter("@AssignmentID", Model.AssignmentID),
-                new SqlParameter("@AnswerFilePath", Model.AnswerFilepath),
-                new SqlParameter("@DateUploaded", Model.DateUploaded)
+                new SqlParameter("@AnswerFilePath", Model.AnswerFilepath)
             };
 
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_AnswerDB_InsertAnswer @UserID, @AssignmentID, @AnswerFilePath, @DateUploaded",
+                SPName = "bn_RecDB_InsertAnswer @UserID, @AssignmentID, @AnswerFilePath",
                 SQLParam = Param
             });
 
@@ -95,6 +100,19 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             ExecuteResult Result = (await _AnswerRepository.ExecMultipleSPWithTransactionAsync(Data));
 
             return Result;
+        }
+
+        public async Task<AnswerModel> GetAnswer(int AssignmentID, int UserID)
+        {
+            var Param = new SqlParameter[]
+            {
+                new SqlParameter("@AssignmentID", AssignmentID),
+                new SqlParameter("@UserID", UserID)
+            };
+
+            AnswerModel answer = await _AnswerRepository.ExecSPToSingleAsync("bn_RecDB_GetAnswer @AssignmentID, @UserID", Param);
+
+            return answer;
         }
     }
 }
