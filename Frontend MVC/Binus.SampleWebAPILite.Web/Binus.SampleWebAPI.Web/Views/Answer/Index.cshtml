@@ -1,0 +1,31 @@
+﻿@model Binus.SampleWebAPI.Web.ViewModels.AnswerViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Answer</h2>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Item in Model.answers)
+            {
+                <tr>
+                    <td>@Item.Name</td>
+                    <td>
+                        @if (!(Item.AnswerFilepath == null || Item.AnswerFilepath == ""))
+                        {
+                            @Html.ActionLink("Download Answer", "DownloadAnswer", "Answer", new { AssignmentID = Item.AssignmentID, UserID=Item.UserID }, new { @class="btn btn-info"})
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

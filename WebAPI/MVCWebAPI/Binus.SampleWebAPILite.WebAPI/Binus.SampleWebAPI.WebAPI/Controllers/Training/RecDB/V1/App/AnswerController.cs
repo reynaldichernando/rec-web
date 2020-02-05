@@ -47,20 +47,5 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(Result);
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> DeleteAnswer(AnswerModel Model)
-        {
-            ExecuteResult Result = (await _AnswerService.DeleteAnswer(Model));
-
-            return Json(Result);
-        }
-
-        [HttpPost]
-        public async Task<IHttpActionResult> UpdateAnswer(AnswerModel Model)
-        {
-            ExecuteResult Result = (await _AnswerService.UpdateAnswer(Model));
-
-            return Json(Result);
-        }
     }
 }

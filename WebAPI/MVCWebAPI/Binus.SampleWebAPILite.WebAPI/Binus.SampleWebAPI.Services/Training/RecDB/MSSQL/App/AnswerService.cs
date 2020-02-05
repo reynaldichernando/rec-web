@@ -13,8 +13,6 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         Task<List<AnswerModel>> GetAllAnswer(int AssignmentID);
         Task<AnswerModel> GetAnswer(int AssignmentID, int UserID);
         Task<ExecuteResult> InsertAnswer(AnswerModel Model);
-        Task<ExecuteResult> DeleteAnswer(AnswerModel Model);
-        Task<ExecuteResult> UpdateAnswer(AnswerModel Model);
 
     }
 
@@ -39,25 +37,6 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             return ListAnswer;
         }
 
-        public async Task<ExecuteResult> DeleteAnswer(AnswerModel Model)
-        {
-            var Param = new SqlParameter[]
-            {
-                new SqlParameter("@AnswerID", Model.AnswerID)
-            };
-
-            List<StoredProcedure> Data = new List<StoredProcedure>();
-            Data.Add(new StoredProcedure
-            {
-                SPName = "bn_AnswerDB_DeleteAnswer @AnswerID",
-                SQLParam = Param
-            }); ; ;
-
-            ExecuteResult Result = (await _AnswerRepository.ExecMultipleSPWithTransactionAsync(Data));
-
-            return Result;
-        }
-
         public async Task<ExecuteResult> InsertAnswer(AnswerModel Model)
         {
             var Param = new SqlParameter[]
@@ -79,28 +58,6 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             return Result;
         }
 
-        public async Task<ExecuteResult> UpdateAnswer(AnswerModel Model)
-        {
-            var Param = new SqlParameter[]
-            {
-                new SqlParameter("@AnswerID", Model.AnswerID),
-                new SqlParameter("@UserID", Model.UserID),
-                new SqlParameter("@AssignmentID", Model.AssignmentID),
-                new SqlParameter("@AnswerFilePath", Model.AnswerFilepath),
-                new SqlParameter("@DateUploaded", Model.DateUploaded)
-            };
-
-            List<StoredProcedure> Data = new List<StoredProcedure>();
-            Data.Add(new StoredProcedure
-            {
-                SPName = "bn_BookDB_UpdateAnswer @AnsweID, @UserID, @AssignmentID, @AnswerFilePath, @DateUploaded",
-                SQLParam = Param
-            });
-
-            ExecuteResult Result = (await _AnswerRepository.ExecMultipleSPWithTransactionAsync(Data));
-
-            return Result;
-        }
 
         public async Task<AnswerModel> GetAnswer(int AssignmentID, int UserID)
         {
