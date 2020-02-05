@@ -122,9 +122,9 @@
 
 
             <div class="dropdown-divider mt-5"></div>
-            @Html.ActionLink("Forgot password?", "Index", "Register", new { @class = "dropdown-item" })
+            @*@Html.ActionLink("Forgot password?", "Index", "Register", new { @class = "dropdown-item" })*@
             <div class="dropdown-divider mt-5"></div>
-            @Html.ActionLink("Request account", "Index", "Register", new { @class = "dropdown-item" })
+            @Html.ActionLink("Request account", "Index", "Register", new { },  new { @class = "btn btn-info btn-block" })
 
             @using (Ajax.BeginForm("SendAsync", "Login", new AjaxOptions {
                 HttpMethod = "POST"
