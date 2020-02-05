@@ -5,6 +5,7 @@ BEGIN
 	SELECT * FROM msSchedule
 END
 
+GO
 create proc bn_RecDB_InsertSchedule
 @StartTime datetime,
 @EndTime datetime,
@@ -35,11 +36,9 @@ begin
 end
 
 GO
-alter proc bn_RecDB_DeleteSchedule
+create proc bn_RecDB_DeleteSchedule
 @ScheduleID int
 as
 begin
 	delete from msSchedule where ScheduleID = @ScheduleID
 end
-
-use RecDB

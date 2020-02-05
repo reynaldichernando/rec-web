@@ -160,6 +160,79 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return retData;
         }
 
+        public ActionResult UploadAnswer(AnswerModel Model, string Title)
+        {
+            JsonResult retData = new JsonResult();
+            try
+            {
+                RESTResult Result;
+                Model.AnswerFilepath = "./Answer/" + Title + "/" + Model.UserID + "/"+ Model.AnswerFilepath;
+                Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Answer/InsertAnswer", REST.Method.POST, Model)).Result;
+
+                if (Result.Success)
+                {
+                    retData = Json(new
+                    {
+                        Status = "Success",
+                        Message = "Insert Assignment Success!",
+                        URL = Global.BaseURL + "/Assignment"
+                    });
+                }
+                else
+                {
+                    retData = Json(new
+                    {
+                        Status = "Failed",
+                        Message = "Failed When Inserting Data.."
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                retData = Json(new
+                {
+                    Status = "Failed",
+                    Message = ex.Message
+                });
+            }
+            return retData;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> DownloadAnswer(string AssignmentID)
+        {
+            string UserID = Session["UserID"].ToString();
+            JsonResult retData = new JsonResult();
+            try
+            {
+                RESTResult Result;
+                Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Answer/GetAnswer?AssignmentID="+AssignmentID+"&UserID="+UserID, REST.Method.GET)).Result;
+
+                if (Result.Success)
+                {
+                    AnswerModel Model = Result.Deserialize<AnswerModel>();
+                    return await DownloadFile(Model.AnswerFilepath);
+                }
+                else
+                {
+                    retData = Json(new
+                    {
+                        Status = "Failed",
+                        Message = "Failed When Inserting Data.."
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                retData = Json(new
+                {
+                    Status = "Failed",
+                    Message = ex.Message
+                });
+            }
+            return retData;
+        }
+
         [HttpPost]
         public async Task<ActionResult> Upload(HttpPostedFileBase file, String path)
         {
@@ -171,10 +244,9 @@ namespace Binus.SampleWebAPI.Web.Controllers
             {
                 if (file.ContentLength > 0)
                 {
-                    string fileName = "./Assignment/" + path+ "/" + Path.GetFileName(file.FileName);
+                    string fileName = path + Path.GetFileName(file.FileName);
                     CloudBlockBlob blockBlob = storageContainer.GetBlockBlobReference(fileName);
                     await blockBlob.UploadFromStreamAsync(file.InputStream);
-                    ViewBag.Message = fileName;
                 }
             }
             catch (Exception)
