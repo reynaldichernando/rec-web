@@ -185,6 +185,7 @@ function Delete(ID) {
                 alert("Error : " + Data);
             }
         });
+       
     }
 }
 
