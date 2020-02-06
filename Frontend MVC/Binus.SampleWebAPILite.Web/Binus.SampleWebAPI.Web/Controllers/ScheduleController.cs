@@ -29,8 +29,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
             } catch(Exception ex) {
                 throw ex;
             }
-
-            return View();
+            return View("Index", "Login");
         }
 
     public ActionResult DeleteSchedule(ScheduleModel Schedule)

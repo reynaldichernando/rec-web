@@ -78,6 +78,7 @@
     <Compile Include="Training\RecDB\MSSQL\App\PostModel.cs" />
     <Compile Include="Training\RecDB\MSSQL\App\ScheduleModel.cs" />
     <Compile Include="Training\RecDB\MSSQL\App\ThreadModel.cs" />
+    <Compile Include="Training\RecDB\MSSQL\Helper\SHA.cs" />
     <Compile Include="Training\RecDB\MSSQL\User\UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

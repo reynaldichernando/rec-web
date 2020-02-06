@@ -9,6 +9,7 @@ namespace Binus.SampleWebAPI.Model.AppModel
 {
     public class UserModel : AuthUser
     {
+
         public int? UserID { get; set; }
         //public string Password { get; set; }
         public string Name { get; set; }

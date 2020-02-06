@@ -49,41 +49,43 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var Data in Model.ListSchedule) {
-                <tr>
-                    <td>@Data.ScheduleID</td>
-                    <td>@Data.Place</td>
-                    <td>@Data.Topic</td>
-                    <td>
-                        @Html.ActionLink("Delete", "DeleteSchedule", Data)
-                        <div class="wrapper">
-                            
-                            @using (Html.BeginForm("UpdateSchedule", "Schedule", FormMethod.Post, new {
-                                id = "form1",
-                                onSubmit = "convertDate()",
-                                
-                            })) {
-                                <script>console.log(@Data.StartTime)</script>
-                                <label>@Data.ScheduleID</label>
-                                <input type="hidden" name="ScheduleID" value="@Data.ScheduleID" />
-                                <label>Topic</label>
-                                <input type="text" name="Topic" placeholder="Topic" value="@Data.Topic" />
-                                <label>Desc</label>
-                                <input type="text" name="Description" placeholder="Decscscscs" value="@Data.Description" />
-                                <label>place</label>
-                                <input type="text" name="Place" placeholder="ples" value="@Data.Place" />
-                                <input type="datetime-local" value="@Data.StartTime" id="StartTime" name="StartTime" />
-                                <input type="datetime-local" value="@Data.EndTime" id="EndTime" name="EndTime" />
-                                <button type="submit">submit</button>
-                            }
-                        </div>
+
+                @foreach (var Data in Model.ListSchedule) {
+                    <tr>
+                        <td>@Data.ScheduleID</td>
+                        <td>@Data.Place</td>
+                        <td>@Data.Topic</td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteSchedule", Data)
+                            <div class="wrapper">
+
+                                @using (Html.BeginForm("UpdateSchedule", "Schedule", FormMethod.Post, new {
+                                    id = "form1",
+                                    onSubmit = "convertDate()",
+
+                                })) {
+                                    <script>console.log(@Data.StartTime)</script>
+                                    <label>@Data.ScheduleID</label>
+                                    <input type="hidden" name="ScheduleID" value="@Data.ScheduleID" />
+                                    <label>Topic</label>
+                                    <input type="text" name="Topic" placeholder="Topic" value="@Data.Topic" />
+                                    <label>Desc</label>
+                                    <input type="text" name="Description" placeholder="Decscscscs" value="@Data.Description" />
+                                    <label>place</label>
+                                    <input type="text" name="Place" placeholder="ples" value="@Data.Place" />
+                                    <input type="datetime-local" value="@Data.StartTime" id="StartTime" name="StartTime" />
+                                    <input type="datetime-local" value="@Data.EndTime" id="EndTime" name="EndTime" />
+                                    <button type="submit">submit</button>
+                                }
+                            </div>
 
 
 
 
-                    </td>
-                </tr>
-            }
+                        </td>
+                    </tr>
+                }
+
         </tbody>
     </table>
     @*utk update schedule nanti bikin pop upnya aja*@

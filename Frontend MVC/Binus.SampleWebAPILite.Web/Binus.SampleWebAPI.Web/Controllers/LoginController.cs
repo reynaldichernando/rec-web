@@ -123,12 +123,12 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     RESTResult Result = new REST(
                         Global.WebAPIBaseURL,
                         "/api/Training/RecDB/V1/App/User/GetUserLogin",
-                        REST.Method.POST,
-                        ConfigurationManager.AppSettings["OAuthBookDB"],
+                        REST.Method.POST,   
+                        ConfigurationManager.AppSettings["OAuthBookDB"],    
                         UserData
                     ).Result;
 
-                    if(Result.Success)
+                        if(Result.Success)
                     {
                         UserModel User = Result.Deserialize<UserModel>();
                         Session["UserID"] = User.UserID;
@@ -137,10 +137,10 @@ namespace Binus.SampleWebAPI.Web.Controllers
                             Session["UserID"] = User.UserID;
                             Session["Role"] = User.Role;
                             Retdata = Json(new
-                            {
+                            {   
                                 Status = "Success",
                                 Message = "Login Success",
-                                URL = Global.BaseURL + "/Thread/Index"
+                                URL = Global.BaseURL + "/Schedule/Index"
                             });
                         }else
                         {
@@ -156,7 +156,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                         Retdata = Json(new
                         {
                             Status = "Failed",
-                            Message = Result.Message
+                            Message = "Please wait for your verification"
                         });
                     }
 

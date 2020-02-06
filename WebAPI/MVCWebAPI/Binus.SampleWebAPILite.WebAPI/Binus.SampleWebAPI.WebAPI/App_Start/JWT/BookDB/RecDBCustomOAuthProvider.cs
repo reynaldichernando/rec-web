@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using Binus.SampleWebAPI.Data.DBContext.Training.MSSQL;
 using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.User;
 using System;
+using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.Helper;
 
 namespace Binus.SampleWebAPI.WebAPI.App_Start.JWT.RecDB
 {
@@ -20,10 +21,12 @@ namespace Binus.SampleWebAPI.WebAPI.App_Start.JWT.RecDB
         {
             try
             {
-                var Param = new[] 
+                UserModel user = new UserModel();
+                SHA sha = new SHA();
+                var Param = new[]
                 {
                     new SqlParameter("@Email", Context.UserName),
-                    new SqlParameter("@Password", Context.Password)
+                    new SqlParameter("@Password", sha.GenerateSHA512String(Context.UserName+Context.Password+user.Salt))
                 };
 
                 var User = Context.OwinContext.Get<RecDBMSSQLDBContext>().Database
