@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
@@ -830,7 +831,7 @@
     <Content Include="Views\Assignment\Index.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
-    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Post\index.cshtml" />
     <Content Include="Views\Answer\Index.cshtml" />

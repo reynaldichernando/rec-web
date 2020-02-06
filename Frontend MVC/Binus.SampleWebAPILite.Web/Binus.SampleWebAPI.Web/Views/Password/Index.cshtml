@@ -72,13 +72,18 @@
     </div>
     <div class="split right border border-dark">
         <div class="centered">
-            @using (Html.BeginForm("ChangePassword", "Login", "POST")) {
+            @using (Html.BeginForm("ChangePassword", "Password", "POST")) {
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <label>@ViewBag.email</label>
-                <input type="hidden" id="inputEmail" class="form-control mb-2" name="Email" value="@ViewBag.email">
-               
+                <label>@ViewBag.hash</label>
+                <input type="hidden" class="form-control mb-2" name="hash" value="@ViewBag.hash">
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="text" id="inputEmail" class="form-control mb-2" name="Email" placeholder="Email" required>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
+                <span class="text-danger" style="display: none" id="error-empty-password">
+                    Please input
+                    password <br>
+                </span>
                 <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
                 <input type="password" id="inputConfirmPassword" class="form-control mb-2" name="ConfirmPassword" placeholder="Confirm Password" required>
                 <span class="text-danger" style="display: none" id="error-confirm-password">
@@ -89,32 +94,7 @@
                 <span id="divMessage" style="color:red"></span>
                 <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Send request</button>
             }
-            @*@using (Ajax.BeginForm("ResetPassworded", "Login", new AjaxOptions {
-            HttpMethod = "POST"
-        }, new { id = "form-signup", @class = "form-signin" })) {
-            @Html.AntiForgeryToken()
 
-            <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
-
-            <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
-
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control mb-2" name="Email" placeholder="Email address" required>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
-            <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
-            <input type="password" id="inputConfirmPassword" class="form-control mb-2" name="ConfirmPassword" placeholder="Confirm Password" required>
-            <span class="text-danger" style="display: none" id="error-confirm-password">
-                Please correctly confirm the
-                password <br>
-            </span>
-
-            <span id="divMessage" style="color:red"></span>
-            <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Send request</button>
-        }*@
-
-            <div class="dropdown-divider mt-5"></div>
-            <a class="dropdown-item" href="#">Already have an account?</a>
         </div>
     </div>
 
@@ -128,12 +108,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             function hideErrorMessages() {
-
+                $('#error-empty-password').hide();
                 $('#error-confirm-password').hide();
             }
 
             $('#btnLoginDB').on('click', function (event) {
-                console.log("test");
                 hideErrorMessages();
 
                 let isValid = true;
@@ -141,6 +120,10 @@
                 const confirmpassword = $('#inputConfirmPassword').val();
                 if (confirmpassword != password) {
                     $('#error-confirm-password').show();
+                    isValid = false;
+                }
+                if (password == null) {
+                    $('#error-empty-password').show();
                     isValid = false;
                 }
 

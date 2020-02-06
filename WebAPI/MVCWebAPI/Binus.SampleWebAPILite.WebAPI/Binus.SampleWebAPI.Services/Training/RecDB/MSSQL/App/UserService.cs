@@ -73,10 +73,11 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         }
         public async Task<ExecuteResult> ResetPassword(UserModel User)
         {
+            SHA sha = new SHA();
             var Param = new SqlParameter[]
             {
                 new SqlParameter("@Email", User.Email),
-                new SqlParameter("@Password", User.Password)
+                new SqlParameter("@Password",sha.GenerateSHA512String(User.Email+User.Password+User.Salt))
             };
 
             List<StoredProcedure> Data = new List<StoredProcedure>();
