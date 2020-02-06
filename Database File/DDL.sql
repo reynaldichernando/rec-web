@@ -15,6 +15,9 @@ create table [msUser](
 	[Role] varchar(10) CHECK([Role] IN ('approved', 'unapproved', 'admin')) DEFAULT('unapproved')
 )
 
+alter table msUser
+alter column Role varchar(20)
+
 go
 
 insert into [msUser] values('Luis', 'Luis@luis.com', '123', 'unapproved')

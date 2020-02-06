@@ -15,6 +15,7 @@ create table [User](
 	[Role] varchar(10)
 )
 
+
 GO
 create table Assignment(
 	AssignmentID int primary key identity(1,1),
