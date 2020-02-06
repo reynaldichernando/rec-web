@@ -25,14 +25,11 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 if (Result.Success) {
                     VM.ListSchedule = Result.Deserialize<List<ScheduleModel>>();
                     return View(VM);
-                } else {
-                    return RedirectToAction("Index", "Login");
                 }
             } catch(Exception ex) {
                 throw ex;
             }
-
-            return View();
+            return View("Index", "Login");
         }
 
     public ActionResult DeleteSchedule(ScheduleModel Schedule)

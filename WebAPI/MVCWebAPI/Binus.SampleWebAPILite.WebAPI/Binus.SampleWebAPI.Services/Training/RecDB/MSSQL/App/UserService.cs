@@ -39,13 +39,12 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         public async Task<UserModel> GetUserLogin(UserModel User)
         {
             SHA sha = new SHA();
-            string hashedPassword = sha.GenerateSHA512String(User.Password + User.Email + "!@#");
             UserModel UserData = await 
                 _UserRepo.ExecSPToSingleAsync("bn_RecDB_GetUserLogin @Email, @Password", 
                 new SqlParameter[]
                 {
                     new SqlParameter("@Email", User.Email),
-                    new SqlParameter("@Password", hashedPassword),
+                    new SqlParameter("@Password",sha.GenerateSHA512String(User.Email+User.Password+User.Salt)),
                 });
 
             return UserData;
@@ -54,12 +53,10 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         public async Task<ExecuteResult> RegisterUser(UserModel User)
         {
             SHA sha = new SHA();
-            string hashedPassword = sha.GenerateSHA512String(User.Password + User.Email + "!@#");
-            System.Diagnostics.Debug.WriteLine(hashedPassword.Length);
             var Param = new SqlParameter[]
             {
                 new SqlParameter("@Email", User.Email),
-                new SqlParameter("@Password", hashedPassword),
+                new SqlParameter("@Password", sha.GenerateSHA512String(User.Email+User.Password+User.Salt)),
                 new SqlParameter("@Name", User.Name)
             };
 

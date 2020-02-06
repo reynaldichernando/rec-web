@@ -156,7 +156,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                         Retdata = Json(new
                         {
                             Status = "Failed",
-                            Message = Result.Message
+                            Message = "Please wait for your verification"
                         });
                     }
 
