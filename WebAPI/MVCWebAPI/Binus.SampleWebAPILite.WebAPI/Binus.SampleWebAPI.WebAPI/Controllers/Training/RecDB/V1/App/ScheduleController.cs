@@ -23,6 +23,11 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         }
 
         [HttpGet]
+        public async Task<IHttpActionResult> GetScheduleByID(string ScheduleID){
+            return Json(await _ScheduleService.GetScheduleByID(ScheduleID));
+        }
+
+        [HttpGet]
         public async Task<IHttpActionResult> GetAllSchedule()
         {
             List<ScheduleModel> ListSchedule = (await _ScheduleService.GetAllSchedule());
@@ -38,10 +43,10 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(Result);
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> DeleteSchedule(ScheduleModel Schedule)
+        [HttpGet]
+        public async Task<IHttpActionResult> DeleteScheduleByID(string ScheduleID)
         {
-            ExecuteResult Result = (await _ScheduleService.DeleteSchedule(Schedule));
+            ExecuteResult Result = (await _ScheduleService.DeleteScheduleByID(ScheduleID));
 
             return Json(Result);
         }

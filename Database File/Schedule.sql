@@ -42,3 +42,13 @@ as
 begin
 	delete from msSchedule where ScheduleID = @ScheduleID
 end
+
+GO
+create proc bn_RecDB_GetScheduleByID '1'
+@ScheduleID int
+as
+begin
+	select * from msSchedule where ScheduleID = @ScheduleID
+end
+
+use RecDB
