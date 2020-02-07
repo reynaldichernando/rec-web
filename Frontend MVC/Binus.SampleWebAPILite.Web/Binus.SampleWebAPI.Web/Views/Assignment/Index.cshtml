@@ -2,143 +2,85 @@
 @{
     ViewBag.Title = "Assignment";
 }
+<link rel="stylesheet" href="~/Sources/CustomCSS/index.css">
+<link rel="stylesheet" href="~/Sources/CustomCSS/assignment.css">
 
-<h2>Assignment</h2>
+<script src="~/Sources/PageJS/index.js"></script>
 
-<div class="container">
-    <br />
-    <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date Due</th>
-                <th>Action</th>
-                <th>Admin</th>
-            </tr>
-        </thead>
-        <tbody>
-            @try {
-                foreach (var Item in Model.assignments) {
-                    <tr>
-                        <td>@Item.Title</td>
-                        <td>@Item.Description</td>
-                        <td>@Item.DateDue</td>
-                        <td>
-                            @Html.ActionLink("Download Case", "DownloadFile", "Assignment", new { fileName = Item.AssignmentFilepath }, new { @class = "btn btn-info" })
-                            @Html.ActionLink("Upload Answer", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#uploadAnswer", data_title = Item.Title, data_id = Item.AssignmentID })
-                            @Html.ActionLink("Download Answer", "DownloadAnswer", "Assignment", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
-                            <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                }
-            } catch (Exception ex) {
-                <tr>No data</tr>    
-            }
-
-        </tbody>
-    </table>
-
-
-    @* Insert *@
-    @using (Ajax.BeginForm("Insert", "Assignment", new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    }, new { id = "form-upload-assignment", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <!-- Modal -->
-        <div id="insertModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row Data">
-                            <div class="col-sm-12">
-                                <div class="alert alert-info alert-dismissable" id="MessageContainer">
-                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                    <span id="Message"></span>
-                                </div>
-                                <input type="hidden" id="txtAssignmentID" name="AssignmentID" />
-                                <div class="form-group">
-                                    <label for="txtTitle">Title:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtTitle" name="Title">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtDesc">Description:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtDesc" name="Description">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtDateDue">Date Due:</label>
-                                    <input type="datetime-local" class="form-control input-lg" required id="txtDateDue" name="DateDue">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtAssignmentFilePath">File:</label>
-                                    <input type="file" id="assignment-file" class="form-control input-lg" required name="postedFile" />
-                                    <progress value="0"></progress>
-                                    <input type="hidden" id="txtAssignmentFilePath" name="AssignmentFilePath" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="submit-assignment" class="btn btn-danger">Submit</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
+<div class="layout-header p-3">
+    <div class="text-white">
+        <h1>
+            <i>Current Assignment</i>
+            <label class="switch">
+                <input type="checkbox" name="c1" onclick="myFunction()">
+                <span class="slider round"></span>
+            </label>
+        </h1>
+    </div>
+</div>
+<div id="myDIV" class="layout-content p-4 text-justify">
+    <div class="assignment-box">
+        <div class="float-left">
+            <h1>Title</h1>
+        </div>
+        <div class="tombol-upload float-right">
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="~/Sources/icons/download.svg" />
+                </label>
+                <input class="file-download-soal" type="file" />
+            </div>
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="~/Sources/icons/upload.svg" />
+                </label>
+                <input class="file-upload-jawaban" type="file" />
+            </div>
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="~/Sources/icons/archive.svg" />
+                </label>
+                <input class="file-download-jawaban" type="file" />
             </div>
         </div>
-    }
-    @using (Ajax.BeginForm("UploadAnswer", "Assignment", new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    }, new { id = "form-upload-answer", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        <div id="uploadAnswer" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row Data">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="txtAssignmentFilePath">File:</label>
-                                    <input type="hidden" id="userid" value="@Session["UserID"]" name="UserID" />
-                                    <input type="hidden" id="assignment-name" name="Title" />
-                                    <input type="hidden" id="assignment-id" name="AssignmentID" />
-                                    <input type="file" id="answer-file" class="form-control input-lg" required name="postedFile" />
-                                    <progress value="0"></progress>
-                                    <input type="hidden" id="txtAnswerFilePath" name="AnswerFilePath" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">Submit</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    }
+    </div>
 </div>
 
-<script src="~/Sources/PageJS/Backend/assignment.js"></script>
+<div class="layout-header p-3">
+    <div class="text-white">
+        <h1>
+            <i>Current Assignment</i>
+            <label class="switch">
+                <input type="checkbox" name="c1" onclick="myFunction2()">
+                <span class="slider round"></span>
+            </label>
+        </h1>
+    </div>
+</div>
+<div id="myDIV2" class="layout-content p-4 text-justify">
+    <div class="assignment-box">
+        <div class="float-left">
+            <h1>Title</h1>
+        </div>
+        <div class="tombol-upload float-right">
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="~/Sources/icons/download.svg" />
+                </label>
+                <input class="file-download-soal" type="file" />
+            </div>
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="~/Sources/icons/upload.svg" />
+                </label>
+                <input class="file-upload-jawaban" type="file" />
+            </div>
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="~/Sources/icons/archive.svg" />
+                </label>
+                <input class="file-download-jawaban" type="file" />
+            </div>
+        </div>
+    </div>
+</div>

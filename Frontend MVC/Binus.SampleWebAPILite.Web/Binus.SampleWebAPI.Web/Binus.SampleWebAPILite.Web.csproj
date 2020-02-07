@@ -420,6 +420,7 @@
     <Content Include="Sources\CSS\bootstrap.min.css.map" />
     <Content Include="Sources\CSS\bootstrap.css.map" />
     <Content Include="favicon.ico" />
+    <Content Include="Sources\CustomCSS\assignment.css" />
     <Content Include="Sources\CustomCSS\index.css" />
     <Content Include="Sources\CustomCSS\layout.css" />
     <Content Include="Sources\CustomCSS\signin.css" />

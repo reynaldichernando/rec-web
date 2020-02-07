@@ -1,0 +1,30 @@
+﻿.assignment-box {
+    width: 90%;
+    height: 10%;
+    background-color: #fafafa;
+    border-radius: 8px;
+    display: block;
+    padding: 0px 10px;
+    margin: 10px 0px;
+}
+
+.file-input {
+    cursor: pointer;
+}
+
+.image-upload > input {
+    display: none;
+}
+
+.image-upload > label {
+    cursor: pointer;
+}
+
+.tombol-upload > div {
+    display: inline-block;
+    margin: 0px 5px;
+}
+
+.tombol-upload img {
+    width: 50px;
+}
