@@ -66,6 +66,10 @@ begin
 	(@ThreadID,@UserID,@Content)
 end
 
+exec bn_RecDB_InsertPost 4, 35, 'admin'
+exec bn_RecDB_InsertPost 5, 35, 'approved'
+select * from trPost
+
 go
 
 CREATE PROC bn_RecDB_GetPost
@@ -106,6 +110,8 @@ INSERT INTO trThread VALUES (5, 'Not announcement', 'This is not an announcement
 (4, 'Announcement', 'This is an announcement')
 
 select * from trThread
+delete from trThread
+delete from trPost
 
 update msUser
 set Role = 'approved'
