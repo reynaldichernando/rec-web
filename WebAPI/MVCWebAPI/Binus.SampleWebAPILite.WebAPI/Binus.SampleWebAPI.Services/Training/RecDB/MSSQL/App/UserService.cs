@@ -1,4 +1,5 @@
 ﻿using Binus.SampleWebAPI.Data.Repositories.Training.RecDB.MSSQL.App;
+using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.Helper;
 using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.User;
 using Binus.WebAPI.Model.MSSQL;
 using System;
@@ -13,7 +14,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
     public interface IUserService
     {
         Task<UserModel> GetUserLogin(UserModel Data);
-        Task<ExecuteResult> ResetPassword(UserModel User);
+        Task<ExecuteResult> ChangePassword(UserModel User);
         Task<ExecuteResult> RegisterUser(UserModel User);
         Task<List<UserModel>> GetUnapprovedUser();
         Task<ExecuteResult> VerifyUser(UserModel user);
@@ -35,14 +36,15 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             return ListUser;
         }
 
-        public async Task<UserModel> GetUserLogin(UserModel Model)
+        public async Task<UserModel> GetUserLogin(UserModel User)
         {
+            SHA sha = new SHA();
             UserModel UserData = await 
                 _UserRepo.ExecSPToSingleAsync("bn_RecDB_GetUserLogin @Email, @Password", 
                 new SqlParameter[]
                 {
-                    new SqlParameter("@Email", Model.Email),
-                    new SqlParameter("@Password", Model.Password),
+                    new SqlParameter("@Email", User.Email),
+                    new SqlParameter("@Password",sha.GenerateSHA512String(User.Email+User.Password+User.Salt)),
                 });
 
             return UserData;
@@ -50,10 +52,11 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
 
         public async Task<ExecuteResult> RegisterUser(UserModel User)
         {
+            SHA sha = new SHA();
             var Param = new SqlParameter[]
             {
                 new SqlParameter("@Email", User.Email),
-                new SqlParameter("@Password", User.Password),
+                new SqlParameter("@Password", sha.GenerateSHA512String(User.Email+User.Password+User.Salt)),
                 new SqlParameter("@Name", User.Name)
             };
 
@@ -68,12 +71,13 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
 
             return Result;
         }
-        public async Task<ExecuteResult> ResetPassword(UserModel User)
+        public async Task<ExecuteResult> ChangePassword(UserModel User)
         {
+            SHA sha = new SHA();
             var Param = new SqlParameter[]
             {
                 new SqlParameter("@Email", User.Email),
-                new SqlParameter("@Password", User.Password)
+                new SqlParameter("@Password",sha.GenerateSHA512String(User.Email+User.Password+User.Salt))
             };
 
             List<StoredProcedure> Data = new List<StoredProcedure>();

@@ -52,6 +52,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 if (Model.AssignmentID == 0)
                 {
                     Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/InsertAssignment", REST.Method.POST, Model)).Result;
+
                 }
                 else
                 {

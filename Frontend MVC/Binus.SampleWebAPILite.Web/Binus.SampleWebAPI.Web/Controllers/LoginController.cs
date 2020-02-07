@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Threading;
+using Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.Helper;
 
 namespace Binus.SampleWebAPI.Web.Controllers
 {
@@ -28,9 +29,9 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ResetPassword(string Email)
+        public ActionResult ResetPassword(string hash)
         {
-            ViewBag.email = Email;
+            ViewBag.hash = hash;
             return View("ResetPassword");
         }
         public ActionResult ChangePassword(string Email, string Password)
@@ -75,13 +76,11 @@ namespace Binus.SampleWebAPI.Web.Controllers
         public async Task<ActionResult> SendAsync(string Email)
         {
             MailMessage message = new MailMessage();
-
+            SHA sha = new SHA();
+            string hash = sha.GenerateSHA512String(Email + "!@#!@#");
             message.To.Add(Email);
             message.Subject = "Reset your password";
-            //message.Body = "<form> <label>Topic</label> <input type='text' name='Topic' placeholder='Topic'/> <button type = 'submit' onsubmit='window.location.href = 'http://localhost:14033/Schedule/Index'> submit </button> </form>";
-            //message.Body = "<form onsubmit='window.open(http://localhost:14033/Schedule/Index)'> <label>Topic</label> <input type='text' name='Topic' placeholder='Topic'/> <button type = 'submit' > submit </button> </form>";
-            //commented by cs. email ga ngebolehin window.open/window.location.href ke halaman lain, there goes my 30 mins of time
-            message.Body = "Please click the link below to reset your password <br> http://localhost:14033/Login/ResetPassword?Email="+Email;
+            message.Body = "Please click the link below to reset your password <br> http://localhost:14033/Login/ResetPassword?q="+hash;
             message.BodyEncoding = System.Text.Encoding.UTF8;
             message.From = new MailAddress("c.soetanto37@gmail.com");
             message.SubjectEncoding = System.Text.Encoding.UTF8;
@@ -123,24 +122,26 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     RESTResult Result = new REST(
                         Global.WebAPIBaseURL,
                         "/api/Training/RecDB/V1/App/User/GetUserLogin",
-                        REST.Method.POST,
-                        ConfigurationManager.AppSettings["OAuthBookDB"],
+                        REST.Method.POST,   
+                        ConfigurationManager.AppSettings["OAuthBookDB"],    
                         UserData
                     ).Result;
 
-                    if(Result.Success)
+                        if(Result.Success)
                     {
                         UserModel User = Result.Deserialize<UserModel>();
                         Session["UserID"] = User.UserID;
+                        Session["Role"] = User.Role;
                         if (User != null)
                         {
                             Session["UserID"] = User.UserID;
                             Session["Role"] = User.Role;
+                            Session["Email"] = User.Email;
                             Retdata = Json(new
-                            {
+                            {   
                                 Status = "Success",
                                 Message = "Login Success",
-                                URL = Global.BaseURL + "/Thread/Index"
+                                URL = Global.BaseURL + "/Schedule/Index"
                             });
                         }else
                         {
@@ -156,7 +157,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                         Retdata = Json(new
                         {
                             Status = "Failed",
-                            Message = Result.Message
+                            Message = "Please wait for your verification"
                         });
                     }
 

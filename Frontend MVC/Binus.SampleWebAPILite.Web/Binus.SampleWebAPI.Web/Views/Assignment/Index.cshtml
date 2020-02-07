@@ -19,24 +19,27 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var Item in Model.assignments)
-            {
-                <tr>
-                    <td>@Item.Title</td>
-                    <td>@Item.Description</td>
-                    <td>@Item.DateDue</td>
-                    <td>
-                        @Html.ActionLink("Download Case", "DownloadFile", "Assignment", new { fileName = Item.AssignmentFilepath }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("Upload Answer", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#uploadAnswer" , data_title=Item.Title, data_id=Item.AssignmentID})
-                        @Html.ActionLink("Download Answer", "DownloadAnswer", "Assignment", new { AssignmentID = Item.AssignmentID}, new { @class = "btn btn-info" })
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
-                        <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
-                        @Html.ActionLink("Check Answers", "Index", "Answer", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
-                    </td>
-                </tr>
+            @try {
+                foreach (var Item in Model.assignments) {
+                    <tr>
+                        <td>@Item.Title</td>
+                        <td>@Item.Description</td>
+                        <td>@Item.DateDue</td>
+                        <td>
+                            @Html.ActionLink("Download Case", "DownloadFile", "Assignment", new { fileName = Item.AssignmentFilepath }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Upload Answer", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#uploadAnswer", data_title = Item.Title, data_id = Item.AssignmentID })
+                            @Html.ActionLink("Download Answer", "DownloadAnswer", "Assignment", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
+                            <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                }
+            } catch (Exception ex) {
+                <tr>No data</tr>    
             }
+
         </tbody>
     </table>
 

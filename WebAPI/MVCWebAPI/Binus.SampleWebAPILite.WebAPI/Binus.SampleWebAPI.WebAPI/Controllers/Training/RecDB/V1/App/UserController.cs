@@ -27,7 +27,6 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         {
             return Json(await _UserService.GetUserLogin(User));
         }
-
         [HttpPost]
         public async Task<IHttpActionResult> RegisterUser(UserModel User)
         {
@@ -35,9 +34,9 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> ResetPassword(UserModel User)
+        public async Task<IHttpActionResult> ChangePassword(UserModel User)
         {
-            return Json(await _UserService.ResetPassword(User));
+            return Json(await _UserService.ChangePassword(User));
         }
 
 

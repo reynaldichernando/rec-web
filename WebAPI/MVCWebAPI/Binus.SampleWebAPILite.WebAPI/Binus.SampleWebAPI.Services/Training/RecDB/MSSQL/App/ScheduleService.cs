@@ -12,9 +12,9 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
     {
         Task<List<ScheduleModel>> GetAllSchedule();
         Task<ExecuteResult> InsertSchedule(ScheduleModel Model);
-        Task<ExecuteResult> DeleteSchedule(ScheduleModel Schedule);
+        Task<ExecuteResult> DeleteScheduleByID(string ScheduleID);
         Task<ExecuteResult> UpdateSchedule(ScheduleModel Model);
-
+        Task<ScheduleModel> GetScheduleByID(string ScheduleID);
     }
 
     public class ScheduleService : IScheduleService
@@ -29,24 +29,25 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         public async Task<List<ScheduleModel>> GetAllSchedule()
         {
             List<ScheduleModel> ListSchedule = (await _ScheduleRepository.ExecSPToListAsync("bn_RecDB_GetAllSchedule")).ToList();
-
+            for(int i = 0; i < ListSchedule.Count; i++) {
+                //format datetime: m/d/yyyy hh:mm:ss PM/AM
+                System.Diagnostics.Debug.WriteLine(ListSchedule.ElementAt(i).StartTime);
+            }
             return ListSchedule;
         }
 
-        public async Task<ExecuteResult> DeleteSchedule(ScheduleModel Schedule)
+        public async Task<ExecuteResult> DeleteScheduleByID(string ScheduleID)
         {
             var Param = new SqlParameter[]
             {
-                new SqlParameter("@ScheduleID",Schedule.ScheduleID)
+                new SqlParameter("@ScheduleID",ScheduleID)
             };
 
             List<StoredProcedure> Data = new List<StoredProcedure>();
-            Data.Add(new StoredProcedure
-            {
+            Data.Add(new StoredProcedure {
                 SPName = "bn_RecDB_DeleteSchedule @ScheduleID",
                 SQLParam = Param
-            }); ; ;
-
+            });
             ExecuteResult Result = (await _ScheduleRepository.ExecMultipleSPWithTransactionAsync(Data));
 
             return Result;
@@ -97,6 +98,16 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             ExecuteResult Result = (await _ScheduleRepository.ExecMultipleSPWithTransactionAsync(Data));
 
             return Result;
+        }
+
+        public async Task<ScheduleModel> GetScheduleByID(string ScheduleID)
+        {
+            ScheduleModel Schedule= await _ScheduleRepository.ExecSPToSingleAsync("bn_RecDB_GetScheduleByID @ScheduleID",
+               new SqlParameter[]
+               {
+                            new SqlParameter("@ScheduleID", ScheduleID)
+               });
+            return Schedule;
         }
     }
 }

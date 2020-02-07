@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AssignmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
@@ -744,6 +745,7 @@
     <Content Include="Sources\PageJS\Backend\msBookMongoDB.js" />
     <Content Include="Sources\PageJS\Backend\msBookOracle.js" />
     <Content Include="Sources\PageJS\Backend\msBookMSSQL.js" />
+    <Content Include="Sources\PageJS\Backend\schedule.js" />
     <Content Include="Sources\PageJS\Login\login.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js" />
@@ -829,7 +831,7 @@
     <Content Include="Views\Assignment\Index.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
-    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Post\index.cshtml" />
     <Content Include="Views\Answer\Index.cshtml" />
