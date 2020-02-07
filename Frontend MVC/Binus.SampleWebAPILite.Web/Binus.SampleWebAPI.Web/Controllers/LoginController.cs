@@ -131,10 +131,12 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     {
                         UserModel User = Result.Deserialize<UserModel>();
                         Session["UserID"] = User.UserID;
+                        Session["Role"] = User.Role;
                         if (User != null)
                         {
                             Session["UserID"] = User.UserID;
                             Session["Role"] = User.Role;
+                            Session["Email"] = User.Email;
                             Retdata = Json(new
                             {   
                                 Status = "Success",

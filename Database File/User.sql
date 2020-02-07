@@ -46,5 +46,7 @@ select * from msUser
 delete from msUser where Password is null
 insert into msUser(Name,Email,Password) values('name','asdf@asdf.com','bacot')
 update msUser set Role='approved'
+update msUser set Role='admin'
+
 
 use RecDB
