@@ -13,6 +13,7 @@ namespace Binus.SampleWebAPI.Model.AppModel
         public string Title { get; set; }
         public string Content { get; set; }
         public string Name { get; set; }
+        public string Role { get; set; }
 
     }
 }

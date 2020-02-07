@@ -34,18 +34,23 @@
             <button type="submit">submit</button>
         }
     </div>
-    <h1>Forum</h1>
+
+    <h1>Announcement</h1>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <td>Thread</td>
+                <td>Announcement</td>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
-            @if (Model.ListThread != null) {
+            @if (Model.ListThread != null)
+            {
 
-                @foreach (var Data in Model.ListThread) {
+                foreach (var Data in Model.ListThread)
+                {
+                    if (Data.Role == "admin")
+                    {
                     <tr>
                         <td>
                             @Html.ActionLink(@Data.Title, "ToPost", Data) by @Data.Name
@@ -55,7 +60,8 @@
                         <td>
                             @Html.ActionLink("Delete", "DeleteThread", Data)
                             <div class="wrapper">
-                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post)) {
+                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
+                                {
                                     <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
                                     <input type="hidden" name="UserID" value="@Data.UserID" />
                                     <label>Title</label>
@@ -68,6 +74,56 @@
 
                         </td>
                     </tr>
+
+                        }
+                    }
+            }
+
+        </tbody>
+    </table>
+
+    <br />
+
+    <h1>Forum</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Thread</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ListThread != null)
+            {
+
+                foreach (var Data in Model.ListThread)
+                {
+                    if(Data.Role == "approved")
+                    {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(@Data.Title, "ToPost", Data) by @Data.Name
+                            <br />
+                            <p>@Data.Content</p>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteThread", Data)
+                            <div class="wrapper">
+                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
+                                    <input type="hidden" name="UserID" value="@Data.UserID" />
+                                    <label>Title</label>
+                                    <input type="text" name="Title" placeholder="Title" value="@Data.Title" />
+                                    <label>Content</label>
+                                    <input type="text" name="Content" placeholder="Content" value="@Data.Content" />
+                                    <button type="submit">submit</button>
+                                }
+                            </div>
+
+                        </td>
+                    </tr>
+                    }
                 }
             }
 

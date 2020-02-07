@@ -13,5 +13,6 @@ namespace Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.App
         public string Title { get; set; }
         public string Content { get; set; }
         public string Name { get; set; }
+        public string Role { get; set; }
     }
 }
