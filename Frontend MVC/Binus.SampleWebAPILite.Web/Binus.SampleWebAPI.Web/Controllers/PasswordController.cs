@@ -113,7 +113,6 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     BaseURL: Global.WebAPIBaseURL,
                     URL : "/api/Training/RecDB/V1/App/User/GenerateUserToken",
                     Method: REST.Method.POST,
-                    OAuth :ConfigurationManager.AppSettings["OAuthBookDB"],
                     Data: User
                 ).Result;
                 } catch (Exception ex) {
@@ -123,7 +122,6 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     Global.WebAPIBaseURL,
                     "/api/Training/RecDB/V1/App/User/GetUserToken",
                     REST.Method.POST,
-                    ConfigurationManager.AppSettings["OAuthBookDB"],
                     User
                 ).Result;
                 String Token = GetToken.Deserialize<String>();
@@ -148,8 +146,9 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     await smtp.SendMailAsync(message);
 
                 }
-            } catch(Exception ex) {
-                throw ex;
+            } catch(Exception) {
+                return Content("error");
+                throw;
             }
 
             return RedirectToAction("Index", "Login");
