@@ -1,3 +1,6 @@
+USE RecDB
+GO
+
 CREATE PROC bn_RecDB_GetAllSchedule
 AS
 BEGIN
@@ -44,7 +47,7 @@ begin
 end
 
 GO
-create proc bn_RecDB_GetScheduleByID --'1'
+create proc bn_RecDB_GetScheduleByID
 @ScheduleID int
 as
 begin

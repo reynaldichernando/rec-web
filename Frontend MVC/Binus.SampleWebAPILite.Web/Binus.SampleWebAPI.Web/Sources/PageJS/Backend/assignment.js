@@ -131,6 +131,7 @@ function LoadResult(Data) {
     }
 }
 
+
 $.fn.setNow = function (onlyBlank) {
     var now = new Date($.now())
         , year

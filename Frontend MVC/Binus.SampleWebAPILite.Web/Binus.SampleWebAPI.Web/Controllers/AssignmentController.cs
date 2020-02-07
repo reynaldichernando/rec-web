@@ -234,6 +234,12 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return retData;
         }
 
+        [HttpGet]
+        public ActionResult CheckAnswer(int AssignmentID)
+        {
+            return RedirectToAction("Index", "Answer", new { id = AssignmentID });
+        }
+
         [HttpPost]
         public async Task<ActionResult> Upload(HttpPostedFileBase file, String path)
         {
