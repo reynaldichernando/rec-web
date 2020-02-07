@@ -44,7 +44,7 @@ begin
 end
 
 GO
-create proc bn_RecDB_GetScheduleByID '1'
+create proc bn_RecDB_GetScheduleByID --'1'
 @ScheduleID int
 as
 begin

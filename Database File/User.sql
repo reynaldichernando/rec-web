@@ -10,8 +10,6 @@ BEGIN
 	AND [Role] IN ('approved', 'admin')
 END
 
-select * from msu
-
 GO
 create PROC bn_RecDB_UpdatePassword
 @Email varchar(50),
@@ -48,6 +46,5 @@ delete from msUser where Password is null
 insert into msUser(Name,Email,Password) values('name','asdf@asdf.com','bacot')
 update msUser set Role='approved'
 update msUser set Role='admin'
-
 
 use RecDB
