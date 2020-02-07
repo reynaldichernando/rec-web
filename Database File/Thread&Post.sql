@@ -102,7 +102,10 @@ end
 
 INSERT INTO msUser VALUES ('Admin', 'admin@admin.com', '123', 'admin')
 INSERT INTO msUser VALUES ('User', 'user@user.com', '123', 'approved')
-INSERT INTO trThread VALUES (4, 'Announcement', 'This is an announcement'),
-(6, 'Not announcement', 'This is not an announcement')
+INSERT INTO trThread VALUES (1, 'Announcement', 'This is an announcement'),
+(2, 'Not announcement', 'This is not an announcement')
+
+update msUser
+set Role = 'approved'
 
 select * from msUser
