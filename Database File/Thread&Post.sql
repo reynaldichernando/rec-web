@@ -1,3 +1,5 @@
+USE RecDB
+GO
 CREATE PROC bn_RecDB_InsertThread
 @UserID int,
 @Title varchar(30),
@@ -99,10 +101,3 @@ begin
 	delete from trPost
 	where PostID = @PostID
 end
-
-INSERT INTO msUser VALUES ('Admin', 'admin@admin.com', '123', 'admin')
-INSERT INTO msUser VALUES ('User', 'user@user.com', '123', 'approved')
-INSERT INTO trThread VALUES (4, 'Announcement', 'This is an announcement'),
-(6, 'Not announcement', 'This is not an announcement')
-
-select * from msUser

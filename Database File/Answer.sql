@@ -1,7 +1,7 @@
 USE RecDB
 
 GO
-ALTER PROC bn_RecDB_InsertAnswer
+CREATE PROC bn_RecDB_InsertAnswer
 @UserID INT,
 @AssignmentID INT,
 @AnswerFilePath VARCHAR(MAX)
@@ -22,7 +22,7 @@ BEGIN
 END
 
 GO
-ALTER PROC bn_RecDB_GetAllAnswer
+CREATE PROC bn_RecDB_GetAllAnswer
 @AssignmentID INT
 AS
 BEGIN
@@ -43,7 +43,3 @@ BEGIN
 	SELECT * FROM trAnswer
 	WHERE AssignmentID = @AssignmentID AND UserID = @UserID
 END
-
-SELECT * FROM trAnswer
-
-EXEC bn_RecDB_GetAnswer 20, 3
