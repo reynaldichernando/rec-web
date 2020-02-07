@@ -46,10 +46,12 @@ end
 
 go
 
-CREATE PROC bn_RecDB_DeleteThread
+alter PROC bn_RecDB_DeleteThread
 @ThreadID int
 as
 begin
+	delete from trPost
+	where ThreadID = @ThreadID
 	delete from trThread
 	where ThreadID = @ThreadID
 end
@@ -84,7 +86,8 @@ END
 
 go
 
-CREATE PROC bn_RecDB_UpdatePost
+alter PROC bn_RecDB_UpdatePost
+@ThreadID int,
 @PostID int,
 @Content varchar(max)
 as
@@ -92,17 +95,23 @@ begin
 	update trPost
 	set Content = @Content
 	where PostID = @PostID
+	and ThreadID = @ThreadID
 end
 
 go
 
-CREATE PROC bn_RecDB_DeletePost
+alter PROC bn_RecDB_DeletePost
+@ThreadID int,
 @PostID int
 as
 begin
 	delete from trPost
 	where PostID = @PostID
+	and ThreadID = @ThreadID
+
 end
+go
+
 
 INSERT INTO msUser VALUES ('Admin', 'admin@admin.com', '123', 'admin')
 INSERT INTO msUser VALUES ('User', 'user@user.com', '123', 'approved')
@@ -110,9 +119,8 @@ INSERT INTO trThread VALUES (5, 'Not announcement', 'This is not an announcement
 (4, 'Announcement', 'This is an announcement')
 
 select * from trThread
-delete from trThread
-delete from trPost
 
+select * from trPost
 update msUser
 set Role = 'approved'
 where UserID = 5

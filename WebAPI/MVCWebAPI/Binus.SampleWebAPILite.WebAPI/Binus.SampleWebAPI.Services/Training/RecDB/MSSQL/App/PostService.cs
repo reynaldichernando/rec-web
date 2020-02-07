@@ -62,6 +62,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         {
             var Param = new SqlParameter[]
             {
+                new SqlParameter("@ThreadID", Post.ThreadID),
                 new SqlParameter("@PostID", Post.PostID),
                 new SqlParameter("@Content", Post.Content)
             };
@@ -69,7 +70,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_RecDB_UpdatePost @PostID, @Content",
+                SPName = "bn_RecDB_UpdatePost @ThreadID, @PostID, @Content",
                 SQLParam = Param
             });
 
@@ -81,12 +82,13 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         {
             var Param = new SqlParameter[]
            {
+                new SqlParameter("@ThreadID", Post.ThreadID),
                 new SqlParameter("@PostID", Post.PostID)
            };
 
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure {
-                SPName = "bn_RecDB_DeletePost @PostID",
+                SPName = "bn_RecDB_DeletePost @ThreadID, @PostID",
                 SQLParam = Param
             });
 
