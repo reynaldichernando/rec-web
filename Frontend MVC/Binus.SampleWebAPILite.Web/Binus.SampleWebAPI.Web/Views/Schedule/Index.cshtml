@@ -3,10 +3,7 @@
 
     ViewBag.Title = "Index";
 }
-@*@{
-    Layout = null;
-    string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-}*@
+
 <!DOCTYPE html>
 
 <html>
@@ -17,13 +14,39 @@
 </head>
 
 <body>
+    <div class="split right border border-dark">
+        <div class="centered">
+            @using (Html.BeginForm("ChangePassword", "Password", "POST")) {
+                <input type="hidden" class="form-control mb-2" name="hash" value="">
+                <input type="text" id="inputEmail" class="form-control mb-2" name="Email" placeholder="Email" value="@HttpContext.Current.Session["Email"].ToString()">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
+                <span class="text-danger" style="display: none" id="error-empty-password">
+                    Please input
+                    password <br>
+                </span>
+                <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+                <input type="password" id="inputConfirmPassword" class="form-control mb-2" name="ConfirmPassword" placeholder="Confirm Password" required>
+                <span class="text-danger" style="display: none" id="error-confirm-password">
+                    Please correctly confirm the
+                    password <br>
+                </span>
+
+                <span id="divMessage" style="color:red"></span>
+                <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Send request</button>
+            }
+
+        </div>
+    </div>
 
 
 
 
     <div class="wrapper">
 
-        <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
+        @if (Session["Role"].Equals("admin")) {
+            @Html.ActionLink("Insert Schedule", "", "Schedule", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#insertModal" });
+        }
 
     </div>
     <table class="table table-bordered">
@@ -32,7 +55,12 @@
                 <td>Book Title</td>
                 <td>Book Desc</td>
                 <td>Book Qty</td>
-                <td>Action</td>
+                <td>Start time</td>
+                <td>End time</td>
+
+                @if (Session["Role"].Equals("admin")) {
+                    <td>Action</td>
+                }
             </tr>
         </thead>
         <tbody>
@@ -42,10 +70,16 @@
                     <td>@Data.ScheduleID</td>
                     <td>@Data.Place</td>
                     <td>@Data.Topic</td>
-                    <td>
-                        <button onclick="Delete(@Data.ScheduleID)" on class="btn btn-danger">Delete</button>
-                        @Html.ActionLink("Update Schedule", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#updateModal", data_id = Data.ScheduleID })
-                    </td>
+                    <td>@Data.StartTime</td>
+                    <td>@Data.EndTime</td>
+
+                    @if (Session["Role"].Equals("admin")) {
+                        <td>
+                            <button onclick="Delete(@Data.ScheduleID)" on class="btn btn-danger">Delete</button>
+                            @Html.ActionLink("Update Schedule", "", "Schedule", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#updateModal", data_id = Data.ScheduleID })
+                        </td>
+                    }
+
                 </tr>
             }
 
@@ -138,7 +172,7 @@
                                 <input type="hidden" id="txtScheduleID" name="ScheduleID" />
                                 <div class="form-group">
                                     <label for="txtTopic">Topic:</label>
-                                    <input type="text"  class="form-control input-lg" required id="txtTopic" name="Topic">
+                                    <input type="text" class="form-control input-lg" required id="txtTopic" name="Topic">
                                 </div>
                                 <div class="form-group">
                                     <label for="txtDesc">Description:</label>
@@ -171,7 +205,7 @@
 
 
 
-  
+
     <script src="~/Sources/PageJS/Backend/schedule.js"></script>
 </body>
 

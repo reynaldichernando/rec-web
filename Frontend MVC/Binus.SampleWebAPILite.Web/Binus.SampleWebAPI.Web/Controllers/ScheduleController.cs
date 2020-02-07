@@ -128,6 +128,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     Retdata = Json(new {
                         Status = "Success",
                         Message = "Create Schedule Success!",
+                        URL = Global.BaseURL + "/Schedule",
                     });
                 } else {
                     Retdata = Json(new {

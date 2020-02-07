@@ -14,7 +14,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
     public interface IUserService
     {
         Task<UserModel> GetUserLogin(UserModel Data);
-        Task<ExecuteResult> ResetPassword(UserModel User);
+        Task<ExecuteResult> ChangePassword(UserModel User);
         Task<ExecuteResult> RegisterUser(UserModel User);
         Task<List<UserModel>> GetUnapprovedUser();
         Task<ExecuteResult> VerifyUser(UserModel user);
@@ -71,7 +71,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
 
             return Result;
         }
-        public async Task<ExecuteResult> ResetPassword(UserModel User)
+        public async Task<ExecuteResult> ChangePassword(UserModel User)
         {
             SHA sha = new SHA();
             var Param = new SqlParameter[]

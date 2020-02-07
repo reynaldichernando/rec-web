@@ -26,12 +26,11 @@ namespace Binus.SampleWebAPI.Web.Controllers
             ViewBag.hash = hash;
             return View("Index");
         }
-        public ActionResult ChangePassword(string Hash,string Email, string Password)
+        public ActionResult ChangePassword(string Hash, string Email, string Password)
         {
             JsonResult Retdata = new JsonResult();
             SHA sha = new SHA();
-            
-            if (sha.GenerateSHA512String(Email).Equals(Hash)) {
+            if (Hash.Equals("") || sha.GenerateSHA512String(Email).Equals(Hash)) {
                 try {
                     UserModel UserData = new UserModel {
                         Email = Email,
@@ -42,27 +41,34 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     };
                     RESTResult Result = new REST(
                         Global.WebAPIBaseURL,
-                        "/api/Training/RecDB/V1/App/User/ResetPassword",
+                        "/api/Training/RecDB/V1/App/User/ChangePassword",
                         REST.Method.POST,
                         ConfigurationManager.AppSettings["OAuthBookDB"],
                         UserData
                     ).Result;
                     if (Result.Success) {
-
-                        return View("Index");
+                        Retdata = Json(new {
+                            Status = "Success",
+                            Message = "Change password success",
+                            URL = Global.BaseURL + "/Login/Index"
+                        });
 
                     } else {
-
+                        Retdata = Json(new {
+                            Status = "Failed",
+                            Message = "Change password failed",
+                            URL = Global.BaseURL + "/Login/Index"
+                        });
                     }
 
                 } catch (Exception ex) {
-
+                    throw ex;
                 }
-            } else {
-
             }
-            return View("Index");
+        
+            return Retdata;
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendAsync(string Email)
