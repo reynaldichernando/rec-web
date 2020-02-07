@@ -4,18 +4,12 @@
     ViewBag.Title = "Index";
 }
 @{
-    Layout = null;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 }
 <!DOCTYPE html>
 
 <html>
 <head>
-    <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/moment.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.*js"></script>
-    <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
     <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="@Address/Sources/CSS/signin.css" rel="stylesheet" />
 </head>
@@ -50,9 +44,9 @@
                     }
                     else if (Session["Role"].Equals("admin"))
                     {
-                <div id="del">
-                    <button onclick="Delete(@Model.Thread.ThreadID)" on class="btn btn-danger">Delete</button>
-                </div>
+                    <div id="del">
+                        <button onclick="Delete(@Model.Thread.ThreadID)" on class="btn btn-danger">Delete</button>
+                    </div>
                     }
                     else
                     {
@@ -132,12 +126,17 @@
 
 
     @* Update *@
-    @using (Ajax.BeginForm("UpdateThread", "Thread", new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    }, new { id = "form-create-thread", enctype = "multipart/form-data" }))
-    {
+    @using (Ajax.BeginForm(
+        actionName:"UpdateThread",
+        controllerName: "Thread",
+        routeValues: null,
+        ajaxOptions:new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "LoadResult(data)"
+        },
+         htmlAttributes:new { id = "form-create-thread", enctype = "multipart/form-data" }))
+        {
         @Html.AntiForgeryToken()
 
         <!-- Modal -->
