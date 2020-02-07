@@ -43,8 +43,8 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.ListThread != null)
-            {
+            
+            @try{
 
                 foreach (var Data in Model.ListThread)
                 {
@@ -60,6 +60,8 @@
 
                     }
                 }
+            } catch (Exception ex) {
+                throw ex;
             }
 
         </tbody>

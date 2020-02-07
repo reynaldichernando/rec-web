@@ -53,6 +53,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
 
             return RedirectToAction("Index", "Thread");
         }
+        [HttpPost]
         public ActionResult UpdateThread(ThreadModel Thread)
         {
 
