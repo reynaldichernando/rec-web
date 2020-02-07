@@ -27,19 +27,20 @@
         </a>
         <hr class="w-75">
         <div class="d-flex flex-column justify-content-center">
-
             <a href="@Url.Action("Index", "Profile")"><img src="@Address/Sources/src/user-icon.png" id="userlogo" alt="Profile"></a>
             <a href="@Url.Action("Index", "Schedule")"><img src="@Address/Sources/src/calendar-icon.png" alt="Schedule"></a>
             <a href="@Url.Action("Index", "Assignment")"><img src="@Address/Sources/src/assignment-icon.png" alt="Assignment"></a>
             <a href="@Url.Action("Contact", "Home")"><img src="@Address/Sources/src/call-icon.png" alt="Contact"></a>
         </div>
+        <hr class="w-75">
+        <a href="@Url.Action("Index", "Login")"><img src="@Address/Sources/src/signout.png" alt=""></a>
     </div>
 
     <div class="split right">
         @RenderBody()
 
-        <div class="layout-footer text-white">
-            <p>&copy; Kelompok 1
+        <div class="footer-copyright text-center py-3 bg-success mt-auto">
+            <div class="text">&copy; Kelompok 1</div>
         </div>
     </div>
 

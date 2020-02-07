@@ -1,21 +1,26 @@
-﻿/*color-pallete:
+﻿﻿ /*color-pallete:
 #fafafa
 #e8f1f5
 #005691
 #004a7c*/
-
 body {
     font-family: Georgia, Times, "Times New Roman", serif;
     color: black;
+    font-size: 1.5em;
 }
 
 .split {
     height: 100vh;
     width: 50%;
-    position: absolute;
+    position: fixed;
     overflow-x: hidden;
     text-align: center;
+    -ms-overflow-style: none;
 }
+
+    .split::-webkit-scrollbar {
+        display: none;
+    }
 
 .left {
     left: 0;
@@ -31,10 +36,10 @@ body {
     background-color: #005691;
 }
 
-.layout-menu img {
-    width: 100%;
-    padding: 10px;
-}
+    .layout-menu img {
+        width: 100%;
+        padding: 10px;
+    }
 
 .layout-header {
     background-color: #004a7c;

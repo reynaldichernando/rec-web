@@ -797,16 +797,21 @@
     <Content Include="Sources\Scripts\site.js" />
     <None Include="Sources\Scripts\_references.js" />
     <Content Include="Sources\src\assignment-icon.png" />
+    <Content Include="Sources\src\attachmentdl.png" />
     <Content Include="Sources\src\calendar-icon.png" />
+    <Content Include="Sources\src\call-icon.png" />
+    <Content Include="Sources\src\comment.jpg" />
+    <Content Include="Sources\src\download.png" />
     <Content Include="Sources\src\forum-icon.png" />
-    <Content Include="Sources\src\hanzo-1.png" />
-    <Content Include="Sources\src\hanzo-bg-1.png" />
-    <Content Include="Sources\src\hanzo-bg-2.png" />
-    <Content Include="Sources\src\hanzo-bg.png" />
-    <Content Include="Sources\src\hanzo-icon.png" />
+    <Content Include="Sources\src\home-icon.jpg" />
+    <Content Include="Sources\src\perusahaan.jpg" />
+    <Content Include="Sources\src\perusahaan.png" />
+    <Content Include="Sources\src\pin-icon.jpg" />
+    <Content Include="Sources\src\plus-icon.jpg" />
     <Content Include="Sources\src\question-icon.png" />
-    <Content Include="Sources\src\shimada.jpg" />
+    <Content Include="Sources\src\upload.png" />
     <Content Include="Sources\src\user-icon.png" />
+    <Content Include="Sources\src\userpost-icon.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
