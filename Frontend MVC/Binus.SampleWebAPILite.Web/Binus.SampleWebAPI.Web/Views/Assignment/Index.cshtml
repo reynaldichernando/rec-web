@@ -33,6 +33,7 @@
                     <td>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
                         <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                        @Html.ActionLink("Check Answers", "Index", "Answer", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
                     </td>
                 </tr>
             }
