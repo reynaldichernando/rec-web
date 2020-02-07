@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="AppModel\AnswerModel.cs" />
     <Compile Include="AppModel\AssignmentModel.cs" />
+    <Compile Include="AppModel\Helper\SHA.cs" />
     <Compile Include="AppModel\PostModel.cs" />
     <Compile Include="AppModel\ScheduleModel.cs" />
     <Compile Include="AppModel\ThreadModel.cs" />
