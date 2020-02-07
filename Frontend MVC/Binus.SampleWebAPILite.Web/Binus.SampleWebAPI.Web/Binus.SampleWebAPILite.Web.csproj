@@ -825,9 +825,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\NewBook.cshtml" />
-    <Content Include="Views\Home\Detail.cshtml" />
-    <Content Include="Views\Home\Update.cshtml" />
     <Content Include="Views\Thread\Index.cshtml" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js.map" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js.map" />
@@ -842,6 +839,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Post\index.cshtml" />
     <Content Include="Views\Answer\Index.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -47,5 +47,9 @@ namespace Binus.SampleWebAPI.Web.Controllers
             //    throw ex;
             //}
         } 
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
     }
 }

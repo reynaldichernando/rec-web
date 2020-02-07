@@ -47,10 +47,17 @@ body {
 
 .layout-content {
     background-color: #e8f1f5;
+    padding-bottom: 40px;
+    overflow: auto;
 }
 
 .layout-footer {
     background-color: #004a7c;
+    position: relative;
+    height: 40px;
+    margin-top: -40px;
+    clear: both;
+    display: grid;
 }
 
 .border-rounded {
