@@ -213,6 +213,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
@@ -835,6 +836,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Post\index.cshtml" />
     <Content Include="Views\Answer\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

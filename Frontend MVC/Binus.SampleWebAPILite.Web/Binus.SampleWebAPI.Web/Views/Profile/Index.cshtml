@@ -6,7 +6,7 @@
 <h2>Profile</h2>
 
 <div class="centered">
-    @using (Html.BeginForm("ChangeForgottenPassword", "Password", FormMethod.Post))
+    @using (Html.BeginForm("ChangePassword", "Password", "POST"))
     {
         <input type="hidden" class="form-control mb-2" name="hash" value="">
         <input type="text" id="inputEmail" class="form-control mb-2" name="Email" placeholder="Email" value="@HttpContext.Current.Session["Email"].ToString()">
@@ -23,8 +23,11 @@
             password <br>
         </span>
 
-        <span id="divMessage" style="color:red"></span>
-        <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Send request</button>
+        <span id="divMessage" style="color:red">@TempData["PasswordChangeMessage"]</span><br />
+        { 
+            TempData["PasswordChangeMessage"] = null;
+        }
+        <button class="btn btn-info" id="btnLoginDB" type="submit">Send request</button>
     }
 
 </div>

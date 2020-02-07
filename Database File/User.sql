@@ -9,7 +9,6 @@ BEGIN
 	FROM [msUser]
 	where Email = @Email
 	AND [Password] = @Password
-	AND [Role] IN ('approved', 'admin')
 END
 
 GO

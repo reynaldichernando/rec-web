@@ -156,6 +156,38 @@ namespace Binus.SampleWebAPI.Web.Controllers
             return RedirectToAction("Index", "Login");
         }
 
-      
+        [HttpPost]
+        public ActionResult ChangePassword(string Email, string Password)
+        {
+            UserModel UserData = new UserModel
+            {
+                Email = Email,
+                Password = Password
+            };
+            try
+            {
+                RESTResult Result = new REST(
+                    Global.WebAPIBaseURL,
+                    "api/Training/RecDB/V1/App/User/ChangePassword",
+                    REST.Method.POST,
+                    UserData
+                    ).Result;
+                if (Result.Success)
+                {
+                    TempData["PasswordChangeMessage"] = "Change Password Success";
+                    return RedirectToAction("Index", "Profile");
+                }
+                else
+                {
+                    TempData["PasswordChangeMessage"] = "Change Password Fail";
+                    return RedirectToAction("Index", "Profile");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
