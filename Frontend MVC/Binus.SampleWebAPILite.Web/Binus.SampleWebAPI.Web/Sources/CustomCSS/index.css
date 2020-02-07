@@ -1,0 +1,125 @@
+﻿body {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    color: black;
+}
+
+.split {
+    height: 100vh;
+    width: 50%;
+    position: absolute;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.left {
+    left: 0;
+    width: 10%;
+}
+
+.right {
+    right: 0;
+    width: 90%;
+}
+
+.layout-menu img {
+    width: 100%;
+    padding: 10px;
+}
+
+.border-rounded {
+    border-radius: 5px;
+}
+
+.floating-button {
+    float: right;
+    bottom: 5%;
+    right: 2%;
+    height: 80px;
+    width: 80px;
+    position: sticky;
+    cursor: pointer;
+}
+
+.layout-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: auto;
+}
+
+.card-box {
+    background-color: #fafafa;
+    margin: 20px 40px;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.card-box p {
+    text-align: justify;
+}
+
+.switch {
+    float: right;
+    margin-right: 20px;
+    position: relative;
+    width: 70px;
+    height: 44px;
+}
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider.round {
+    border-radius: 34px;
+    margin-top: 3px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+.togglebox {
+    color: rgb(75, 75, 75);
+    margin-top: 20px;
+    margin-left: 40px;
+    width: 1150px;
+    height: 80px;
+    border-radius: 45px;
+    padding-top: 15px;
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid #fafafa;
+    -webkit-transition: .6s;
+    transition: .6s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 30px;
+        width: 30px;
+        right: 4px;
+        bottom: 4px;
+        border: 3px solid #fafafa;
+        -webkit-transition: .6s;
+        transition: .6s;
+    }
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(-26px);
+    -ms-transform: translateX(-26px);
+    transform: translateX(-26px);
+}

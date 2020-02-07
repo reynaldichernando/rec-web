@@ -420,6 +420,9 @@
     <Content Include="Sources\CSS\bootstrap.min.css.map" />
     <Content Include="Sources\CSS\bootstrap.css.map" />
     <Content Include="favicon.ico" />
+    <Content Include="Sources\CustomCSS\index.css" />
+    <Content Include="Sources\CustomCSS\layout.css" />
+    <Content Include="Sources\CustomCSS\signin.css" />
     <Content Include="Sources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Sources\fonts\glyphicons-halflings-regular.woff2" />
@@ -742,10 +745,8 @@
     <Content Include="Sources\icons\x-square.svg" />
     <Content Include="Sources\icons\x.svg" />
     <Content Include="Sources\PageJS\Backend\assignment.js" />
-    <Content Include="Sources\PageJS\Backend\msBookMongoDB.js" />
-    <Content Include="Sources\PageJS\Backend\msBookOracle.js" />
-    <Content Include="Sources\PageJS\Backend\msBookMSSQL.js" />
     <Content Include="Sources\PageJS\Backend\schedule.js" />
+    <Content Include="Sources\PageJS\index.js" />
     <Content Include="Sources\PageJS\Login\login.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js" />
