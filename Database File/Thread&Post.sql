@@ -14,7 +14,7 @@ CREATE PROC bn_RecDB_GetAllThread
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT ThreadID, trThread.UserID, Title, Content, [Name]
+	SELECT ThreadID, trThread.UserID, Title, Content, [Name], [Role]
 	FROM trThread JOIN msUser ON trThread.UserID = msUser.UserID 
 END
 
@@ -25,7 +25,7 @@ CREATE PROC bn_RecDB_GetOneThread
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT ThreadID, trThread.UserID, Title, Content, [Name]
+	SELECT ThreadID, trThread.UserID, Title, Content, [Name], [Role]
 	FROM trThread JOIN msUser ON trThread.UserID = msUser.UserID 
 	WHERE ThreadID = @ThreadID
 END
@@ -99,3 +99,10 @@ begin
 	delete from trPost
 	where PostID = @PostID
 end
+
+INSERT INTO msUser VALUES ('Admin', 'admin@admin.com', '123', 'admin')
+INSERT INTO msUser VALUES ('User', 'user@user.com', '123', 'approved')
+INSERT INTO trThread VALUES (4, 'Announcement', 'This is an announcement'),
+(6, 'Not announcement', 'This is not an announcement')
+
+select * from msUser

@@ -72,12 +72,9 @@
     </div>
     <div class="split right border border-dark">
         <div class="centered">
-            @using (Html.BeginForm("ChangePassword", "Password", "POST")) {
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <label>@ViewBag.hash</label>
-                <input type="hidden" class="form-control mb-2" name="hash" value="@ViewBag.hash">
-                <label for="inputEmail" class="sr-only">Email</label>
-                <input type="text" id="inputEmail" class="form-control mb-2" name="Email" placeholder="Email" required>
+            @using (Html.BeginForm("ChangeForgottenPassword", "Password", "POST")) {
+                <input type="hidden" class="form-control mb-2" name="Token" value="@ViewBag.token">
+                <input type="hidden" class="form-control mb-2" name="Email" value="@ViewBag.email">
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
                 <span class="text-danger" style="display: none" id="error-empty-password">
@@ -90,7 +87,7 @@
                     Please correctly confirm the
                     password <br>
                 </span>
-
+                
                 <span id="divMessage" style="color:red"></span>
                 <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Send request</button>
             }

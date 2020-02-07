@@ -11,17 +11,12 @@ create table [msUser](
 	UserID INT PRIMARY KEY IDENTITY(1,1),
 	[Name] varchar(50),
 	Email varchar(50),
-	[Password] varchar(50),
-	[Role] varchar(10) CHECK([Role] IN ('approved', 'unapproved', 'admin')) DEFAULT('unapproved')
+	[Password] varchar(250),
+	[Role] varchar(10) CHECK([Role] IN ('approved', 'unapproved', 'admin')) DEFAULT('unapproved'),
+	Token varchar(50)
 )
 
-alter table msUser
-alter column Role varchar(20)
-
 go
-
-insert into [msUser] values('Luis', 'Luis@luis.com', '123', 'unapproved')
-insert into [msUser] values('Bruh', 'Bruh@bruh.com', '123', 'unapproved')
 
 GO
 create table msAssignment(
