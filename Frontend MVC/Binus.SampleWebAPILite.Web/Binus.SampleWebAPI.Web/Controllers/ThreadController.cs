@@ -77,7 +77,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
             JsonResult Retdata;
             try
             {
-
+                Thread.ThreadID = Convert.ToInt32(Session["ThreadID"]);
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
                     "api/Training/RecDB/V1/App/Thread/UpdateThread",
