@@ -37,6 +37,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
 
         public ActionResult DeleteThread(ThreadModel Thread)
         {
+            JsonResult Retdata;
             try
             {
                 RESTResult Result = new REST(
@@ -44,40 +45,112 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     "api/Training/RecDB/V1/App/Thread/DeleteThread",
                     REST.Method.POST,
                     Thread).Result;
-                System.Diagnostics.Debug.WriteLine(Result.Message);
+                if (Result.Success)
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL + "/Thread",
+                        Status = "Success",
+                        Message = "Delete Success",
+                    });
+                }
+                else
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL,
+                        Status = "Failed",
+                        Message = "Delete failed",
+                    });
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return RedirectToAction("Index");
+            return Retdata;
         }
+        [HttpPost]
         public ActionResult UpdateThread(ThreadModel Thread)
         {
-
+            JsonResult Retdata;
             try
             {
-                Thread.UserID = Convert.ToInt32(Thread.UserID);
-                Thread.ThreadID = Convert.ToInt32(Thread.ThreadID);
 
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
                     "api/Training/RecDB/V1/App/Thread/UpdateThread",
                     REST.Method.POST,
                     Thread).Result;
-                System.Diagnostics.Debug.WriteLine(Result.Message);
+                if (Result.Success)
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL + "/Post/Index",
+                        Status = "Success",
+                        Message = "Update Success",
+                    });
+                }
+                else
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL,
+                        Status = "Failed",
+                        Message = "Update failed",
+                    });
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return RedirectToAction("Index");
+            return Retdata;
+        }
+
+        public ActionResult GetOneThread(int ThreadID)
+        {
+            JsonResult retData = new JsonResult();
+            try
+            {
+                RESTResult Result = (new REST(Global.WebAPIBaseURL,"api/Training/RecDB/V1/App/Thread/GetOneThread?ThreadID=" + ThreadID, REST.Method.GET)).Result;
+
+                if (Result.Success)
+                {
+                    retData = Json(new
+                    {
+                        Status = "Success",
+                        Message = "Get Schedule Success!",
+                        Data = Result.Deserialize<ScheduleModel>()
+                    });
+                }
+                else
+                {
+                    retData = Json(new
+                    {
+                        Status = "Failed",
+                        Message = "Failed When Getting Data.."
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                retData = Json(new
+                {
+                    Status = "Failed",
+                    Message = ex.Message
+                });
+            }
+
+            return retData;
         }
 
         public ActionResult CreateThread(ThreadModel Thread)
         {
+
+            JsonResult Retdata;
             try
             {
                 Thread.UserID = Convert.ToInt32(Session["UserID"]);
@@ -86,14 +159,31 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     "api/Training/RecDB/V1/App/Thread/InsertThread",
                     REST.Method.POST,
                     Thread).Result;
-                System.Diagnostics.Debug.WriteLine(Result.Message);
+
+                if (Result.Success)
+                {
+                    Retdata = Json(new
+                    {
+                        Status = "Success",
+                        Message = "Create Thread Success!",
+                        URL = Global.BaseURL + "/Thread",
+                    });
+                }
+                else
+                {
+                    Retdata = Json(new
+                    {
+                        Status = "Failed",
+                        Message = "Create Thread Failed!",
+                    });
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return RedirectToAction("Index");
+            return Retdata;
         }
 
         public ActionResult ToPost(ThreadModel Thread)

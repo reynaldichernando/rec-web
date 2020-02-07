@@ -1,5 +1,3 @@
-USE RecDB
-GO
 CREATE PROC bn_RecDB_InsertThread
 @UserID int,
 @Title varchar(30),
@@ -33,7 +31,7 @@ BEGIN
 END
 
 go
-
+select * from trThread
 CREATE PROC bn_RecDB_UpdateThread
 @ThreadID int,
 @Title varchar(30),
@@ -68,6 +66,10 @@ begin
 	(@ThreadID,@UserID,@Content)
 end
 
+exec bn_RecDB_InsertPost 4, 35, 'admin'
+exec bn_RecDB_InsertPost 5, 35, 'approved'
+select * from trPost
+
 go
 
 CREATE PROC bn_RecDB_GetPost
@@ -101,3 +103,18 @@ begin
 	delete from trPost
 	where PostID = @PostID
 end
+
+INSERT INTO msUser VALUES ('Admin', 'admin@admin.com', '123', 'admin')
+INSERT INTO msUser VALUES ('User', 'user@user.com', '123', 'approved')
+INSERT INTO trThread VALUES (5, 'Not announcement', 'This is not an announcement'),
+(4, 'Announcement', 'This is an announcement')
+
+select * from trThread
+delete from trThread
+delete from trPost
+
+update msUser
+set Role = 'approved'
+where UserID = 5
+
+select * from msUser

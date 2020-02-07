@@ -30,6 +30,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 {
                     VM.ListPost = Result.Deserialize<List<PostModel>>();
                     VM.Thread = Result2.Deserialize<ThreadModel>();
+                    VM.UserID = Convert.ToInt32(Session["UserID"]);
                     return View(VM);
                 }
             }
