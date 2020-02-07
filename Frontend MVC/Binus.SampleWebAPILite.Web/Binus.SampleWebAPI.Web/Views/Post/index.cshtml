@@ -22,14 +22,38 @@
 
 <body>
 
-    <strong>
-        @Model.Thread.Title by @Model.Thread.Name
-    </strong>
-
-    <p>
-        @Model.Thread.Content
-    </p>
-
+    <table class="table table-bordered">
+        <thead>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        <strong>
+                            @Model.Thread.Title
+                        </strong>
+                        by @Model.Thread.Name
+                        <p>
+                            @Model.Thread.Content
+                        </p>
+                    </td>
+                      <td>
+                            @Html.ActionLink("Delete", "DeleteThread", "Thread", Model.Thread, null)
+                            <div class="wrapper">
+                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="ThreadID" value="@Model.Thread.ThreadID" />
+                                    <input type="hidden" name="UserID" value="@Model.Thread.UserID" />
+                                    <label>Title</label>
+                                    <input type="text" name="Title" placeholder="Title" value="@Model.Thread.Title" />
+                                    <label>Content</label>
+                                    <input type="text" name="Content" placeholder="Content" value="@Model.Thread.Content" />
+                                    <button type="submit">submit</button>
+                                }
+                            </div>
+                      </td>
+                </tr>
+        </tbody>
+    </table>
 
     <div class="wrapper">
         @using (Html.BeginForm("CreatePost", "Post", FormMethod.Post))

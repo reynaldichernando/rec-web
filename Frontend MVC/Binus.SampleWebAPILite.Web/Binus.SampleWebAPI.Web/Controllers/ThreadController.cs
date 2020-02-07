@@ -51,7 +51,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 throw ex;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Thread");
         }
         public ActionResult UpdateThread(ThreadModel Thread)
         {
@@ -73,7 +73,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 throw ex;
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Post");
         }
 
         public ActionResult CreateThread(ThreadModel Thread)

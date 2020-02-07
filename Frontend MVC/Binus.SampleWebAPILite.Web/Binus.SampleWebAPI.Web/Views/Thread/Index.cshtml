@@ -40,7 +40,6 @@
         <thead>
             <tr>
                 <td>Announcement</td>
-                <td>Action</td>
             </tr>
         </thead>
         <tbody>
@@ -57,26 +56,10 @@
                             <br />
                             <p>@Data.Content</p>
                         </td>
-                        <td>
-                            @Html.ActionLink("Delete", "DeleteThread", Data)
-                            <div class="wrapper">
-                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
-                                {
-                                    <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
-                                    <input type="hidden" name="UserID" value="@Data.UserID" />
-                                    <label>Title</label>
-                                    <input type="text" name="Title" placeholder="Title" value="@Data.Title" />
-                                    <label>Content</label>
-                                    <input type="text" name="Content" placeholder="Content" value="@Data.Content" />
-                                    <button type="submit">submit</button>
-                                }
-                            </div>
-
-                        </td>
                     </tr>
 
-                        }
                     }
+                }
             }
 
         </tbody>
@@ -89,13 +72,11 @@
         <thead>
             <tr>
                 <td>Thread</td>
-                <td>Action</td>
             </tr>
         </thead>
         <tbody>
             @if (Model.ListThread != null)
             {
-
                 foreach (var Data in Model.ListThread)
                 {
                     if(Data.Role == "approved")
@@ -105,22 +86,6 @@
                             @Html.ActionLink(@Data.Title, "ToPost", Data) by @Data.Name
                             <br />
                             <p>@Data.Content</p>
-                        </td>
-                        <td>
-                            @Html.ActionLink("Delete", "DeleteThread", Data)
-                            <div class="wrapper">
-                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
-                                {
-                                    <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
-                                    <input type="hidden" name="UserID" value="@Data.UserID" />
-                                    <label>Title</label>
-                                    <input type="text" name="Title" placeholder="Title" value="@Data.Title" />
-                                    <label>Content</label>
-                                    <input type="text" name="Content" placeholder="Content" value="@Data.Content" />
-                                    <button type="submit">submit</button>
-                                }
-                            </div>
-
                         </td>
                     </tr>
                     }
