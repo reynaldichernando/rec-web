@@ -37,16 +37,36 @@ as
 begin
 	select * from msUser where Role = 'unapproved'
 end
+GO
+alter proc bn_RecDB_InsertUserToken 'dsa@dsa.com','test'
+@Email varchar(50),
+@Token varchar(50)
+as
+begin
+	update msUser set Token = @Token where Email=@Email
+end
+GO
+create proc bn_RecDB_GetUserToken 'dsa@dsa.com'
+@Email varchar(50)
+as
+begin
+	select Token from msUser where Email=@Email
+end
+
+go
+alter proc bn_RecDB_DeleteUserToken'dsa@dsa.com'
+@Email varchar(50)
+as
+begin
+	update msUser set Token=null where Email=@Email
+end
 
 use recDB
 select * from msUser
 
-'name','cs@cs.com','55E98C1345D7A43A777A12843E8A0962EB6C33002BF27CB9284760128F31BC12242831EA696634B20ECC6852AB9337177F12C0386D2CB3A39737561994A944DB'
 
 delete from msUser where Password is null
-insert into msUser(Name,Email,Password) values('name','asdf@asdf.com','bacot')
 update msUser set Role='approved'
 update msUser set Role='admin'
 
 
-use RecDB

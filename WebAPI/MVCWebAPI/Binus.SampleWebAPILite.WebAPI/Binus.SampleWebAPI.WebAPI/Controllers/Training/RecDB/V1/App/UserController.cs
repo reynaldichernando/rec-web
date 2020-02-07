@@ -39,7 +39,6 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(await _UserService.ChangePassword(User));
         }
 
-
         [HttpPost]
         public async Task<IHttpActionResult> VerifyUser(UserModel User)
         {
@@ -52,5 +51,26 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
         {
             return Json(await _UserService.GetUnapprovedUser());
         }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GenerateUserToken(UserModel User)
+        {
+            return Json(await _UserService.GenerateUserToken(User));
+        }
+
+
+        [HttpPost]
+        public async Task<String> GetUserToken(UserModel User)
+        {
+            return (await _UserService.GetUserToken(User));
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteUserToken(UserModel User)
+        {
+            return Json(await _UserService.DeleteUserToken(User));
+        }
+
+
     }
 }
