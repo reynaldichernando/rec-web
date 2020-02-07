@@ -26,32 +26,34 @@
         <thead>
         </thead>
         <tbody>
-                <tr>
-                    <td>
-                        <strong>
-                            @Model.Thread.Title
-                        </strong>
-                        by @Model.Thread.Name
-                        <p>
-                            @Model.Thread.Content
-                        </p>
-                    </td>
-                      <td>
-                            @Html.ActionLink("Delete", "DeleteThread", "Thread", Model.Thread, null)
-                            <div class="wrapper">
-                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
-                                {
-                                    <input type="hidden" name="ThreadID" value="@Model.Thread.ThreadID" />
-                                    <input type="hidden" name="UserID" value="@Model.Thread.UserID" />
-                                    <label>Title</label>
-                                    <input type="text" name="Title" placeholder="Title" value="@Model.Thread.Title" />
-                                    <label>Content</label>
-                                    <input type="text" name="Content" placeholder="Content" value="@Model.Thread.Content" />
-                                    <button type="submit">submit</button>
-                                }
-                            </div>
-                      </td>
-                </tr>
+            <tr>
+                <td>
+                    <strong>
+                        @Model.Thread.Title
+                    </strong>
+                    by @Model.Thread.Name
+                    <p>
+                        @Model.Thread.Content
+                    </p>
+                </td>
+                <td>
+                    <div id="del">
+                        @Html.ActionLink("Delete", "DeleteThread", "Thread", Model.Thread, null)
+                    </div>
+                    <div class="wrapper">
+                        @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
+                        {
+                            <input type="hidden" name="ThreadID" value="@Model.Thread.ThreadID" />
+                            <input type="hidden" name="UserID" value="@Model.Thread.UserID" />
+                            <label>Title</label>
+                            <input type="text" name="Title" placeholder="Title" value="@Model.Thread.Title" />
+                            <label>Content</label>
+                            <input type="text" name="Content" placeholder="Content" value="@Model.Thread.Content" />
+                            <button type="submit">submit</button>
+                        }
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 
@@ -82,19 +84,20 @@
                         <p>@Data.Content</p>
                     </td>
                     <td>
-                        @Html.ActionLink("Delete", "DeletePost", Data)
-                        <div class="wrapper">
-                            @using (Html.BeginForm("UpdatePost", "Post", FormMethod.Post))
-                            {
-                                <input type="hidden" name="PostID" value="@Data.PostID" />
-                                <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
-                                <input type="hidden" name="UserID" value="@Data.Content" />
-                                <label>Reply</label>
-                                <input type="text" name="Content" placeholder="Reply" value="@Data.Content" />
-                                <button type="submit">edit</button>
-                            }
+                        <div id="del">
+                            @Html.ActionLink("Delete", "DeletePost", Data)
                         </div>
-
+                        <div class="wrapper">
+                                @using (Html.BeginForm("UpdatePost", "Post", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="PostID" value="@Data.PostID" />
+                                    <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
+                                    <input type="hidden" name="UserID" value="@Data.Content" />
+                                    <label>Reply</label>
+                                    <input type="text" name="Content" placeholder="Reply" value="@Data.Content" />
+                                    <button type="submit">edit</button>
+                                }
+                         </div>
                     </td>
                 </tr>
             }
@@ -110,3 +113,12 @@
 </body>
 
 </html>
+
+
+<script>
+    document.getElementById("del").onclick = function() {myFunction()};
+
+    function myFunction() {
+        confirm("Are you sure you want to delete?");
+    }
+</script>
