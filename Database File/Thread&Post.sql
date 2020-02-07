@@ -31,7 +31,7 @@ BEGIN
 END
 
 go
-
+select * from trThread
 CREATE PROC bn_RecDB_UpdateThread
 @ThreadID int,
 @Title varchar(30),

@@ -77,8 +77,6 @@ namespace Binus.SampleWebAPI.Web.Controllers
             JsonResult Retdata;
             try
             {
-                Thread.UserID = Convert.ToInt32(Thread.UserID);
-                Thread.ThreadID = Convert.ToInt32(Thread.ThreadID);
 
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
@@ -89,7 +87,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 {
                     Retdata = Json(new
                     {
-                        URL = Global.BaseURL + "/Post",
+                        URL = Global.BaseURL + "/Post/Index",
                         Status = "Success",
                         Message = "Update Success",
                     });

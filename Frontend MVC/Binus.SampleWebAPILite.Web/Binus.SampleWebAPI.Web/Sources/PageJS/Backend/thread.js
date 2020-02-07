@@ -26,6 +26,7 @@
 
 
 function LoadResult(Data) {
+    debugger;
     console.log("not even here");
     var Value = JSON.parse(JSON.stringify(Data));
 

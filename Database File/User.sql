@@ -1,4 +1,4 @@
-create PROC bn_RecDB_GetUserLogin --'dsa@dsa.com','8FC93F70B750B3BBF9D8DD693676A89ABBAA76169E0448079D7C66DE9A0FE53F06F5DB0EC965BA9787544B5845477EBF2998D793E6CB80E18AB105D26CA85282'
+alter PROC bn_RecDB_GetUserLogin 
 @Email varchar(50),
 @Password varchar(250)
 as
@@ -7,7 +7,6 @@ BEGIN
 	FROM [msUser]
 	where Email = @Email
 	AND [Password] = @Password
-	AND [Role] IN ('approved', 'admin')
 END
 
 GO
@@ -45,6 +44,6 @@ select * from msUser
 delete from msUser where Password is null
 insert into msUser(Name,Email,Password) values('name','asdf@asdf.com','bacot')
 update msUser set Role='approved'
-update msUser set Role='admin'
+update msUser set Role='unapproved' where UserID=44
 
 use RecDB
