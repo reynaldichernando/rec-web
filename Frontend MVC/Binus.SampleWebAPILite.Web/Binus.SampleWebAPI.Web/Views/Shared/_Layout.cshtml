@@ -30,8 +30,11 @@
             <a href="@Url.Action("Index", "Profile")"><img src="@Address/Sources/src/user-icon.png" id="userlogo" alt="Profile"></a>
             <a href="@Url.Action("Index", "Schedule")"><img src="@Address/Sources/src/calendar-icon.png" alt="Schedule"></a>
             <a href="@Url.Action("Index", "Assignment")"><img src="@Address/Sources/src/assignment-icon.png" alt="Assignment"></a>
-            <a href="@Url.Action("Contact", "Home")"><img src="@Address/Sources/src/call-icon.png" alt="Contact"></a>
-            <a href="@Url.Action("Index", "VerifyUser")"><img src="@Address/Sources/src/checkmark-flat.png" alt="VerifyUser"></a>
+            <a href="@Url.Action("AboutUs", "Home")"><img src="@Address/Sources/src/call-icon.png" alt="Contact"></a>
+            @*@if (Session.Role["admin"])
+            {*@
+                <a href="@Url.Action("Index", "User")"><img src="@Address/Sources/src/checkmark-flat.png" alt="VerifyUser"></a>
+            @*}*@
         </div>
         <hr class="w-75">
         <a href="@Url.Action("Index", "Login")"><img src="@Address/Sources/src/signout.png" alt=""></a>
@@ -40,11 +43,17 @@
     <div class="split right">
         @RenderBody()
 
-        <footer class="footer">
-            <div class="container">
-                <span class="text">&copy; 2020 Copyright: Kelompok 1</span>
-            </div>
-        </footer>
+        <div class="layout-content p-5 h-25">
+            <footer class="footer">
+                <div class="container">
+                    <span class="text">&copy; 2020 Copyright: Kelompok 1</span>
+                </div>
+            </footer>
+            <button type="button" class="btn btn-primary rounded-circle floating-button position-absolute"
+                    data-toggle="modal" data-target="#exampleModalLong">
+                <img src="Address/Sources/icons/plus.svg" alt="">
+            </button>
+        </div>
     </div>
 
     @RenderSection("scripts", required: false)
