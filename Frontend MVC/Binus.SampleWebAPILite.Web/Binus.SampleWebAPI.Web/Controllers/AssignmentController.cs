@@ -62,7 +62,15 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 }
                 else
                 {
-                    Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/UpdateAssignment", REST.Method.POST, Model)).Result;
+                    Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/UpdateAssignment", REST.Method.POST,
+                        new
+                        {
+                            AssignmentID = Model.AssignmentID,
+                            Title = Model.Title,
+                            Description = Model.Description,
+                            AssignmentFilepath = Model.AssignmentFilepath,
+                            DateDue = Model.DateDue.ToString("s")
+                        })).Result;
                 }
 
 
