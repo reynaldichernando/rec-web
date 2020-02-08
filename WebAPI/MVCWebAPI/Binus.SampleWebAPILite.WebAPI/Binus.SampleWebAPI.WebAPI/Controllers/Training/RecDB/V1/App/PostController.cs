@@ -46,5 +46,11 @@ namespace Binus.SampleWebAPI.WebAPI.Controllers.Training.RecDB.V1.App
             return Json(ListPost);
         }
 
+        [HttpGet]
+        public async Task<IHttpActionResult> GetPostByID(int PostID)
+        {
+            PostModel Post = (await _PostService.GetPostByID(PostID));
+            return Json(Post);
+        }
     }
 }
