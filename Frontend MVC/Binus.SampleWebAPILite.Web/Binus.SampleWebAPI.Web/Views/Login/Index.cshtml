@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    var Request = HttpContext.Current.Request;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 }
 <!DOCTYPE html>
@@ -84,6 +85,8 @@
 
                         <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
 
+                <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
                         <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
                         <label for="inputEmail" class="sr-only">Email address</label>
                         <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
@@ -113,27 +116,64 @@
                 <input type="email" id="inputEmail" class="form-control mb-2" name="Username" placeholder="Email address" required autofocus>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
-                <div class="checkbox mb-3">
+                @*<div class="checkbox mb-3">
                     <label class="text-dark">
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
-                </div>
+                </div>*@
                 <span id="divMessage" style="color:red"></span>
                 <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Sign in</button>
             }
 
 
             <div class="dropdown-divider mt-5"></div>
-            @*@Html.ActionLink("Forgot password?", "Index", "Register", new { @class = "dropdown-item" })*@
-            <div class="dropdown-divider mt-5"></div>
-            @Html.ActionLink("Request account", "Index", "Register", new { }, new { @class = "btn btn-info btn-block" })
+            <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#register">Register</button>
+            <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#forgot">Forgot Password</button>
 
-            @using (Ajax.BeginForm("SendAsync", "Login", new AjaxOptions
-            {
-                HttpMethod = "POST"
-            }, new { id = "formxxx", @class = "form-signin" }))
-            {
-                @Html.AntiForgeryToken()
+        </div>
+    </div>
+
+    @using (Ajax.BeginForm("RegisterAccount", "Register", null, new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "LoadResultReg(data)"
+    }, new { id = "form-register", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="register" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Register User</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row Data">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="inputNameReg" class="sr-only">Name</label>
+                                    <input type="text" id="inputNameReg" class="form-control mb-2" name="Name" placeholder="Name" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmailReg" class="sr-only">Email address</label>
+                                    <input type="email" id="inputEmailReg" class="form-control mb-2" name="Email" placeholder="Email address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPasswordReg" class="sr-only">Password</label>
+                                    <input type="password" id="inputPasswordReg" class="form-control mb-2" name="Password" placeholder="Password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputConfirmPasswordReg" class="sr-only">Confirm Password</label>
+                                    <input type="password" id="inputConfirmPasswordReg" class="form-control mb-2" name="ConfirmPassword" placeholder="Confirm Password" required>
+                                </div>
+                                <span class="text-danger" style="display: none" id="error-confirm-password-reg">Please correctly confirm the password <br></span>
+                                <span id="regMessage" style="color:red"></span>
+                                <button class="btn btn-lg btn-primary btn-block" id="btnLoginDBReg" type="submit">Send request</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 <label for="inputEmail" class="sr-only">Email address</label>
@@ -142,16 +182,34 @@
                 <button class="btn btn-lg btn-primary btn-block" id="btnForgotPassword" type="submit">Forgot pw</button>
             }
 
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div id="forgot" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Forgot Password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row Data">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="input-email-forgot" class="sr-only">Email address</label>
+                                    <input type="email" id="input-email-forgot" class="form-control mb-2" name="Email" placeholder="Email Address" required>
+                                </div>
+                                <span id="forgot-message" style="color:red"></span>
+                                <button class="btn btn-lg btn-primary btn-block" id="btn-forgot" type="submit">Send request</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    @*<script src="@Address/Sources/Scripts/jquery-3.4.1.slim.min.js"></script>
-        <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
-        <script src="@Address/Sources/Scripts/jquery.form.js"></script>
-        <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-        <script src="@Address/Sources/PageJS/Login/login.js"></script>
-        <script src="@Address/Sources/Scripts/respond.js"></script>*@
-    @* Commented by cher, karena jquery slim min js gaada ajax thanks *@
+    }
+    <script>Address='@Address'</script>
 
     <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
     <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
@@ -159,8 +217,5 @@
     <script src="@Address/Sources/Scripts/bootstrap.js"></script>
     <script src="@Address/Sources/Scripts/respond.js"></script>
     <script src="@Address/Sources/PageJS/Login/login.js"></script>
-
-
-
 </body>
 </html>

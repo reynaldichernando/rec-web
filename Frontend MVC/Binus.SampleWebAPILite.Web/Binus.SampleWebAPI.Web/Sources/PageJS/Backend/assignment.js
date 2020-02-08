@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+    $('input[type="file"]').change(function (event) {
+        $('progress').val(0);
+    });
     $('#form-upload-assignment').submit(function (e) {
         var file = $('#assignment-file')[0].files[0];
         let fileName = file.name;
@@ -91,8 +94,10 @@
                     $("#txtAssignmentID").val(JSONData.AssignmentID);
                     $("#txtTitle").val(JSONData.Title);
                     $("#txtDesc").val(JSONData.Description);
-                    //$("#txtDateDue").val(new Date(parseFloat((JSONData.DateDue).substr(6, 13))).toISOString().substr(0, 19));
-                    $('#txtDateDue').setNow();
+                    $("#txtDateDue").val(JSONData.DateDue);
+                    console.log(JSONData.DateDue)
+                    console.log(new Date(Date.parse(JSONData.DateDue)));
+                    //$('#txtDateDue').setNow();
                     $("#txtAssignmentFilePath").val(JSONData.AssignmentFilepath);
                 },
                 error: function (Data) {
@@ -130,6 +135,7 @@ function LoadResult(Data) {
         $('#Message').text(Value.Message);
     }
 }
+
 
 $.fn.setNow = function (onlyBlank) {
     var now = new Date($.now())

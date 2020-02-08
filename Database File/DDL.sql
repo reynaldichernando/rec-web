@@ -11,17 +11,10 @@ create table [msUser](
 	UserID INT PRIMARY KEY IDENTITY(1,1),
 	[Name] varchar(50),
 	Email varchar(50),
-	[Password] varchar(50),
-	[Role] varchar(10) CHECK([Role] IN ('approved', 'unapproved', 'admin')) DEFAULT('unapproved')
+	[Password] varchar(250),
+	[Role] varchar(10) CHECK([Role] IN ('approved', 'unapproved', 'admin')) DEFAULT('unapproved'),
+	Token varchar(50)
 )
-
-alter table msUser
-alter column Role varchar(20)
-
-go
-
-insert into [msUser] values('Luis', 'Luis@luis.com', '123', 'unapproved')
-insert into [msUser] values('Bruh', 'Bruh@bruh.com', '123', 'unapproved')
 
 GO
 create table msAssignment(
@@ -36,8 +29,8 @@ create table msAssignment(
 GO
 create table trAnswer(
 	AnswerID int primary key identity(1,1),
-	UserID int REFERENCES [msUser](UserID),
-	AssignmentID int REFERENCES msAssignment(AssignmentID),
+	UserID int REFERENCES [msUser](UserID) ON UPDATE CASCADE ON DELETE CASCADE,
+	AssignmentID int REFERENCES msAssignment(AssignmentID) ON UPDATE CASCADE ON DELETE CASCADE,
 	AnswerFilepath varchar(MAX),
 	DateUploaded datetime default(GETDATE())
 )
@@ -45,7 +38,7 @@ create table trAnswer(
 GO
 create table trThread(
 	ThreadID int primary key identity(1,1),
-	UserID int REFERENCES [msUser](UserID),
+	UserID int REFERENCES [msUser](UserID) ON UPDATE CASCADE ON DELETE CASCADE,
 	Title varchar(20),
 	Content varchar(MAX)
 )
@@ -53,8 +46,8 @@ create table trThread(
 GO
 create table trPost(
 	PostID int primary key identity(1,1),
-	ThreadID int REFERENCES trThread(ThreadID),
-	UserID int REFERENCES [msUser](UserID),
+	ThreadID int REFERENCES trThread(ThreadID) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	UserID int REFERENCES [msUser](UserID) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	Content varchar(MAX)
 )
 

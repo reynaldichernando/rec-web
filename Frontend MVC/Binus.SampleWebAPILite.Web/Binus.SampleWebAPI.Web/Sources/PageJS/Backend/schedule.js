@@ -16,8 +16,10 @@
                 $("#txtPlace").val(JSONData.Place);
                 $("#txtTopic").val(JSONData.Topic);
                 $("#txtDesc").val(JSONData.Description);
-                $('#txtStartTime').setNow();
-                $('#txtEndTime').setNow();
+                //$('#txtStartTime').setNow();
+                //$('#txtEndTime').setNow();
+                $('#txtStartTime').val(JSONData.StartTime);
+                $('#txtEndTime').val(JSONData.EndTime);
             },
             error: function (Data) {
                 alert("Error : " + Data);

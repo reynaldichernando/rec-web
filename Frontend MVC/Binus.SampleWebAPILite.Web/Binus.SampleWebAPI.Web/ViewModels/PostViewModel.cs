@@ -10,5 +10,6 @@ namespace Binus.SampleWebAPI.Web.ViewModels
     {
         public List<PostModel> ListPost;
         public ThreadModel Thread;
+        public int? UserID;
     }
 }
