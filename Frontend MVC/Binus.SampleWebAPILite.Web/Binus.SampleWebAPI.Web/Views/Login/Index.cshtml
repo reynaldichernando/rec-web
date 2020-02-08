@@ -12,7 +12,7 @@
     <title>Recruitee Signin Page</title>
 
     <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="@Address/Sources/CSS/signin.css" rel="stylesheet" />
+    <link href="@Address/Sources/CustomCSS/signin.css" rel="stylesheet" />
 
     <link rel="shortcut icon" href="@Address/Sources/src/hanzo-icon.png" type="image/x-icon">
 
@@ -73,7 +73,33 @@
     </div>
     <div class="split right border border-dark">
         <div class="centered">
+            @*<form class="form-signin">
+                    @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        OnSuccess = "LoadResult(data)",
+                        OnBegin = "Loader"
+                    }, new { id = "form1", @class = "form-signin" }))
+                    {
+                        @Html.AntiForgeryToken()
 
+                        <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
+
+                <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                        <h1 class="h3 mb-3 font-weight-normal text-dark">Sign in</h1>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Password" required>
+                        <div class="checkbox mb-3">
+                            <label class="text-dark">
+                                <input type="checkbox" value="remember-me"> Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    }
+                </form>*@
             @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
             {
                 HttpMethod = "POST",
@@ -148,23 +174,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    }
-    @using (Html.BeginForm(
-                actionName: "SendAsync",
-                controllerName: "Password",
-                routeValues: "?Email=",
-                method: FormMethod.Get,
-                htmlAttributes: new { id = "formxxx", @class = "form-signin" }))
-    {
-
-        <label for="inputEmailResetPW" class="sr-only">Email address</label>
-        <input type="email" id="inputEmailResetPW" class="form-control mb-2" name="Email" placeholder="Email address" required autofocus>
-
-        <button class="btn btn-lg btn-primary btn-block" id="btnForgotPassword" type="submit">Forgot pw</button>
-    }
+     }
 
     @using (Html.BeginForm())
     {

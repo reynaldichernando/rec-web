@@ -1,58 +1,51 @@
-﻿@{ 
+﻿@{
     var Request = HttpContext.Current.Request;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 }
+
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
+<head>  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/bundles/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/site")
-    <script>Address='@Address'</script>
+    <link rel="stylesheet" href="@Address/Sources/CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="@Address/Sources/CustomCSS/layout.css">
+    <link rel="shortcut icon" href="@Address/Sources/src/perusahaan.jpg" type="image/x-icon">
+    <script src="@Address/Sources/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
+    <script src="@Address/Sources/Scripts/bootstrap.min.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-default navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Sample For WebAPI", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="@Address/msBookMSSQL">SQL SERVER</a></li>
-                    <li ><a href="@Address/msBookOracle">Oracle</a></li>
-                    <li><a href="@Address/msBookMongoDB">MongoDB</a></li>
-                   
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li><a href="@Address/Login/Logout">Logout</a></li>
+    <div class="split left layout-menu p-3">
+        <a href="@Url.Action("Index", "Thread")">
+            <img src="@Address/Sources/src/perusahaan.png" alt="Logo" class="border-0 border-rounded">
+        </a>
 
-                </ul>
-            </div>
-          
+        <hr class="w-75">
+        <div class="d-flex flex-column justify-content-center">
+            <a href="@Url.Action("Index", "Profile")"><img src="@Address/Sources/src/user-icon.png" id="userlogo" alt="Profile"></a>
+            <a href="@Url.Action("Index", "Schedule")"><img src="@Address/Sources/src/calendar-icon.png" alt="Schedule"></a>
+            <a href="@Url.Action("Index", "Assignment")"><img src="@Address/Sources/src/assignment-icon.png" alt="Assignment"></a>
+            <a href="@Url.Action("Contact", "Home")"><img src="@Address/Sources/src/call-icon.png" alt="Contact"></a>
         </div>
+        <hr class="w-75">
+        <a href="@Url.Action("Index", "Login")"><img src="@Address/Sources/src/signout.png" alt=""></a>
     </div>
 
-    <div class="container body-content">
+    <div class="split right">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>Bina Nusantara IT Division&copy; @DateTime.Now.Year</p>
+
+        <footer id="footer">
+            <div class="container">
+                <span class="text">Place sticky footer content here.</span>
+            </div>
         </footer>
     </div>
 
-
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

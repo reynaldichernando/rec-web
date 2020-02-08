@@ -1,26 +1,17 @@
 ﻿@model Binus.SampleWebAPI.Web.ViewModels.ThreadViewModel
 @{
-
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Thread";
 }
 @{
-    Layout = null;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 }
 <!DOCTYPE html>
 
-<html>
-<head>
-    <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/moment.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.*js"></script>
-    <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
-    <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="@Address/Sources/CSS/signin.css" rel="stylesheet" />
-</head>
+<link rel="stylesheet" href="~/Sources/CustomCSS/thread.css">
 
-<body>
+<div class="layout-header p-3">
+    <h1 class="text-white"><i>Thread Title@*@Model.UserThread.Title*@</i></h1>
+</div>
 
     <div class="wrapper">
         @Html.ActionLink("Insert Thread", "", "Thread", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#insertModal" })
@@ -142,6 +133,56 @@
     <script src="@Address/Sources/Scripts/respond.js"></script>
     <script src="~/Sources/PageJS/Backend/thread.js"></script>
 
+<div class="layout-content p-5 text-justify h-100">
+    <div class="thread-title p-3 b-3 border-rounded">
+        <p>
+            @*@Model.UserThread.Content*@
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi consequatur, omnis aliquam laborum
+            ipsum veritatis? Eum dolores, aliquam provident quis, amet, obcaecati sed odit ab sapiente placeat
+            explicabo ipsa. Deleniti!
+        </p>
+    </div>
+
+    <div class="reply-box m-3 border-rounded">
+        <div class="reply-left text-center d-inline-block m-1 p-3">
+            <img src="~/Sources/src/user-icon.png" alt="">
+            <p>Username@*@Model.ListReply.Title*@</p>
+        </div>
+        <div class="reply-right d-inline-block m-1 p-3">
+            <p>
+                @*@Model.ListReply.Content*@
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi consequatur, omnis aliquam laborum
+                ipsum veritatis? Eum dolores, aliquam provident quis, amet, obcaecati sed odit ab sapiente placeat
+                explicabo ipsa. Deleniti!
+            </p>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-primary rounded-circle floating-button" data-toggle="modal"
+        data-target="#exampleModalLong">
+    <img class="w-75" src="~/Sources/icons/chat.svg" alt="">
+</button>
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Reply Thread</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex flex-column border-rounded">
+                <textarea name="postContent" id="" cols="30" rows="10" placeholder="Content" class="m-1 p-1"
+                          style="border-radius: 3px"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Reply</button>
+             </div>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>

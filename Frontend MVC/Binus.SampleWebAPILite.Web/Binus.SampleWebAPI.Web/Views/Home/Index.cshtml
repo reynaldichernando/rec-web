@@ -1,6 +1,75 @@
 ﻿@model Binus.SampleWebAPI.Web.ViewModels.HomeViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
+<link rel="stylesheet" href="~/Sources/CustomCSS/index.css">
+<script src="~/Sources/PageJS/index.js"></script>
 
-<h2>Index</h2>
+<div class="layout-header p-3">
+    <div class="text-white">
+        <h3><i>Announcement</i>
+            <label class="switch">
+                <input type="checkbox" name="c1" onclick="myFunction()">
+                <span class="slider round"></span>
+            </label>
+        </h3>
+    </div>
+</div>
+
+<div id="myDIV" class="layout-content p-5 text-justify h-50">
+    <div class="card-box w-25 overflow-hidden h-75">
+        @*<h4>@Model.AdminThread.Title</h4>
+            <p>@Model.AdminThread.Content</p>*@
+        <h4>Title</h4>
+        <p>Content</p>
+    </div>
+</div>
+
+<div class="layout-header p-3">
+    <div class="text-white">
+        <h3>
+            <i>Thread</i>
+            <label class="switch">
+                <input type="checkbox" name="c1" onclick="myFunction2()">
+                <span class="slider round"></span>
+            </label>
+        </h3>
+    </div>
+</div>
+
+<div id="myDIV2" class="layout-content p-5 text-justify h-50">
+    <div class="card-box w-25 overflow-hidden h-75">
+        @*<h4>@Model.UserThread.Title</h4>
+            <p>@Model.UserThread.Content</p>*@
+        <h>Title</h>
+        <p>Content</p>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary rounded-circle floating-button" data-toggle="modal"
+        data-target="#exampleModalLong">
+    <img src="~/Sources/icons/plus.svg" alt="">
+</button>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLongTitle">Create Post</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex flex-column border-rounded">
+                <input type="text" name="postTitle" id="" placeholder="Title" class="m-1 p-1" style="border-radius: 3px;">
+                <input type="text" name="postTitle" id="" placeholder="Title" class="m-1 p-1" style="border-radius: 3px;">
+                <textarea name="postContent" id="" cols="30" rows="10" placeholder="Content" class="m-1 p-1" style="border-radius: 1px"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>

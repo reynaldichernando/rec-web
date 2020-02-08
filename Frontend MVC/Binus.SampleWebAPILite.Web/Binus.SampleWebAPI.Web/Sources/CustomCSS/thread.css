@@ -1,0 +1,26 @@
+﻿.thread-title{
+    background-color: #fafafa;
+}
+
+.reply-box {
+    background-color: #fafafa;
+}
+
+    .reply-box img {
+        width: 100px;
+    }
+
+    .reply-box div {
+        margin: 1.5em;
+    }
+
+.reply-left p {
+    width: 120px;
+    word-wrap: break-word;
+    margin-top: 10px;
+}
+
+.reply-right {
+    width: 65em;
+    vertical-align: top;
+}

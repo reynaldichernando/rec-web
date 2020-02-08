@@ -1,0 +1,78 @@
+﻿/*color-pallete:
+#fafafa
+#e8f1f5
+#005691
+#004a7c*/
+
+@import url('https://fonts.googleapis.com/css?family=Rubik|Work+Sans&display=swap');
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    color: black;
+    font-size: 1.2em;
+}
+
+    body * {
+        margin-bottom: 0;
+    }
+
+.split {
+    height: 100vh;
+    width: 50%;
+    position: fixed;
+    overflow-x: hidden;
+    text-align: center;
+    -ms-overflow-style: none;
+}
+
+    .split::-webkit-scrollbar {
+        display: none;
+    }
+
+.left {
+    left: 0;
+    width: 6%;
+}
+
+.right {
+    right: 0.1%;
+    width: 93.8%;
+}
+
+.layout-menu {
+    background-color: #005691;
+}
+
+    .layout-menu img {
+        width: 100%;
+        margin: 10px 0px;
+    }
+
+.layout-header {
+    background-color: #004a7c;
+}
+
+.layout-content {
+    background-color: #e8f1f5;
+    padding-bottom: 100px;
+    overflow: auto;
+    -ms-overflow-style: none;
+}
+
+    .layout-content::-webkit-scrollbar {
+        display: none;
+    }
+
+.border-rounded {
+    border-radius: 12px;
+}
+
+.floating-button {
+    float: right;
+    bottom: 5%;
+    right: 3.5%;
+    height: 80px;
+    width: 80px;
+    position: sticky;
+    cursor: pointer;
+}
