@@ -33,22 +33,18 @@
 
 
 function LoadResult(Data) {
-    console.log("not even here");
     var Value = JSON.parse(JSON.stringify(Data));
 
     if (Value.Status == "Success") {
         $('#MessageContainer').show();
         $('#Message').text(Value.Message);
         window.location = Value.URL;
-        console.log("maybe?");
     }
     else {
         $('#MessageContainer').show();
         $('#Message').text(Value.Message);
-        console.log("nope?");
 
     }
-    console.log("shit");
 }
 
 function CleanForm() {
@@ -81,7 +77,6 @@ $.fn.setNow = function (onlyBlank) {
     minutes = now.getMinutes().toString().length === 1 ? '0' + now.getMinutes().toString() : now.getMinutes();
     seconds = now.getSeconds().toString().length === 1 ? '0' + now.getSeconds().toString() : now.getSeconds();
 
-    //formattedDateTime = year + '-' + month + '-' + date + 'T' + hours + ':' + minutes + ':' + seconds;
     formattedDateTime = year + '-' + month + '-' + date + 'T' + hours + ':' + minutes;
 
     if (onlyBlank === true && $(this).val()) {
