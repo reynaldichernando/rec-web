@@ -213,6 +213,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
@@ -420,12 +421,6 @@
     <Content Include="Sources\CSS\bootstrap.min.css.map" />
     <Content Include="Sources\CSS\bootstrap.css.map" />
     <Content Include="favicon.ico" />
-    <Content Include="Sources\CustomCSS\assignment.css" />
-    <Content Include="Sources\CustomCSS\index.css" />
-    <Content Include="Sources\CustomCSS\layout.css" />
-    <Content Include="Sources\CustomCSS\schedule.css" />
-    <Content Include="Sources\CustomCSS\signin.css" />
-    <Content Include="Sources\CustomCSS\thread.css" />
     <Content Include="Sources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Sources\fonts\glyphicons-halflings-regular.woff2" />
@@ -748,8 +743,12 @@
     <Content Include="Sources\icons\x-square.svg" />
     <Content Include="Sources\icons\x.svg" />
     <Content Include="Sources\PageJS\Backend\assignment.js" />
+    <Content Include="Sources\PageJS\Backend\msBookMongoDB.js" />
+    <Content Include="Sources\PageJS\Backend\msBookOracle.js" />
+    <Content Include="Sources\PageJS\Backend\msBookMSSQL.js" />
+    <Content Include="Sources\PageJS\Backend\post.js" />
     <Content Include="Sources\PageJS\Backend\schedule.js" />
-    <Content Include="Sources\PageJS\index.js" />
+    <Content Include="Sources\PageJS\Backend\thread.js" />
     <Content Include="Sources\PageJS\Login\login.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js" />
@@ -800,21 +799,16 @@
     <Content Include="Sources\Scripts\site.js" />
     <None Include="Sources\Scripts\_references.js" />
     <Content Include="Sources\src\assignment-icon.png" />
-    <Content Include="Sources\src\attachmentdl.png" />
     <Content Include="Sources\src\calendar-icon.png" />
-    <Content Include="Sources\src\call-icon.png" />
-    <Content Include="Sources\src\comment.jpg" />
-    <Content Include="Sources\src\download.png" />
     <Content Include="Sources\src\forum-icon.png" />
-    <Content Include="Sources\src\home-icon.jpg" />
-    <Content Include="Sources\src\perusahaan.jpg" />
-    <Content Include="Sources\src\perusahaan.png" />
-    <Content Include="Sources\src\pin-icon.jpg" />
-    <Content Include="Sources\src\plus-icon.jpg" />
+    <Content Include="Sources\src\hanzo-1.png" />
+    <Content Include="Sources\src\hanzo-bg-1.png" />
+    <Content Include="Sources\src\hanzo-bg-2.png" />
+    <Content Include="Sources\src\hanzo-bg.png" />
+    <Content Include="Sources\src\hanzo-icon.png" />
     <Content Include="Sources\src\question-icon.png" />
-    <Content Include="Sources\src\upload.png" />
+    <Content Include="Sources\src\shimada.jpg" />
     <Content Include="Sources\src\user-icon.png" />
-    <Content Include="Sources\src\userpost-icon.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -827,6 +821,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\NewBook.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\Update.cshtml" />
     <Content Include="Views\Thread\Index.cshtml" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js.map" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js.map" />
@@ -839,8 +836,9 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Home\AboutUs.cshtml" />
-    <Content Include="Views\Home\Announcement.cshtml" />
+    <Content Include="Views\Post\index.cshtml" />
+    <Content Include="Views\Answer\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

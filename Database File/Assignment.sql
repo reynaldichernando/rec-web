@@ -58,6 +58,3 @@ BEGIN
 	SELECT * FROM msAssignment
 	WHERE AssignmentID = @AssignmentID
 END
-
-EXEC bn_RecDB_GetAllAssignment
-EXEC bn_RecDB_GetAssignment 5

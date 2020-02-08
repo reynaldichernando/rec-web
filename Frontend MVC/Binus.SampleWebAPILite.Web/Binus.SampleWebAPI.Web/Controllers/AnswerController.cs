@@ -18,7 +18,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
     {
         // GET: Answer
         [HttpGet]
-        public ActionResult Index(int id)
+        public ActionResult Index(int AssignmentId)
         {
             if (Session["token"] == null) return RedirectToAction("Index", "Login");
 
@@ -26,7 +26,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
             {
                 RESTResult Result = new REST(
                     Global.WebAPIBaseURL,
-                    "/api/Training/RecDB/V1/App/Answer/GetAllAnswer?AssignmentID="+id,
+                    "/api/Training/RecDB/V1/App/Answer/GetAllAnswer?AssignmentID="+AssignmentId,
                     REST.Method.GET).Result;
 
                 AnswerViewModel avm = new AnswerViewModel();

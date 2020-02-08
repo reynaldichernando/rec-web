@@ -51,12 +51,26 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 Model.AssignmentFilepath = "./Assignment/" + Model.Title + "/" + Model.AssignmentFilepath;
                 if (Model.AssignmentID == 0)
                 {
-                    Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/InsertAssignment", REST.Method.POST, Model)).Result;
+                    Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/InsertAssignment", REST.Method.POST, 
+                        new { 
+                            Title = Model.Title,
+                            Description = Model.Description,
+                            AssignmentFilepath = Model.AssignmentFilepath,
+                            DateDue = Model.DateDue.ToString("s")
+                        })).Result;
 
                 }
                 else
                 {
-                    Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/UpdateAssignment", REST.Method.POST, Model)).Result;
+                    Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Assignment/UpdateAssignment", REST.Method.POST,
+                        new
+                        {
+                            AssignmentID = Model.AssignmentID,
+                            Title = Model.Title,
+                            Description = Model.Description,
+                            AssignmentFilepath = Model.AssignmentFilepath,
+                            DateDue = Model.DateDue.ToString("s")
+                        })).Result;
                 }
 
 
@@ -134,11 +148,20 @@ namespace Binus.SampleWebAPI.Web.Controllers
 
                 if (Result.Success)
                 {
+                    AssignmentModel model = Result.Deserialize<AssignmentModel>();
+                    var temp = new { 
+                        AssignmentID = model.AssignmentID,
+                        Title = model.Title,
+                        Description = model.Description,
+                        AssignmentFilepath = model.AssignmentFilepath,
+                        DateDue = model.DateDue.ToString("s"),
+                        DateUploaded = model.DateUploaded.ToString("s")
+                    };
                     retData = Json(new
                     {
                         Status = "Success",
                         Message = "Get Assignment Success!",
-                        Data = Result.Deserialize<AssignmentModel>()
+                        Data = temp
                     });
                 }
                 else
@@ -232,6 +255,12 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 });
             }
             return retData;
+        }
+
+        [HttpGet]
+        public ActionResult CheckAnswer(int AssignmentID)
+        {
+            return RedirectToAction("Index", "Answer", new { id = AssignmentID });
         }
 
         [HttpPost]

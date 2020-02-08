@@ -17,5 +17,6 @@ namespace Binus.SampleWebAPI.Model.Training.RecDB.MSSQL.User
 
         public string Salt = "!@#!@#";
        
+        public string Token { get; set; }
     }
 }
