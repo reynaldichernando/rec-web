@@ -1,3 +1,6 @@
+USE RecDB
+
+GO
 CREATE PROC bn_RecDB_InsertThread
 @UserID int,
 @Title varchar(30),
