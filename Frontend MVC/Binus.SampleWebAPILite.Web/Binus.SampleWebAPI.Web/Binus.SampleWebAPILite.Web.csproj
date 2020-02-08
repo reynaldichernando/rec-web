@@ -752,7 +752,7 @@
     <Content Include="Sources\PageJS\Backend\schedule.js" />
     <Content Include="Sources\PageJS\Backend\thread.js" />
     <Content Include="Sources\PageJS\index.js" />
-    <Content Include="Sources\PageJS\Login\login.js" /
+    <Content Include="Sources\PageJS\Login\login.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js" />
     <Content Include="Sources\Scripts\bootstrap.js" />
