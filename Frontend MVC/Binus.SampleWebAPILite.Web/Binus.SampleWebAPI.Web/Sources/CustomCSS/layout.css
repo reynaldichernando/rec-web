@@ -49,7 +49,12 @@ body {
     background-color: #e8f1f5;
     padding-bottom: 40px;
     overflow: auto;
+    -ms-overflow-style: none;
 }
+
+    .layout-content::-webkit-scrollbar {
+        display: none;
+    }
 
 .layout-footer {
     background-color: #004a7c;

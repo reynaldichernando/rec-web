@@ -24,11 +24,3 @@
     width: 65em;
     vertical-align: top;
 }
-
-.layout-content {
-    -ms-overflow-style: none;
-}
-
-    .layout-content::-webkit-scrollbar {
-        display: none;
-    }

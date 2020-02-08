@@ -1,11 +1,8 @@
 ﻿@model Binus.SampleWebAPI.Web.ViewModels.UserViewModel
 @{
-
-    ViewBag.Title = "Index";
-}
-@{
-    Layout = null;
+    var Request = HttpContext.Current.Request;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+    ViewBag.Title = "User";
 }
 <!DOCTYPE html>
 

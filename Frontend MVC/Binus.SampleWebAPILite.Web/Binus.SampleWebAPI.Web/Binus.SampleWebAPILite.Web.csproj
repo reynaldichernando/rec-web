@@ -423,6 +423,7 @@
     <Content Include="Sources\CustomCSS\assignment.css" />
     <Content Include="Sources\CustomCSS\index.css" />
     <Content Include="Sources\CustomCSS\layout.css" />
+    <Content Include="Sources\CustomCSS\schedule.css" />
     <Content Include="Sources\CustomCSS\signin.css" />
     <Content Include="Sources\CustomCSS\thread.css" />
     <Content Include="Sources\fonts\glyphicons-halflings-regular.svg" />
@@ -838,8 +839,6 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Post\index.cshtml" />
-    <Content Include="Views\Answer\Index.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Announcement.cshtml" />
   </ItemGroup>
