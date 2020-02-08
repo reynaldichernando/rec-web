@@ -4,53 +4,27 @@
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
     ViewBag.Title = "User";
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-    <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/moment.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.*js"></script>
-    <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
-    <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="@Address/Sources/CSS/signin.css" rel="stylesheet" />
-</head>
-
-<body>
-
-
-
-    <table class="table table-bordered">
-        <thead>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Role</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Data in Model.ListUser)
+        {
             <tr>
-                <td>Name</td>
-                <td>Email</td>
-                <td>Role</td>
-                <td>Action</td>
+                <td>@Data.Name</td>
+                <td>@Data.Email</td>
+                <td>@Data.Role</td>
+                <td>
+                    @Html.ActionLink("Verify", "VerifyUser", Data)
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var Data in Model.ListUser) {
-                <tr>
-                    <td>@Data.Name</td>
-                    <td>@Data.Email</td>
-                    <td>@Data.Role</td>
-                    <td>
-                        @Html.ActionLink("Verify", "VerifyUser", Data)
-                    
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
-    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-    <script src="@Address/Sources/Scripts/respond.js"></script>
-   
-</body>
-
-</html>
+        }
+    </tbody>
+</table>
