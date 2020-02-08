@@ -19,31 +19,33 @@
     </div>
 </div>
 <div id="myDIV" class="layout-content p-4 text-justify">
-    <div class="assignment-box">
-        <div class="float-left">
-            <h1>Title</h1>
+    @*@foreach(var Data in @Model.CurrentAssignment) {*@
+        <div class="assignment-box">
+            <div class="float-left">
+                <h1>Title@*@Model.CurrentAssignment.Title*@</h1>
+            </div>
+            <div class="tombol-upload float-right">
+                <div class="image-upload">
+                    <label for="file-input" style="cursor: pointer;">
+                        <img src="~/Sources/icons/download.svg" />
+                    </label>
+                    <input class="file-download-soal" type="file" />
+                </div>
+                <div class="image-upload">
+                    <label for="file-input" style="cursor: pointer;">
+                        <img src="~/Sources/icons/upload.svg" />
+                    </label>
+                    <input class="file-upload-jawaban" type="file" />
+                </div>
+                <div class="image-upload">
+                    <label for="file-input" style="cursor: pointer;">
+                        <img src="~/Sources/icons/archive.svg" />
+                    </label>
+                    <input class="file-download-jawaban" type="file" />
+                </div>
+            </div>
         </div>
-        <div class="tombol-upload float-right">
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/download.svg" />
-                </label>
-                <input class="file-download-soal" type="file" />
-            </div>
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/upload.svg" />
-                </label>
-                <input class="file-upload-jawaban" type="file" />
-            </div>
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/archive.svg" />
-                </label>
-                <input class="file-download-jawaban" type="file" />
-            </div>
-        </div>
-    </div>
+    @*}*@
 </div>
 
 <div class="layout-header p-3">
@@ -58,9 +60,10 @@
     </div>
 </div>
 <div id="myDIV2" class="layout-content p-4 text-justify">
+    @*@foreach(var Data in @Model.PastAssignment) {*@
     <div class="assignment-box">
         <div class="float-left">
-            <h1>Title</h1>
+            <h1>Title@*@Model.PastAssignment.Title*@</h1>
         </div>
         <div class="tombol-upload float-right">
             <div class="image-upload">
@@ -77,4 +80,5 @@
             </div>
         </div>
     </div>
+    @*}*@
 </div>
