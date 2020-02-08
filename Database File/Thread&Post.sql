@@ -90,7 +90,6 @@ END
 go
 
 alter PROC bn_RecDB_UpdatePost
-@ThreadID int,
 @PostID int,
 @Content varchar(max)
 as
@@ -98,23 +97,39 @@ begin
 	update trPost
 	set Content = @Content
 	where PostID = @PostID
-	and ThreadID = @ThreadID
 end
 
 go
+select * from trThread
+select * from trPost
 
 alter PROC bn_RecDB_DeletePost
-@ThreadID int,
 @PostID int
 as
 begin
 	delete from trPost
 	where PostID = @PostID
-	and ThreadID = @ThreadID
 
 end
 go
 
+CREATE PROC bn_RecDB_GetPostByID
+@PostID int
+AS
+BEGIN
+	SET NOCOUNT ON
+	SELECT PostID, ThreadID, msUser.UserID, Content, [Name]
+	FROM trPost JOIN msUser ON trPost.UserID = msUser.UserID
+	WHERE PostID = @PostID
+END
+
+exec bn_RecDB_GetPostByID 3
+
+go
+
+select * from trThread
+
+select * from trPost
 
 INSERT INTO msUser VALUES ('Admin', 'admin@admin.com', '123', 'admin')
 INSERT INTO msUser VALUES ('User', 'user@user.com', '123', 'approved')

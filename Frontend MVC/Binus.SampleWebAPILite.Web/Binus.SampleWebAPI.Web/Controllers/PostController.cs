@@ -44,6 +44,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
 
         public ActionResult DeletePost(PostModel Post)
         {
+            JsonResult Retdata;
             try
             {
                 RESTResult Result = new REST(
@@ -51,17 +52,36 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     "api/Training/RecDB/V1/App/Post/DeletePost",
                     REST.Method.POST,
                     Post).Result;
-                System.Diagnostics.Debug.WriteLine(Result.Message);
+
+                if (Result.Success)
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL + "/Post",
+                        Status = "Success",
+                        Message = "Delete Success",
+                    });
+                }
+                else
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL,
+                        Status = "Failed",
+                        Message = "Delete failed",
+                    });
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return RedirectToAction("Index");
+            return Retdata;
         }
         public ActionResult UpdatePost(PostModel Post)
         {
+            JsonResult Retdata;
             try
             {
                 RESTResult Result = new REST(
@@ -69,14 +89,73 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     "api/Training/RecDB/V1/App/Post/UpdatePost",
                     REST.Method.POST,
                     Post).Result;
-                System.Diagnostics.Debug.WriteLine(Result.Message);
+                if (Result.Success)
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL + "/Post/Index",
+                        Status = "Success",
+                        Message = "Update Success",
+                    });
+                }
+                else
+                {
+                    Retdata = Json(new
+                    {
+                        URL = Global.BaseURL,
+                        Status = "Failed",
+                        Message = "Update failed",
+                    });
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return RedirectToAction("Index");
+            return Retdata;
+        }
+
+        public ActionResult GetPostByID(int PostID)
+        {
+            JsonResult retData = new JsonResult();
+            try
+            {
+                RESTResult Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Post/GetPostByID?PostID=" + PostID, REST.Method.GET)).Result;
+                PostModel Post = Result.Deserialize<PostModel>();
+                if (Result.Success)
+                {
+                    retData = Json(new
+                    {
+                        Status = "Success",
+                        Message = "Get Post Success!",
+                        Data = new
+                        {
+                            PostID = Post.PostID,
+                            ThreadID = Post.ThreadID,
+                            UserID = Post.UserID,
+                            Content = Post.Content
+                        }
+                    });
+                }
+                else
+                {
+                    retData = Json(new
+                    {
+                        Status = "Failed",
+                        Message = "Failed When Getting Data.."
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                retData = Json(new
+                {
+                    Status = "Failed",
+                    Message = ex.Message
+                });
+            }
+            return retData;
         }
 
         public ActionResult CreatePost(PostModel Post)
@@ -90,7 +169,6 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     "api/Training/RecDB/V1/App/Post/InsertPost",
                     REST.Method.POST,
                     Post).Result;
-                System.Diagnostics.Debug.WriteLine(Result.Message);
             }
             catch (Exception ex)
             {

@@ -14,6 +14,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         Task<List<PostModel>> GetPost(int ThreadID);
         Task<ExecuteResult> UpdatePost(PostModel Post);
         Task<ExecuteResult> DeletePost(PostModel Post);
+        Task<PostModel> GetPostByID(int PostID);
     }
 
     public class PostService : IPostService
@@ -58,11 +59,22 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             return ListPost;
         }
 
+        public async Task<PostModel> GetPostByID(int PostID)
+        {
+            var Param = new SqlParameter[]
+            {
+                new SqlParameter("@PostID", PostID)
+            };
+
+            PostModel Post = (await _PostRepo.ExecSPToSingleAsync("bn_RecDB_GetPostByID @PostID", Param));
+
+            return Post;
+        }
+
         public async Task<ExecuteResult> UpdatePost(PostModel Post)
         {
             var Param = new SqlParameter[]
             {
-                new SqlParameter("@ThreadID", Post.ThreadID),
                 new SqlParameter("@PostID", Post.PostID),
                 new SqlParameter("@Content", Post.Content)
             };
@@ -70,7 +82,7 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure
             {
-                SPName = "bn_RecDB_UpdatePost @ThreadID, @PostID, @Content",
+                SPName = "bn_RecDB_UpdatePost @PostID, @Content",
                 SQLParam = Param
             });
 
@@ -82,13 +94,12 @@ namespace Binus.SampleWebAPI.Services.Training.RecDB.MSSQL.App
         {
             var Param = new SqlParameter[]
            {
-                new SqlParameter("@ThreadID", Post.ThreadID),
                 new SqlParameter("@PostID", Post.PostID)
            };
 
             List<StoredProcedure> Data = new List<StoredProcedure>();
             Data.Add(new StoredProcedure {
-                SPName = "bn_RecDB_DeletePost @ThreadID, @PostID",
+                SPName = "bn_RecDB_DeletePost @PostID",
                 SQLParam = Param
             });
 
