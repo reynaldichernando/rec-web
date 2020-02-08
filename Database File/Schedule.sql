@@ -53,3 +53,5 @@ as
 begin
 	select * from msSchedule where ScheduleID = @ScheduleID
 end
+
+use RecDB

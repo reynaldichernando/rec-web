@@ -51,22 +51,28 @@ namespace Binus.SampleWebAPI.Web.Controllers
                         UserData
                     ).Result;
 
-                        if(Result.Success)
+                    if(Result.Success)
                     {
                         UserModel User = Result.Deserialize<UserModel>();
-                        Session["UserID"] = User.UserID;
-                        Session["Role"] = User.Role;
+                        
                         if (User != null)
                         {
                             Session["UserID"] = User.UserID;
                             Session["Role"] = User.Role;
                             Session["Email"] = User.Email;
-                            Retdata = Json(new
-                            {   
-                                Status = "Success",
-                                Message = "Login Success",
-                                URL = Global.BaseURL + "/Schedule/Index"
-                            });
+                            if (User.Role.Equals("unapproved")) {
+                                Retdata = Json(new {
+                                    Status = "Failed",
+                                    Message = "Please wait for your verification"
+                                });
+                            } else {
+                                Retdata = Json(new {
+                                    Status = "Success",
+                                    Message = "Login Success",
+                                    URL = Global.BaseURL + "/Thread/Index"
+                                });
+                            }
+                            
                         }else
                         {
                             Retdata = Json(new
@@ -78,10 +84,9 @@ namespace Binus.SampleWebAPI.Web.Controllers
                         
                     }else
                     {
-                        Retdata = Json(new
-                        {
+                        Retdata = Json(new {
                             Status = "Failed",
-                            Message = "Please wait for your verification"
+                            Message = "User not found"
                         });
                     }
 
