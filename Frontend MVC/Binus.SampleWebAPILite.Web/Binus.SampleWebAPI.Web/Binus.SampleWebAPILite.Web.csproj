@@ -825,7 +825,6 @@
     <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\Post\index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Thread\Index.cshtml" />
