@@ -50,6 +50,7 @@ body {
 
 .layout-header {
     background-color: #004a7c;
+    position: relative;
 }
 
 .layout-content {
@@ -75,4 +76,16 @@ body {
     width: 80px;
     position: sticky;
     cursor: pointer;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+    background-color: #004a7c;
+    color: #fafafa;
 }
