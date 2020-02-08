@@ -1,54 +1,14 @@
 ﻿@model Binus.SampleWebAPI.Web.ViewModels.ScheduleViewModel
 @{
     ViewBag.Title = "Schedule";
+
+    var Request = HttpContext.Current.Request;
+    string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+
 }
 <link rel="stylesheet" href="~/Sources/CustomCSS/schedule.css" />
 
 <body>
-    <div class="wrapper">
-
-        @if (Session["Role"].Equals("admin")) {
-            @Html.ActionLink("Insert Schedule", "", "Schedule", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#insertModal" });
-        }
-
-    </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <td>Book Title</td>
-                <td>Book Desc</td>
-                <td>Book Qty</td>
-                <td>Start time</td>
-                <td>End time</td>
-
-                @if (Session["Role"].Equals("admin")) {
-                    <td>Action</td>
-                }
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var Data in Model.ListSchedule) {
-                <tr>
-                    <td>@Data.ScheduleID</td>
-                    <td>@Data.Place</td>
-                    <td>@Data.Topic</td>
-                    <td>@Data.StartTime</td>
-                    <td>@Data.EndTime</td>
-
-                    @if (Session["Role"].Equals("admin")) {
-                        <td>
-                            <button onclick="Delete(@Data.ScheduleID)" on class="btn btn-danger">Delete</button>
-                            @Html.ActionLink("Update Schedule", "", "Schedule", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#updateModal", data_id = Data.ScheduleID })
-                        </td>
-                    }
-
-                </tr>
-            }
-
-        </tbody>
-    </table>
-
 
     @* Insert *@
     @using (Ajax.BeginForm("CreateSchedule", "Schedule", new AjaxOptions {
@@ -58,18 +18,19 @@
         @Html.AntiForgeryToken()
 
         <!-- Modal -->
-        <div id="insertModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
+        <div id="insertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="insertModal"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title">Create Schedule</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row Data">
                             <div class="col-sm-12">
-                                <div class="alert alert-info alert-dismissable" id="iMessageContainer">
+                                <div alert alert-info alert-dismissable" id="iMessageContainer">
                                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
                                     <span id="Message"></span>
                                 </div>
@@ -164,23 +125,37 @@
         </div>
     }
 
-    <script src="~/Sources/PageJS/Backend/schedule.js"></script>
 
     <div class="layout-header p-3">
-    <h1 class="text-white"><i>@ViewBag.Title</i></h1>
-</div>
+        <h1 class="text-white"><i>@ViewBag.Title</i></h1>
+    </div>
 
-<div class="layout-content p-5 text-justify h-100">
-    @foreach (var Data in @Model.ListSchedule)
-    {
-        <div class="schedule-box">
-            <h3>Meeting 1@*@Data.Topic*@</h3>
-            <h5>--------------------------------</h5>
-            <h5>Date : 00/00/00@*@Data.StartTime*@</h5>
-            <h5>Time : 00:00 - 00:00@*@Data.StartTime - @Data.EndTime*@</h5>
-            <h5>Room : 306@*@Data.Place*@</h5>
-            <h5>Notes : semangat :)@*@Data.Description*@</h5>
-        </div>
+    <div class="layout-content p-5 text-justify h-100">
+        @foreach (var Data in @Model.ListSchedule) {
+            <div class="schedule-box">
+
+                <h3>@Data.Topic</h3>
+                <h5>--------------------------------</h5>
+                <h5>Time : @Data.StartTime - @Data.EndTime</h5>
+                <h5>Room : @Data.Place</h5>
+                <h5>Notes : @Data.Description</h5>
+
+                @if (Session["Role"].Equals("admin")) {
+
+                    <button onclick="Delete(@Data.ScheduleID)" on class="btn btn-danger">Delete</button>
+                    @Html.ActionLink("Update Schedule", "", "Schedule", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#updateModal", data_id = Data.ScheduleID })
+
+                }
+            </div>
+        }
+    </div>
+    @if (Session["Role"].Equals("admin")) {
+        <button type="button" class="btn btn-primary rounded-circle floating-button" data-toggle="modal"
+                data-target="#insertModal">
+            <img class="w-75" src="~/Sources/icons/chat.svg" alt="">
+        </button>
     }
-</div>
+    <script>let Address = '@Address'</script>
+    <script src="~/Sources/PageJS/Backend/schedule.js"></script>
+
 </body>
