@@ -37,13 +37,19 @@ namespace Binus.SampleWebAPI.Web.Controllers
             JsonResult retData = new JsonResult();
             try {
                 RESTResult Result = (new REST(Global.WebAPIBaseURL, "/api/Training/RecDB/V1/App/Schedule/GetScheduleByID?ScheduleID=" + ScheduleID, REST.Method.GET)).Result;
-
+                ScheduleModel Schedule = Result.Deserialize<ScheduleModel>();
                 if (Result.Success) {
                     retData = Json(new {
                         Status = "Success",
                         Message = "Get Schedule Success!",
-                        Data = Result.Deserialize<ScheduleModel>()
-                    });
+                        Data = new {
+                            ScheduleID = Schedule.ScheduleID,
+                            Place = Schedule.Place,
+                            StartTime = Schedule.StartTime.ToString("s"),
+                            EndTime = Schedule.EndTime.ToString("s"),
+                            Topic = Schedule.Topic,
+                            Description = Schedule.Description
+                        }});
                 } else {
                     retData = Json(new {
                         Status = "Failed",
@@ -94,7 +100,14 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     Global.WebAPIBaseURL,
                     "api/Training/RecDB/V1/App/Schedule/UpdateSchedule",
                     REST.Method.POST,
-                    Schedule).Result;
+                    new {
+                        ScheduleID = Schedule.ScheduleID,
+                        Place = Schedule.Place,
+                        StartTime = Schedule.StartTime.ToString("s"),
+                        EndTime = Schedule.EndTime.ToString("s"),
+                        Topic = Schedule.Topic,
+                        Description = Schedule.Description
+                    }).Result;
                 if (Result.Success) {
                     Retdata = Json(new {
                         URL = Global.BaseURL + "/Schedule",
@@ -123,7 +136,14 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     Global.WebAPIBaseURL,
                     "api/Training/RecDB/V1/App/Schedule/InsertSchedule",
                     REST.Method.POST,
-                    Schedule).Result;
+                    new {
+                        ScheduleID = Schedule.ScheduleID,
+                        Place = Schedule.Place,
+                        StartTime = Schedule.StartTime.ToString("s"),
+                        EndTime = Schedule.EndTime.ToString("s"),   
+                        Topic = Schedule.Topic,
+                        Description = Schedule.Description
+                    }).Result;
                 if (Result.Success) {
                     Retdata = Json(new {
                         Status = "Success",
