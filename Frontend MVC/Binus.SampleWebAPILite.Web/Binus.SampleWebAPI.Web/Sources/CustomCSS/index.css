@@ -1,14 +1,4 @@
-﻿.floating-button {
-    float: right;
-    bottom: 5%;
-    right: 2%;
-    height: 80px;
-    width: 80px;
-    position: sticky;
-    cursor: pointer;
-}
-
-.layout-content {
+﻿.layout-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

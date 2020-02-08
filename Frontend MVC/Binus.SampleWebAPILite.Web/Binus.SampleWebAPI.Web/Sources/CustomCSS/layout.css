@@ -12,7 +12,7 @@ body {
 .split {
     height: 100vh;
     width: 50%;
-    position: fixed;
+    position: absolute;
     overflow-x: hidden;
     text-align: center;
     -ms-overflow-style: none;
@@ -62,4 +62,14 @@ body {
 
 .border-rounded {
     border-radius: 12px;
+}
+
+.floating-button {
+    float: right;
+    bottom: 5%;
+    right: 3.5%;
+    height: 80px;
+    width: 80px;
+    position: sticky;
+    cursor: pointer;
 }

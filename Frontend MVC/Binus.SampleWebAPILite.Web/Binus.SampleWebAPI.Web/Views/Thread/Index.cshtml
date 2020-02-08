@@ -1,141 +1,62 @@
 ﻿@model Binus.SampleWebAPI.Web.ViewModels.ThreadViewModel
 @{
-
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Thread";
 }
-@{
-    Layout = null;
-    string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-}
-<!DOCTYPE html>
 
-<html>
-<head>
-    <script type="text/javascript" src="/scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/moment.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.*js"></script>
-    <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
-    <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="@Address/Sources/CSS/signin.css" rel="stylesheet" />
-</head>
+<link rel="stylesheet" href="~/Sources/CustomCSS/thread.css">
 
-<body>
+<div class="layout-header p-3">
+    <h1 class="text-white"><i>Thread Title@*@Model.UserThread.Title*@</i></h1>
+</div>
 
-    <div class="wrapper">
-
-        @using (Html.BeginForm("CreateThread", "Thread", FormMethod.Post))
-        {
-            <input type="hidden" name="UserID" value="" />
-            <label>Title</label>
-            <input type="text" name="Title" placeholder="Title" />
-            <label>Content</label>
-            <input type="text" name="Content" placeholder="Content" />
-            <button type="submit">submit</button>
-        }
+<div class="layout-content p-5 text-justify h-100">
+    <div class="thread-title p-3 b-3 border-rounded">
+        <p>
+            @*@Model.UserThread.Content*@
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi consequatur, omnis aliquam laborum
+            ipsum veritatis? Eum dolores, aliquam provident quis, amet, obcaecati sed odit ab sapiente placeat
+            explicabo ipsa. Deleniti!
+        </p>
     </div>
 
-    <h1>Announcement</h1>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <td>Announcement</td>
-                <td>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.ListThread != null)
-            {
+    <div class="reply-box m-3 border-rounded">
+        <div class="reply-left text-center d-inline-block m-1 p-3">
+            <img src="~/Sources/src/user-icon.png" alt="">
+            <p>Username@*@Model.ListReply.Title*@</p>
+        </div>
+        <div class="reply-right d-inline-block m-1 p-3">
+            <p>
+                @*@Model.ListReply.Content*@
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi consequatur, omnis aliquam laborum
+                ipsum veritatis? Eum dolores, aliquam provident quis, amet, obcaecati sed odit ab sapiente placeat
+                explicabo ipsa. Deleniti!
+            </p>
+        </div>
+    </div>
+</div>
 
-                foreach (var Data in Model.ListThread)
-                {
-                    if (Data.Role == "admin")
-                    {
-                    <tr>
-                        <td>
-                            @Html.ActionLink(@Data.Title, "ToPost", Data) by @Data.Name
-                            <br />
-                            <p>@Data.Content</p>
-                        </td>
-                        <td>
-                            @Html.ActionLink("Delete", "DeleteThread", Data)
-                            <div class="wrapper">
-                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
-                                {
-                                    <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
-                                    <input type="hidden" name="UserID" value="@Data.UserID" />
-                                    <label>Title</label>
-                                    <input type="text" name="Title" placeholder="Title" value="@Data.Title" />
-                                    <label>Content</label>
-                                    <input type="text" name="Content" placeholder="Content" value="@Data.Content" />
-                                    <button type="submit">submit</button>
-                                }
-                            </div>
-
-                        </td>
-                    </tr>
-
-                        }
-                    }
-            }
-
-        </tbody>
-    </table>
-
-    <br />
-
-    <h1>Forum</h1>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <td>Thread</td>
-                <td>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.ListThread != null)
-            {
-
-                foreach (var Data in Model.ListThread)
-                {
-                    if(Data.Role == "approved")
-                    {
-                    <tr>
-                        <td>
-                            @Html.ActionLink(@Data.Title, "ToPost", Data) by @Data.Name
-                            <br />
-                            <p>@Data.Content</p>
-                        </td>
-                        <td>
-                            @Html.ActionLink("Delete", "DeleteThread", Data)
-                            <div class="wrapper">
-                                @using (Html.BeginForm("UpdateThread", "Thread", FormMethod.Post))
-                                {
-                                    <input type="hidden" name="ThreadID" value="@Data.ThreadID" />
-                                    <input type="hidden" name="UserID" value="@Data.UserID" />
-                                    <label>Title</label>
-                                    <input type="text" name="Title" placeholder="Title" value="@Data.Title" />
-                                    <label>Content</label>
-                                    <input type="text" name="Content" placeholder="Content" value="@Data.Content" />
-                                    <button type="submit">submit</button>
-                                }
-                            </div>
-
-                        </td>
-                    </tr>
-                    }
-                }
-            }
-
-        </tbody>
-    </table>
-
-    <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
-    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-    <script src="@Address/Sources/Scripts/respond.js"></script>
-
-</body>
-
-</html>
+<button type="button" class="btn btn-primary rounded-circle floating-button" data-toggle="modal"
+        data-target="#exampleModalLong">
+    <img class="w-75" src="~/Sources/icons/chat.svg" alt="">
+</button>
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Reply Thread</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex flex-column border-rounded">
+                <textarea name="postContent" id="" cols="30" rows="10" placeholder="Content" class="m-1 p-1"
+                          style="border-radius: 3px"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Reply</button>
+            </div>
+        </div>
+    </div>
+</div>

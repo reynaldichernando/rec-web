@@ -424,6 +424,7 @@
     <Content Include="Sources\CustomCSS\index.css" />
     <Content Include="Sources\CustomCSS\layout.css" />
     <Content Include="Sources\CustomCSS\signin.css" />
+    <Content Include="Sources\CustomCSS\thread.css" />
     <Content Include="Sources\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Sources\fonts\glyphicons-halflings-regular.woff2" />
