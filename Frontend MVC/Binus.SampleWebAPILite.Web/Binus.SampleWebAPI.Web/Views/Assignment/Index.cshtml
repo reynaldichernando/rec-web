@@ -7,7 +7,11 @@
 
 <div class="container">
     <br />
-    <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
+    @if (Session["Role"].Equals("admin"))
+    {
+        <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
+    }
+    <h2>Current Assignment</h2>
     <table class="table">
         <thead>
             <tr>
@@ -15,12 +19,17 @@
                 <th>Description</th>
                 <th>Date Due</th>
                 <th>Action</th>
-                <th>Admin</th>
+                @if (Session["Role"].Equals("admin"))
+                {
+                    <th>Admin</th>
+                }
             </tr>
         </thead>
         <tbody>
-            @try {
-                foreach (var Item in Model.assignments) {
+            @try
+            {
+                foreach (var Item in Model.GetCurrentAssignment())
+                {
                     <tr>
                         <td>@Item.Title</td>
                         <td>@Item.Description</td>
@@ -30,14 +39,73 @@
                             @Html.ActionLink("Upload Answer", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#uploadAnswer", data_title = Item.Title, data_id = Item.AssignmentID })
                             @Html.ActionLink("Download Answer", "DownloadAnswer", "Assignment", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
                         </td>
-                        <td>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
-                            <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
-                        </td>
+                        @if (Session["Role"].Equals("admin"))
+                        {
+                            <td>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
+                                <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                            </td>
+                        }
                     </tr>
                 }
-            } catch (Exception ex) {
-                <tr>No data</tr>    
+            }
+            catch (Exception ex)
+            {
+                <tr>No data</tr>
+
+            }
+
+        </tbody>
+    </table>
+    <h2>Past Assignment</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date Due</th>
+                <th>Action</th>
+                @if (Session["Role"].Equals("admin"))
+                {
+                    <th>Admin</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @try
+            {
+                foreach (var Item in Model.GetPastAssignment())
+                {
+                    <tr>
+                        <td>@Item.Title</td>
+                        <td>@Item.Description</td>
+                        <td>
+                            @{
+                                @Item.DateDue
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Download Case", "DownloadFile", "Assignment", new { fileName = Item.AssignmentFilepath }, new { @class = "btn btn-info" })
+                            @if (Session["Role"].Equals("admin"))
+                            {
+                                @Html.ActionLink("Upload Answer", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#uploadAnswer", data_title = Item.Title, data_id = Item.AssignmentID })
+                            }
+                            @Html.ActionLink("Download Answer", "DownloadAnswer", "Assignment", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
+                        </td>
+                        @if (Session["Role"].Equals("admin"))
+                        {
+                            <td>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
+                                <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+            catch (Exception ex)
+            {
+                <tr>No data</tr>
+
             }
 
         </tbody>
@@ -140,5 +208,4 @@
         </div>
     }
 </div>
-
 <script src="~/Sources/PageJS/Backend/assignment.js"></script>
