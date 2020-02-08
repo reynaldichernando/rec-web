@@ -32,8 +32,7 @@
     }
 
 .slider.round {
-    border-radius: 34px;
-    margin-top: 3px;
+    border-radius: 20px;
 }
 
     .slider.round:before {
@@ -57,9 +56,9 @@
     cursor: pointer;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    border: 3px solid #fafafa;
+    right: 6px;
+    bottom: 8px;
+    border: 2px solid #fafafa;
     -webkit-transition: .6s;
     transition: .6s;
 }
@@ -67,13 +66,17 @@
     .slider:before {
         position: absolute;
         content: "";
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         right: 4px;
         bottom: 4px;
-        border: 3px solid #fafafa;
+        border: 2px solid #fafafa;
         -webkit-transition: .6s;
         transition: .6s;
+    }
+
+    .slider:after{
+
     }
 
 input:checked + .slider:before {

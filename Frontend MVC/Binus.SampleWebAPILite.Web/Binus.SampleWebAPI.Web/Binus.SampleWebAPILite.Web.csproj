@@ -817,6 +817,21 @@
     <Content Include="Sources\src\upload.png" />
     <Content Include="Sources\src\user-icon.png" />
     <Content Include="Sources\src\userpost-icon.png" />
+    <Content Include="Views\Assignment\Index.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\Announcement.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Password\Index.cshtml" />
+    <Content Include="Views\Post\index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Thread\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -824,28 +839,12 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Thread\Index.cshtml" />
     <Content Include="Sources\Scripts\bootstrap.bundle.js.map" />
     <Content Include="Sources\Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Sources\Scripts\bootstrap.js.map" />
     <Content Include="Sources\Scripts\bootstrap.min.js.map" />
     <Content Include="Sources\Scripts\jquery-3.1.1.min.map" />
     <Content Include="Sources\Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Views\Assignment\Index.cshtml" />
-    <Content Include="Views\Schedule\Index.cshtml" />
-    <Content Include="Views\Register\Index.cshtml" />
-    <Content Include="Views\Password\Index.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Home\AboutUs.cshtml" />
-    <Content Include="Views\Home\Announcement.cshtml" />
-    <Content Include="Views\Post\index.cshtml" />
-    <Content Include="Views\Answer\Index.cshtml" />
-    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

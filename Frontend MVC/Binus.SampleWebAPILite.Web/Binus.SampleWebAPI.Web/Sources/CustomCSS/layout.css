@@ -1,18 +1,25 @@
-﻿﻿ /*color-pallete:
+﻿/*color-pallete:
 #fafafa
 #e8f1f5
 #005691
 #004a7c*/
+
+@import url('https://fonts.googleapis.com/css?family=Rubik|Work+Sans&display=swap');
+
 body {
-    font-family: Georgia, Times, "Times New Roman", serif;
+    font-family: 'Work Sans', sans-serif;
     color: black;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
+
+    body * {
+        margin-bottom: 0;
+    }
 
 .split {
     height: 100vh;
     width: 50%;
-    position: absolute;
+    position: fixed;
     overflow-x: hidden;
     text-align: center;
     -ms-overflow-style: none;
@@ -24,12 +31,12 @@ body {
 
 .left {
     left: 0;
-    width: 10%;
+    width: 6%;
 }
 
 .right {
-    right: 0;
-    width: 90%;
+    right: 0.1%;
+    width: 93.8%;
 }
 
 .layout-menu {
@@ -38,7 +45,7 @@ body {
 
     .layout-menu img {
         width: 100%;
-        padding: 10px;
+        margin: 10px 0px;
     }
 
 .layout-header {
@@ -47,7 +54,7 @@ body {
 
 .layout-content {
     background-color: #e8f1f5;
-    padding-bottom: 40px;
+    padding-bottom: 100px;
     overflow: auto;
     -ms-overflow-style: none;
 }
@@ -55,15 +62,6 @@ body {
     .layout-content::-webkit-scrollbar {
         display: none;
     }
-
-.layout-footer {
-    background-color: #004a7c;
-    position: relative;
-    height: 40px;
-    margin-top: -40px;
-    clear: both;
-    display: grid;
-}
 
 .border-rounded {
     border-radius: 12px;

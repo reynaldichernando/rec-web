@@ -39,9 +39,11 @@
     <div class="split right">
         @RenderBody()
 
-        <div class="layout-footer text-white text-center py-1 mt-auto">
-            <i>&copy; Kelompok 1</i>
-        </div>
+        <footer id="footer">
+            <div class="container">
+                <span class="text">Place sticky footer content here.</span>
+            </div>
+        </footer>
     </div>
 
     @RenderSection("scripts", required: false)
