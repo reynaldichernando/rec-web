@@ -1,161 +1,163 @@
 ﻿@model Binus.SampleWebAPI.Web.ViewModels.ScheduleViewModel
 @{
     ViewBag.Title = "Schedule";
-
     var Request = HttpContext.Current.Request;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
-
 }
+
 <link rel="stylesheet" href="~/Sources/CustomCSS/schedule.css" />
 
-<body>
+@* Insert *@
+@using (Ajax.BeginForm("CreateSchedule", "Schedule", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "LoadResult(data)"
+}, new { id = "form-create-schedule", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
-    @* Insert *@
-    @using (Ajax.BeginForm("CreateSchedule", "Schedule", new AjaxOptions {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    }, new { id = "form-create-schedule", enctype = "multipart/form-data" })) {
-        @Html.AntiForgeryToken()
-
-        <!-- Modal -->
-        <div id="insertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="insertModal"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Create Schedule</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row Data">
-                            <div class="col-sm-12">
-                                <div alert alert-info alert-dismissable" id="iMessageContainer">
-                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                    <span id="Message"></span>
-                                </div>
-                                <input type="hidden" id="itxtScheduleID" name="ScheduleID" />
-                                <div class="form-group">
-                                    <label for="txtTopic">Topic:</label>
-                                    <input type="text" class="form-control input-lg" required id="itxtTopic" name="Topic">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtDesc">Description:</label>
-                                    <input type="text" class="form-control input-lg" required id="itxtDesc" name="Description">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtPlace">Place:</label>
-                                    <input type="text" class="form-control input-lg" required id="itxtPlace" name="Place">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtStartTime">Start Time:</label>
-                                    <input type="datetime-local" class="form-control input-lg" required id="itxtStartTime" name="StartTime">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtEndTime">End Time:</label>
-                                    <input type="datetime-local" class="form-control input-lg" required id="itxtEndTime" name="EndTime">
-                                </div>
+    <!-- Modal -->
+    <div id="insertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="insertModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Schedule</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row Data">
+                        <div class="col-sm-12">
+                            <div alert alert-info alert-dismissable" id="iMessageContainer">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                <span id="Message"></span>
+                            </div>
+                            <input type="hidden" id="itxtScheduleID" name="ScheduleID" />
+                            <div class="form-group">
+                                <label for="txtTopic">Topic:</label>
+                                <input type="text" class="form-control input-lg" required id="itxtTopic" name="Topic">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtDesc">Description:</label>
+                                <input type="text" class="form-control input-lg" required id="itxtDesc" name="Description">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPlace">Place:</label>
+                                <input type="text" class="form-control input-lg" required id="itxtPlace" name="Place">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtStartTime">Start Time:</label>
+                                <input type="datetime-local" class="form-control input-lg" required id="itxtStartTime" name="StartTime">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtEndTime">End Time:</label>
+                                <input type="datetime-local" class="form-control input-lg" required id="itxtEndTime" name="EndTime">
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="submit-schedule" class="btn btn-danger">Submit</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="submit" id="submit-schedule" class="btn btn-danger">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
+
         </div>
-    }
+    </div>
+}
 
-    @* Update *@
-    @using (Ajax.BeginForm("UpdateSchedule", "Schedule", new AjaxOptions {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    }, new { id = "form-create-schedule", enctype = "multipart/form-data" })) {
-        @Html.AntiForgeryToken()
+@* Update *@
+@using (Ajax.BeginForm("UpdateSchedule", "Schedule", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "LoadResult(data)"
+}, new { id = "form-create-schedule", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 
-        <!-- Modal -->
-        <div id="updateModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row Data">
-                            <div class="col-sm-12">
-                                <div class="alert alert-info alert-dismissable" id="MessageContainer">
-                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                    <span id="Message"></span>
-                                </div>
-                                <input type="hidden" id="txtScheduleID" name="ScheduleID" />
-                                <div class="form-group">
-                                    <label for="txtTopic">Topic:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtTopic" name="Topic">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtDesc">Description:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtDesc" name="Description">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtPlace">Place:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtPlace" name="Place">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtStartTime">Start Time:</label>
-                                    <input type="datetime-local" class="form-control input-lg" required id="txtStartTime" name="StartTime">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtEndTime">End Time:</label>
-                                    <input type="datetime-local" class="form-control input-lg" required id="txtEndTime" name="EndTime">
-                                </div>
+    <!-- Modal -->
+    <div id="updateModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row Data">
+                        <div class="col-sm-12">
+                            <div class="alert alert-info alert-dismissable" id="MessageContainer">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                <span id="Message"></span>
+                            </div>
+                            <input type="hidden" id="txtScheduleID" name="ScheduleID" />
+                            <div class="form-group">
+                                <label for="txtTopic">Topic:</label>
+                                <input type="text" class="form-control input-lg" required id="txtTopic" name="Topic">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtDesc">Description:</label>
+                                <input type="text" class="form-control input-lg" required id="txtDesc" name="Description">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPlace">Place:</label>
+                                <input type="text" class="form-control input-lg" required id="txtPlace" name="Place">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtStartTime">Start Time:</label>
+                                <input type="datetime-local" class="form-control input-lg" required id="txtStartTime" name="StartTime">
+                            </div>
+                            <div class="form-group">
+                                <label for="txtEndTime">End Time:</label>
+                                <input type="datetime-local" class="form-control input-lg" required id="txtEndTime" name="EndTime">
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="update-schedule" class="btn btn-danger">Submit</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
-
+                <div class="modal-footer">
+                    <button type="submit" id="update-schedule" class="btn btn-danger">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
+
+        </div>
+    </div>
+}
+@* View *@
+<div class="layout-header p-3">
+    <h1 class="text-white"><i>@ViewBag.Title</i></h1>
+</div>
+
+<div class="layout-content p-5 text-justify mh-100">
+    @foreach (var Data in @Model.ListSchedule)
+    {
+        <div class="schedule-box">
+
+            <h3>@Data.Topic</h3>
+            <p>----------------------------</p>
+            <p>Time : @Data.StartTime - @Data.EndTime</p>
+            <p>Room : @Data.Place</p>
+            <p>Notes : @Data.Description</p>
+
+            @if (Session["Role"].Equals("admin"))
+            {
+                <button onclick="Delete(@Data.ScheduleID)" on class="btn btn-danger">Delete</button>
+                @Html.ActionLink("Update Schedule", "", "Schedule", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#updateModal", data_id = Data.ScheduleID })
+
+            }
         </div>
     }
+</div>
+@if (Session["Role"].Equals("admin"))
+{
+    <button type="button" class="btn btn-primary rounded-circle floating-button" data-toggle="modal"
+            data-target="#insertModal">
+        <img class="w-75" src="~/Sources/icons/chat.svg" alt="">
+    </button>
+}
 
+<script>let Address = '@Address'</script>
+<script src="~/Sources/PageJS/Backend/schedule.js"></script>
 
-    <div class="layout-header p-3">
-        <h1 class="text-white"><i>@ViewBag.Title</i></h1>
-    </div>
-
-    <div class="layout-content p-5 text-justify h-100">
-        @foreach (var Data in @Model.ListSchedule) {
-            <div class="schedule-box">
-
-                <h3>@Data.Topic</h3>
-                <h5>--------------------------------</h5>
-                <h5>Time : @Data.StartTime - @Data.EndTime</h5>
-                <h5>Room : @Data.Place</h5>
-                <h5>Notes : @Data.Description</h5>
-
-                @if (Session["Role"].Equals("admin")) {
-
-                    <button onclick="Delete(@Data.ScheduleID)" on class="btn btn-danger">Delete</button>
-                    @Html.ActionLink("Update Schedule", "", "Schedule", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#updateModal", data_id = Data.ScheduleID })
-
-                }
-            </div>
-        }
-    </div>
-    @if (Session["Role"].Equals("admin")) {
-        <button type="button" class="btn btn-primary rounded-circle floating-button" data-toggle="modal"
-                data-target="#insertModal">
-            <img class="w-75" src="~/Sources/icons/chat.svg" alt="">
-        </button>
-    }
-    <script>let Address = '@Address'</script>
-    <script src="~/Sources/PageJS/Backend/schedule.js"></script>
-
-</body>

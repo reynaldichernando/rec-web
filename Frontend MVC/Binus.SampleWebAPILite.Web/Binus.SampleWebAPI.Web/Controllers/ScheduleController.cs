@@ -15,6 +15,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
     {
         public ActionResult Index()
         {
+
             ScheduleViewModel VM = new ScheduleViewModel();
             try
             {
