@@ -13,16 +13,16 @@ body {
     }
 
 .logo {
-  width: 150px;
+    width: 150px;
 }
 
 .split {
-  height: 100%;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
 }
 
 .left {
@@ -38,29 +38,38 @@ body {
 }
 
 .centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    height: 100vh;
+}
+
+.above {
+    margin-top: 100px;
+}
+
+.below {
+    margin-top: 130px;
 }
 
 .centered img {
-  width: 150px;
-  border-radius: 50%;
+    width: 150px;
+    border-radius: 50%;
 }
 
 .bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 @media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }

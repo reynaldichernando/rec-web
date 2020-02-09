@@ -73,43 +73,41 @@
     </div>
     <div class="split right">
         <div class="centered">
-            @using (Ajax.BeginForm(
-                actionName:"Auth",
-                controllerName:"Login",
-                routeValues: null,
-                ajaxOptions: new AjaxOptions
-                {
-                    HttpMethod = "POST",
-                    OnSuccess = "LoadResultLogin(data)",
+            <div class="above">
+                @using (Ajax.BeginForm(
+                    actionName: "Auth",
+                    controllerName: "Login",
+                    routeValues: null,
+                    ajaxOptions: new AjaxOptions {
+                        HttpMethod = "POST",
+                        OnSuccess = "LoadResultLogin(data)",
 
-                },
-                htmlAttributes: new { id = "form1", @class = "form-signin" }))
-                {
+                    },
+                    htmlAttributes: new { id = "form1", @class = "form-signin" })) {
                     @Html.AntiForgeryToken()
 
                     <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
-
                     <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
                     <label for="inputEmail" class="sr-only">Email address</label>
                     <input type="email" id="inputEmail" class="form-control mb-2" name="Username" placeholder="Email address" required autofocus>
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
-          
                     <span id="divMessage" style="color:red"></span>
                     <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Sign in</button>
                 }
-            <div class="dropdown-divider mt-5"></div>
-            <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#register">Register</button>
-            <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#forgot">Forgot Password</button>
+            </div>
+            <div class="below">
+                <div class="dropdown-divider mt-5"></div>
+                <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#register">Register</button>
+                <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#forgot">Forgot Password</button>
+            </div>
         </div>
     </div>
 
-    @using (Ajax.BeginForm("RegisterAccount", "Register", null, new AjaxOptions
-    {
+    @using (Ajax.BeginForm("RegisterAccount", "Register", null, new AjaxOptions {
         HttpMethod = "POST",
         OnSuccess = "LoadResultReg(data)"
-    }, new { id = "form-register", enctype = "multipart/form-data" }))
-    {
+    }, new { id = "form-register", enctype = "multipart/form-data" })) {
         @Html.AntiForgeryToken()
         <div id="register" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -149,8 +147,7 @@
         </div>
     }
 
-    @using (Html.BeginForm())
-    {
+    @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         <div id="forgot" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
@@ -177,6 +174,6 @@
         </div>
     }
     <script>Address='@Address'</script>
-  
+
 </body>
 </html>
