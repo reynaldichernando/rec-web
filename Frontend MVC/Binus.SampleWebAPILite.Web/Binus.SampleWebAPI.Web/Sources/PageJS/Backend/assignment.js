@@ -116,6 +116,17 @@
         modal.find('#assignment-name').val(title);
         modal.find('#assignment-id').val(id);
     });
+
+    $('#detailModal').on('show.bs.modal', function (event) {
+        let modal = $(this);
+        let button = $(event.relatedTarget);
+        let title = button.data('title');
+        let description = button.data('description');
+        let datedue = button.data('due');
+        modal.find('#detail-title').text(title);
+        modal.find('#detail-description').text(description);
+        modal.find('#detail-due').text(datedue);
+    });
 });
 
 function LoadResult(Data) {
