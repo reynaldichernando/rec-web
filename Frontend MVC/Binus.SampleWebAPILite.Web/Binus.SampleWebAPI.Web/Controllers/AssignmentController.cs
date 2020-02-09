@@ -17,10 +17,6 @@ namespace Binus.SampleWebAPI.Web.Controllers
 {
     public class AssignmentController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
         // GET: Assignment
         public ActionResult Index()
         {
