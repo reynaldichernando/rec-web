@@ -1,11 +1,14 @@
 ﻿$(document).ready(function () {
+    //$('#submit-thread').click(function (event) {
+    //    $(event.target).attr("disabled", true);
+    //})
+
     $('#MessageContainer').hide();
     $('#updateModal').on('show.bs.modal', function (event) {
         CleanForm();
         let modal = $(this);
         let button = $(event.relatedTarget)
         let ID = button.data('id');
-        console.log(ID);
         $.ajax({
             type: "POST",
             url: Address + "/Thread/GetOneThread",
@@ -26,22 +29,20 @@
 
 
 function LoadResult(Data) {
-    console.log("not even here");
     var Value = JSON.parse(JSON.stringify(Data));
 
     if (Value.Status == "Success") {
         $('#MessageContainer').show();
         $('#Message').text(Value.Message);
+        $('#submit-thread').removeAttr("disabled");
         window.location = Value.URL;
-        console.log("maybe?");
     }
     else {
         $('#MessageContainer').show();
         $('#Message').text(Value.Message);
-        console.log("nope?");
+        $('#submit-thread').removeAttr("disabled");
 
     }
-    console.log("....");
 }
 
 function CleanForm() {

@@ -26,7 +26,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">Insert Assignment</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row Data">
@@ -79,7 +79,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">Upload Answer</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row Data">
@@ -119,8 +119,7 @@
 </div>
 @* Assignment Item *@
 <div id="myDIV" class="layout-content p-4 text-justify">
-    @foreach (var Item in Model.GetCurrentAssignment())
-    {
+    @foreach (var Item in Model.GetCurrentAssignment()) {
         <div class="assignment-box">
             <div class="float-left">
                 <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#detailModal" data-title="@Item.Title" data-description="@Item.Description" data-due="@Item.DateDue">@Item.Title</a></h1>
@@ -128,8 +127,7 @@
             <div class="float-left">
             </div>
             <div class="tombol-upload float-right">
-                @if (Session["role"].Equals("admin"))
-                {
+                @if (Session["role"].Equals("admin")) {
                     @Html.ActionLink("Answers", "Index", "Answer", new { AssignmentID = @Item.AssignmentID }, new { @class = "btn btn-info" })
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
                     <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
@@ -138,8 +136,7 @@
                 <a href="@Url.Action("DownloadFile", "Assignment",  new { fileName = Item.AssignmentFilepath })" class="image-upload">
                     <img src="~/Sources/icons/download.svg" title="Download Case" />
                 </a>
-                @if (!Session["role"].Equals("admin"))
-                {
+                @if (!Session["role"].Equals("admin")) {
                     <a href="@Url.Action("", "Assignment",  new { })" class="image-upload" data-toggle="modal" data-target="#uploadAnswer" data-title="@Item.Title" data-id="@Item.AssignmentID">
                         <img src="~/Sources/icons/upload.svg" title="Upload Answer" />
                     </a>
@@ -150,6 +147,7 @@
             </div>
         </div>
     }
+
 </div>
 
 
@@ -166,8 +164,7 @@
 </div>
 @* Assignment Item *@
 <div id="myDIV2" class="layout-content p-4 text-justify">
-    @foreach (var Item in Model.GetPastAssignment())
-    {
+    @foreach (var Item in Model.GetPastAssignment()) {
         <div class="assignment-box">
             <div class="float-left">
                 <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#detailModal" data-title="@Item.Title" data-description="@Item.Description" data-due="@Item.DateDue">@Item.Title</a></h1>
@@ -175,8 +172,7 @@
             <div class="float-left">
             </div>
             <div class="tombol-upload float-right">
-                @if (Session["role"].Equals("admin"))
-                {
+                @if (Session["role"].Equals("admin")) {
                     @Html.ActionLink("Answers", "Index", "Answer", new { AssignmentID = @Item.AssignmentID }, new { @class = "btn btn-info" })
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
                     <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
@@ -185,15 +181,15 @@
                 <a href="@Url.Action("DownloadFile", "Assignment",  new { fileName = Item.AssignmentFilepath })" class="image-upload">
                     <img src="~/Sources/icons/download.svg" title="Download Case" />
                 </a>
-                @if (!Session["role"].Equals("admin"))
-                {
+                @if (!Session["role"].Equals("admin")) {
                     <a href="@Url.Action("DownloadAnswer", "Assignment",  new { AssignmentID = Item.AssignmentID })" class="image-upload">
                         <img src="~/Sources/icons/archive.svg" title="Download Answer" />
                     </a>
                 }
             </div>
         </div>
-     }
+    }
+
 </div>
 
 @* Assignment Detail Modal *@

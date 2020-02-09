@@ -6,7 +6,6 @@ $(document).ready(function () {
 
     $('#btnLoginDBReg').on('click', function (event) {
         $('#btnLoginDBReg').attr('disabled', true);
-        console.log("test");
         hideErrorMessages();
 
         let isValid = true;
@@ -44,22 +43,7 @@ $(document).ready(function () {
     })
 });
 
-function LoadResult(Data)
-{
-    const Value = JSON.parse(JSON.stringify(Data));
 
-    if (Value.Status == "Success")
-    {
-        $("#divMessage").text(Value.Message);
-        window.location = Value.URL;
-    }
-    else
-    {
-        $('#btnLogin').removeAttr('disabled');
-        $('#btnLoginDB').removeAttr('disabled');
-        $("#divMessage").text(Value.Message);
-    }
-}
 
 function LoadResultReg(Data) {
     $('#regMessage').text('');
@@ -79,6 +63,18 @@ function LoadResultReg(Data) {
     }
 }
 
+function LoadResultLogin(Data) {
+    const Value = JSON.parse(JSON.stringify(Data));
+    if (Value.Status == "Success") {
+        $("#divMessage").text(Value.Message);
+        window.location = Value.URL;
+    }
+    else {
+        $('#btnLogin').removeAttr('disabled');
+        $('#btnLoginDB').removeAttr('disabled');
+        $("#divMessage").text(Value.Message);
+    }
+}
 function LoadResultForgot(Data) {
     $('#forgot-message').text('');
     var Value = JSON.parse(JSON.stringify(Data));

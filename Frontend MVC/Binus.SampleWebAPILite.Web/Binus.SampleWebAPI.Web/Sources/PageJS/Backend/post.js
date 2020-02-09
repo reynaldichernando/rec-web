@@ -26,22 +26,18 @@
 
 
 function LoadResult(Data) {
-    console.log("not even here");
     var Value = JSON.parse(JSON.stringify(Data));
 
     if (Value.Status == "Success") {
         $('#MessageContainer2').show();
         $('#Message2').text(Value.Message);
         window.location = Value.URL;
-        console.log("maybe?");
     }
     else {
         $('#MessageContainer2').show();
         $('#Message2').text(Value.Message);
-        console.log("nope?");
 
     }
-    console.log("....");
 }
 
 function CleanForm() {

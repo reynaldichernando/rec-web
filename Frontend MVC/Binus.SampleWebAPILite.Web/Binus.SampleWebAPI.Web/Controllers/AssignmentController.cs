@@ -241,6 +241,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 }
                 else
                 {
+                    
                     retData = Json(new
                     {
                         Status = "Failed",
@@ -250,6 +251,8 @@ namespace Binus.SampleWebAPI.Web.Controllers
             }
             catch (Exception ex)
             {
+                string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+                return Content("<script>let Address = '"+Address+"';alert('File Not Found!');location.href = Address + '/Assignment';</script>");
                 retData = Json(new
                 {
                     Status = "Failed",

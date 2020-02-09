@@ -130,7 +130,9 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 MailMessage message = new MailMessage();
                 message.To.Add(Email);
                 message.Subject = "Reset your password";
-                message.Body = "Please click the link below to reset your password <br> http://localhost:14033/Password/ResetPassword?e=" + Email+"&q="+Token;
+                string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
+
+                message.Body = "Please click the link below to reset your password <br> "+Address+"/Password/ResetPassword?e=" + Email+"&q="+Token;
                 message.BodyEncoding = System.Text.Encoding.UTF8;
                 message.From = new MailAddress("c.soetanto37@gmail.com");
                 message.SubjectEncoding = System.Text.Encoding.UTF8;

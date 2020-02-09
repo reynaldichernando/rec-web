@@ -17,12 +17,7 @@
             cache: false,
             contentType: false,
             processData: false,
-            //success: function (data) {
-            //    //alert(data);
-            //},
-            //error: function (data) {
-            //    console.log("Error: " + data)
-            //},
+         
             xhr: function () {
                 var myXhr = $.ajaxSettings.xhr();
                 if (myXhr.upload) {

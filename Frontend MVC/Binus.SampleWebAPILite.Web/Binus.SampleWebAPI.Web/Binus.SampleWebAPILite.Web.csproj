@@ -821,8 +821,6 @@
     <Content Include="Sources\src\userpost-icon.png" />
     <Content Include="Views\Assignment\Index.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
-    <Content Include="Views\Home\Announcement.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\Post\index.cshtml" />

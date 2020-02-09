@@ -14,6 +14,15 @@
     <link href="@Address/Sources/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="@Address/Sources/CustomCSS/signin.css" rel="stylesheet" />
     <link rel="shortcut icon" href="@Address/Sources/src/perusahaan.jpg" type="image/x-icon">
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
+    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
+    <script src="@Address/Sources/Scripts/respond.js"></script>
+    <script src="@Address/Sources/PageJS/Login/login.js"></script>
+
 </head>
 <body>
     <div class="split left">
@@ -64,30 +73,31 @@
     </div>
     <div class="split right">
         <div class="centered">
-            @using (Ajax.BeginForm("Auth", "Login", new AjaxOptions
-            {
-                HttpMethod = "POST",
-                OnSuccess = "LoadResult(data)",
-                OnBegin = "Loader"
-            }, new { id = "form1", @class = "form-signin" }))
-            {
-                @Html.AntiForgeryToken()
+            @using (Ajax.BeginForm(
+                actionName:"Auth",
+                controllerName:"Login",
+                routeValues: null,
+                ajaxOptions: new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "LoadResultLogin(data)",
 
-                <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
+                },
+                htmlAttributes: new { id = "form1", @class = "form-signin" }))
+                {
+                    @Html.AntiForgeryToken()
 
-                <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control mb-2" name="Username" placeholder="Email address" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
-                @*<div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
-                    </div>*@
-                <span id="divMessage" style="color:red"></span>
-                <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Sign in</button>
-            }
+                    <img src="@Address/Sources/icons/box-arrow-right.svg" alt="">
+
+                    <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control mb-2" name="Username" placeholder="Email address" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
+          
+                    <span id="divMessage" style="color:red"></span>
+                    <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Sign in</button>
+                }
             <div class="dropdown-divider mt-5"></div>
             <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#register">Register</button>
             <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#forgot">Forgot Password</button>
@@ -167,12 +177,6 @@
         </div>
     }
     <script>Address='@Address'</script>
-
-    <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="@Address/Sources/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="@Address/Sources/Scripts/jquery.form.js"></script>
-    <script src="@Address/Sources/Scripts/bootstrap.js"></script>
-    <script src="@Address/Sources/Scripts/respond.js"></script>
-    <script src="@Address/Sources/PageJS/Login/login.js"></script>
+  
 </body>
 </html>

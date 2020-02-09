@@ -1,16 +1,22 @@
-﻿.thread-title{
+﻿.thread-title {
     background-color: #fafafa;
+    padding: 35px;
 }
 
 .reply-box {
-    background-color: #fafafa;
+    margin-bottom: 15px;
 }
 
-    .reply-box img {
+.reply-thread {
+    background-color: #fafafa;
+    padding: 35px;
+}
+
+    .reply-thread img {
         width: 100px;
     }
 
-    .reply-box div {
+    .reply-thread div {
         margin: 1.5em;
     }
 
@@ -18,9 +24,10 @@
     width: 120px;
     word-wrap: break-word;
     margin-top: 10px;
+    margin-right: 10px;
 }
 
 .reply-right {
-    width: 58em;
+    width: 50em;
     vertical-align: top;
 }

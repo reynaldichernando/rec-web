@@ -106,6 +106,19 @@ BEGIN
 END
 
 GO
+CREATE PROC bn_RecDB_VerifyUser
+@Email VARCHAR(50)
+AS
+BEGIN
+	UPDATE 
+		msUser 
+	SET 
+		Role='approved' 
+	WHERE 
+		Email=@Email
+END
+
+GO
 CREATE PROC bn_RecDB_GetUnapprovedUser
 AS
 BEGIN

@@ -5,7 +5,6 @@
         let modal = $(this);
         let button = $(event.relatedTarget)
         let ID = button.data('id');
-        console.log(ID);
         $.ajax({
             type: "POST",
             url: Address + "/Schedule/GetScheduleByID",
@@ -28,7 +27,6 @@
        
     });
     $('#insertModal').on('show.bs.modal', function (event) {
-        console.log("insert");
         CleanForm();
     });
 
