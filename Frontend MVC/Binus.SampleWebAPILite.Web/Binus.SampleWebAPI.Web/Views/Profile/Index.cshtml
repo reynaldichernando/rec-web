@@ -49,3 +49,31 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        function hideErrorMessages() {
+
+            $('#error-confirm-password').hide();
+        }
+
+        $('#btnLoginDB').on('click', function (event) {
+            $('#btnLoginDB').attr('disabled', true);
+            hideErrorMessages();
+
+            let isValid = true;
+            const password = $('#inputPassword').val();
+            const confirmpassword = $('#inputConfirmPassword').val();
+            if (confirmpassword != password) {
+                $('#error-confirm-password').show();
+                isValid = false;
+            }
+
+            if (isValid) {
+                $(this).submit();
+            } else {
+                event.preventDefault();
+            }
+        })
+    }
+</script>
