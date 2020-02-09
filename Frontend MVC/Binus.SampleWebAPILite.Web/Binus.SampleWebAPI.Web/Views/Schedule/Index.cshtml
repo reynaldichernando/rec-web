@@ -77,53 +77,54 @@
     @Html.AntiForgeryToken()
 
     <!-- Modal -->
-    <div id="updateModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row Data">
-                        <div class="col-sm-12">
-                            <div class="alert alert-info alert-dismissable" id="MessageContainer">
-                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                <span id="Message"></span>
-                            </div>
-                            <input type="hidden" id="txtScheduleID" name="ScheduleID" />
-                            <div class="form-group">
-                                <label for="txtTopic">Topic:</label>
-                                <input type="text" class="form-control input-lg" required id="txtTopic" name="Topic">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtDesc">Description:</label>
-                                <input type="text" class="form-control input-lg" required id="txtDesc" name="Description">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtPlace">Place:</label>
-                                <input type="text" class="form-control input-lg" required id="txtPlace" name="Place">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtStartTime">Start Time:</label>
-                                <input type="datetime-local" class="form-control input-lg" required id="txtStartTime" name="StartTime">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtEndTime">End Time:</label>
-                                <input type="datetime-local" class="form-control input-lg" required id="txtEndTime" name="EndTime">
-                            </div>
+<div id="updateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="insertModal"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Schedule</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row Data">
+                    <div class="col-sm-12">
+                        <div class="alert alert-info alert-dismissable" id="MessageContainer">
+                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                            <span id="Message"></span>
+                        </div>
+                        <input type="hidden" id="txtScheduleID" name="ScheduleID" />
+                        <div class="form-group">
+                            <label for="txtTopic">Topic:</label>
+                            <input type="text" class="form-control input-lg" required id="txtTopic" name="Topic">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtDesc">Description:</label>
+                            <input type="text" class="form-control input-lg" required id="txtDesc" name="Description">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPlace">Place:</label>
+                            <input type="text" class="form-control input-lg" required id="txtPlace" name="Place">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtStartTime">Start Time:</label>
+                            <input type="datetime-local" class="form-control input-lg" required id="txtStartTime" name="StartTime">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEndTime">End Time:</label>
+                            <input type="datetime-local" class="form-control input-lg" required id="txtEndTime" name="EndTime">
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" id="update-schedule" class="btn btn-danger">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
             </div>
-
+            <div class="modal-footer">
+                <button type="submit" id="update-schedule" class="btn btn-danger">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
+
     </div>
+</div>
 }
 @* View *@
 <div class="layout-header p-3">
