@@ -34,7 +34,6 @@
                     </div>
                     <img src="@Address/Sources/src/calendar-icon.png" class="d-block" style="max-width: 240px; margin-right: 10%; float: right;"
                          alt="calendar">
-
                 </div>
                 <div class="carousel-item p-5 position-relative">
                     <div class="carousel-caption d-none d-md-block position-absolute" style="left: 10%; width: 50%; top: 20%">
@@ -43,7 +42,6 @@
                     </div>
                     <img src="@Address/Sources/src/assignment-icon.png" class="d-block" style="max-width: 240px; margin-right: 10%; float: right;"
                          alt="assignment">
-
                 </div>
                 <div class="carousel-item p-5 position-relative">
                     <div class="carousel-caption d-none d-md-block position-absolute" style="left: 10%; width: 50%; top: 20%">
@@ -55,9 +53,7 @@
                     </div>
                     <img src="@Address/Sources/src/question-icon.png" class="d-block" style="max-width: 240px; margin-right: 10%; float: right;"
                          alt="question">
-
                 </div>
-
             </div>
             <a class="carousel-control-prev text-dark" href="#carouselExampleCaptions" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,7 +63,6 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-
         </div>
     </div>
     <div class="split right">
@@ -89,10 +84,10 @@
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
                 @*<div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>*@
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>*@
                 <span id="divMessage" style="color:red"></span>
                 <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Sign in</button>
             }
@@ -145,7 +140,7 @@
                 </div>
             </div>
         </div>
-     }
+    }
 
     @using (Html.BeginForm())
     {
@@ -174,6 +169,13 @@
             </div>
         </div>
     }
+
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">
+            &copy; 2020 Copyright: Kelompok 1
+        </div>
+    </footer>
+
     <script>Address='@Address'</script>
 
     <script src="@Address/Sources/Scripts/jquery-3.1.1.min.js"></script>
