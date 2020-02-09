@@ -97,6 +97,23 @@ function LoadResultForgot(Data) {
     }
 }
 
+function LoadResultChangePassword(Data) {
+    $('#divMessages').text('');
+    var Value = JSON.parse(JSON.stringify(Data));
+
+    if (Value.Status == "Success") {
+        $('#divMessages').text(Value.Message);
+
+        setTimeout(function () {
+            $('#btnChangePw').removeAttr('disabled');
+            window.location = Value.URL;
+        }, 1000)
+    }
+    else {
+        $('#divMessages').text(Value.Message);
+        $('#btnChangePw').removeAttr('disabled');
+    }
+}
 function Loader() {
     $("#divMessage").text("");
 

@@ -72,7 +72,11 @@
     </div>
     <div class="split right border border-dark">
         <div class="centered">
-            @using (Html.BeginForm("ChangeForgottenPassword", "Password", "POST")) {
+            @using (Ajax.BeginForm("ChangeForgottenPassword", "Password", new AjaxOptions { 
+            HttpMethod = "POST",
+            OnSuccess = "LoadResultChangePassword(data)",
+            OnBegin = "$('#btnChangePw').attr('disabled', 'disabled');"
+            })) {
                 <input type="hidden" class="form-control mb-2" name="Token" value="@ViewBag.token">
                 <input type="hidden" class="form-control mb-2" name="Email" value="@ViewBag.email">
                 <label for="inputPassword" class="sr-only">Password</label>
@@ -88,8 +92,8 @@
                     password <br>
                 </span>
                 
-                <span id="divMessage" style="color:red"></span>
-                <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Send request</button>
+                <span id="divMessages" style="color:red"></span>
+                <button class="btn btn-lg btn-primary btn-block" id="btnChangePw" type="submit">Change Password</button>
             }
 
         </div>
@@ -101,7 +105,7 @@
     <script src="@Address/Sources/Scripts/jquery.form.js"></script>
     <script src="@Address/Sources/Scripts/bootstrap.js"></script>
     <script src="@Address/Sources/Scripts/respond.js"></script>
-    <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    @*<script src="@Address/Sources/PageJS/Login/login.js"></script>*@
     <script type="text/javascript">
         $(document).ready(function () {
             function hideErrorMessages() {
@@ -109,7 +113,7 @@
                 $('#error-confirm-password').hide();
             }
 
-            $('#btnLoginDB').on('click', function (event) {
+            $('#btnChangePw').on('click', function (event) {
                 hideErrorMessages();
 
                 let isValid = true;
@@ -131,6 +135,23 @@
                 }
             })
         });
+        function LoadResultChangePassword(Data) {
+            $('#divMessages').text('');
+            var Value = JSON.parse(JSON.stringify(Data));
+
+            if (Value.Status == "Success") {
+                $('#divMessages').text(Value.Message);
+
+                setTimeout(function () {
+                    $('#btnChangePw').removeAttr('disabled');
+                    window.location = Value.URL;
+                }, 1000)
+            }
+            else {
+                $('#divMessages').text(Value.Message);
+                $('#btnChangePw').removeAttr('disabled');
+            }
+        }
     </script>
 
 
