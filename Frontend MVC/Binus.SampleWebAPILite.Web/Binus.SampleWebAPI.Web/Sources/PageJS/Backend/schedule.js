@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function () { 
     $('#MessageContainer').hide();
     $('#updateModal').on('show.bs.modal', function (event) {
         CleanForm();
@@ -27,11 +27,43 @@
         });
        
     });
+    $('#insertModal').on('show.bs.modal', function (event) {
+        console.log("insert");
+        CleanForm();
+    });
 
+    $('#submit-schedule').on('click', function (event) {
+        let isValid = true;
+        let startTime = $('#itxtStartTime').val();
+        let endTime = $('#itxtEndTime').val();
+        if (Date.parse(startTime) >= Date.parse(endTime)) {
+            $('#i-invalid-date').show();
+            isValid = false;
+        }
+        if (isValid) {
+            $(this).submit();
+        } else {
+            event.preventDefault();
+        }
+        
+    });
+    $('#update-schedule').on('click', function (event) {
+        let isValid = true;
+        let startTime = $('#txtStartTime').val();
+        let endTime = $('#txtEndTime').val();
+        if (Date.parse(startTime) >= Date.parse(endTime)) {
+            $('#invalid-date').show();
+            isValid = false;
+        }
+        if (isValid) {
+            $(this).submit();
+        } else {
+            event.preventDefault();
+        }
 
+    });
+  
 });
-
-
 function LoadResult(Data) {
     var Value = JSON.parse(JSON.stringify(Data));
 
@@ -56,6 +88,16 @@ function CleanForm() {
     $('#txtEndTime').setNow();
     $('#MessageContainer').hide();
     $('#Message').text("");
+
+    $("#itxtSchedule").val("");
+    $("#itxtPlace").val("");
+    $("#itxtTopic").val("");
+    $("#itxtDesc").val("");
+    //$('#itxtStartTime').setNow();
+    //$('#itxtEndTime').setNow();
+
+    $('#i-invalid-date').hide();
+    $('#invalid-date').hide();
 }
 
 
@@ -104,3 +146,4 @@ function Delete(ID) {
         });
     }
 }
+
