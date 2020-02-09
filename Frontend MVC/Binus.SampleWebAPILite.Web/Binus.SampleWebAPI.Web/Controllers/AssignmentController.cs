@@ -20,7 +20,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
         // GET: Assignment
         public ActionResult Index()
         {
-            if (Session["token"] == null) return RedirectToAction("Index", "Login");
+            //if (Session["token"] == null) return RedirectToAction("Index", "Login");
 
             try
             {

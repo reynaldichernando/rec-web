@@ -1,11 +1,17 @@
-﻿.assignment-box {
+﻿.layout-content {
+    flex-direction: column;
+    justify-content: start;
+    flex-wrap: nowrap;
+}
+
+.assignment-box {
     width: 90%;
     height: 10%;
     background-color: #fafafa;
     border-radius: 8px;
     display: block;
     padding: 0px 10px;
-    margin: 10px 0px;
+    margin: 10px auto;
 }
 
 .file-input {
