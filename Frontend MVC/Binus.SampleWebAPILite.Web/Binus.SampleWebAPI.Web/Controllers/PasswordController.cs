@@ -80,10 +80,10 @@ namespace Binus.SampleWebAPI.Web.Controllers
                                 UserData
                             ).Result;
                         } catch(Exception ex) {
-
+                            throw ex;
                         }
                     } catch(Exception ex) {
-
+                        throw ex;
                     }
                    
                 } else {

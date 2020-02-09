@@ -72,7 +72,13 @@
     </div>
     <div class="split right border border-dark">
         <div class="centered">
-            @using (Html.BeginForm("ChangeForgottenPassword", "Password", "POST")) {
+            @using (Ajax.BeginForm(
+                actionName:"ChangeForgottenPassword", 
+                controllerName:"Password",
+                ajaxOptions:new AjaxOptions {
+                    OnSuccess = "LoadResult(Data)",
+                    HttpMethod ="POST"
+                })) {
                 <input type="hidden" class="form-control mb-2" name="Token" value="@ViewBag.token">
                 <input type="hidden" class="form-control mb-2" name="Email" value="@ViewBag.email">
                 <label for="inputPassword" class="sr-only">Password</label>
@@ -87,10 +93,12 @@
                     Please correctly confirm the
                     password <br>
                 </span>
-                
+
                 <span id="divMessage" style="color:red"></span>
                 <button class="btn btn-lg btn-primary btn-block" id="btnLoginDB" type="submit">Send request</button>
+
             }
+          
 
         </div>
     </div>
@@ -101,7 +109,7 @@
     <script src="@Address/Sources/Scripts/jquery.form.js"></script>
     <script src="@Address/Sources/Scripts/bootstrap.js"></script>
     <script src="@Address/Sources/Scripts/respond.js"></script>
-    <script src="@Address/Sources/PageJS/Login/login.js"></script>
+    @*<script src="@Address/Sources/PageJS/Login/login.js"></script>*@
     <script type="text/javascript">
         $(document).ready(function () {
             function hideErrorMessages() {
@@ -131,6 +139,22 @@
                 }
             })
         });
+        function LoadResult(Data) {
+            
+            const Value = JSON.parse(JSON.stringify(Data));
+            console.log("test");
+            if (Value.Status == "Success")
+            {
+                $("#divMessage").text(Value.Message);
+                window.location = Value.URL;
+            }
+            else
+            {
+                $('#btnLogin').removeAttr('disabled');
+                $('#btnLoginDB').removeAttr('disabled');
+                $("#divMessage").text(Value.Message);
+            }
+        }
     </script>
 
 
