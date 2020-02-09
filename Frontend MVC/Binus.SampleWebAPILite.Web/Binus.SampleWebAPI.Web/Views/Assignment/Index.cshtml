@@ -9,146 +9,7 @@
 <script src="~/Sources/PageJS/Backend/assignment.js"></script>
 <script src="~/Sources/PageJS/index.js"></script>
 
-<div class="container">
-    <br />
-    <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date Due</th>
-                <th>Action</th>
-                <th>Admin</th>
-            </tr>
-        </thead>
-        <tbody>
-            @try
-            {
-                foreach (var Item in Model.assignments)
-                {
-                    <tr>
-                        <td>@Item.Title</td>
-                        <td>@Item.Description</td>
-                        <td>@Item.DateDue</td>
-                        <td>
-                            @Html.ActionLink("Download Case", "DownloadFile", "Assignment", new { fileName = Item.AssignmentFilepath }, new { @class = "btn btn-info" })
-                            @Html.ActionLink("Upload Answer", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#uploadAnswer", data_title = Item.Title, data_id = Item.AssignmentID })
-                            @Html.ActionLink("Download Answer", "DownloadAnswer", "Assignment", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
-                            <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                }
-            }
-            catch (Exception ex)
-            {
-                <tr>No data</tr>
 
-            }
-
-        </tbody>
-    </table>
-
-
-    @* Insert *@
-    @using (Ajax.BeginForm("Insert", "Assignment", new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    }, new { id = "form-upload-assignment", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <!-- Modal -->
-        <div id="insertModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row Data">
-                            <div class="col-sm-12">
-                                <div class="alert alert-info alert-dismissable" id="MessageContainer">
-                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                    <span id="Message"></span>
-                                </div>
-                                <input type="hidden" id="txtAssignmentID" name="AssignmentID" />
-                                <div class="form-group">
-                                    <label for="txtTitle">Title:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtTitle" name="Title">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtDesc">Description:</label>
-                                    <input type="text" class="form-control input-lg" required id="txtDesc" name="Description">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtDateDue">Date Due:</label>
-                                    <input type="datetime-local" class="form-control input-lg" required id="txtDateDue" name="DateDue">
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtAssignmentFilePath">File:</label>
-                                    <input type="file" id="assignment-file" class="form-control input-lg" required name="postedFile" />
-                                    <progress value="0"></progress>
-                                    <input type="hidden" id="txtAssignmentFilePath" name="AssignmentFilePath" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="submit-assignment" class="btn btn-danger">Submit</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    }
-    @using (Ajax.BeginForm("UploadAnswer", "Assignment", new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    }, new { id = "form-upload-answer", enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-        <div id="uploadAnswer" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row Data">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="txtAssignmentFilePath">File:</label>
-                                    <input type="hidden" id="userid" value="@Session["UserID"]" name="UserID" />
-                                    <input type="hidden" id="assignment-name" name="Title" />
-                                    <input type="hidden" id="assignment-id" name="AssignmentID" />
-                                    <input type="file" id="answer-file" class="form-control input-lg" required name="postedFile" />
-                                    <progress value="0"></progress>
-                                    <input type="hidden" id="txtAnswerFilePath" name="AnswerFilePath" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">Submit</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    }
-</div>
 
 @* VIEWS *@
 
@@ -168,9 +29,7 @@
         <div class="float-left">
             <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#exampleModal">Title</a></h1>
         </div>
-        <div>
-
-        </div>
+        @*if user show this instead*@
         <div class="tombol-upload float-right">
             <div class="image-upload">
                 <label for="file-input" style="cursor: pointer;">
@@ -191,6 +50,24 @@
                 <input class="file-download-jawaban" type="file" />
             </div>
         </div>
+        @*if admin show this instead*@
+        <div class="tombol-upload float-right">
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="Address/Sources/icons/archive.svg" />
+                </label>
+                <input class="file-download-soal" type="file" />
+            </div>
+
+            <div class="image-upload">
+                <label for="file-input" style="cursor: pointer;">
+                    <img src="Address/Sources/icons/download.svg" />
+                </label>
+                <input class="file-download-jawaban" type="file" />
+            </div>
+
+            <i class="fa fa-trash text-danger p-1" aria-hidden="true" style="cursor: pointer;"></i>
+        </div>
     </div>
 </div>
 <div class="layout-header p-3">
@@ -209,6 +86,7 @@
         <div class="float-left">
             <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#exampleModal">Title</a></h1>
         </div>
+        @*if user show this instead*@
         <div class="tombol-upload float-right">
             <div class="image-upload">
                 <label for="file-input" style="cursor: pointer;">
@@ -223,9 +101,55 @@
                 <input class="file-download-jawaban" type="file" />
             </div>
         </div>
+        @*if admin show this instead
+            <div class="tombol-upload float-right">
+                <div class="image-upload">
+                    <label for="file-input" style="cursor: pointer;">
+                        <img src="Address/Sources/icons/archive.svg" />
+                    </label>
+                    <input class="file-download-soal" type="file" />
+                </div>
+
+                <div class="image-upload">
+                    <label for="file-input" style="cursor: pointer;">
+                        <img src="Address/Sources/icons/download.svg" />
+                    </label>
+                    <input class="file-download-jawaban" type="file" />
+                </div>
+
+                <i class="fa fa-trash text-danger p-1" aria-hidden="true" style="cursor: pointer;"></i>
+            </div>*@
     </div>
 </div>
 
+@*if admin, use this instead*@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Assignment title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pb-0">
+                Assignment Detail
+                <img src="Address/Sources/icons/pencil.svg" alt="" srcset="">
+                <textarea style="margin: 5px 20px;" name="" id="" cols="35"
+                          rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem necessitatibus quidem quos magnam, culpa reprehenderit quia sapiente corporis veritatis, accusamus minima eveniet, error vel tempore. Qui sint sequi impedit similique?</textarea>
+            </div>
+            <div class="modal-body pb-0">
+                Due Date
+                <img src="Address/Sources/icons/pencil.svg" alt="" srcset=""><br>
+                <input style="margin: 5px 20px;" type="date" name="" id="">
+            </div>
+            <button style="margin: 20px;" type="submit">Save</button>
+        </div>
+    </div>
+</div>
+
+@*if user, use this instead*@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -241,6 +165,42 @@
             </div>
             <div class="modal-body" style="text-align: left;">
                 Due date
+            </div>
+        </div>
+    </div>
+</div>
+
+@*if admin show this fab*@
+<button type="button" class="btn btn-primary rounded-circle floating-button position-absolute" data-toggle="modal"
+        data-target="#exampleModalLong">
+    <i class="fas fa-plus text-white"></i>
+</button>
+
+@*if admin show this fab*@
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-flex flex-column border-rounded">
+                <input type="text" name="postTitle" id="" placeholder="Title" class="m-1 p-1"
+                       style="border-radius: 3px;">
+                <textarea name="postContent" id="" cols="30" rows="10" placeholder="Description" class="m-1 p-1"
+                          style="border-radius: 3px"></textarea>
+                <br><label for="">Due Date:</label>
+                <input type="date" name="postDate" id="" class="m-1 p-1" style="border-radius: 3px;">
+                <input type="time" name="postTime" id="" class="p-1 m-1" style="border-radius: 3px;">
+                <br><label for="">Assignment File:</label>
+                <input type="file" name="postFile" id="" class="p-1 m-1" style="border-radius: 3px;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
