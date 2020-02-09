@@ -122,8 +122,8 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     retData = Json(new
                     {
                         Status = "Success",
-                        Message = "Get Schedule Success!",
-                        Data = Result.Deserialize<ScheduleModel>()
+                        Message = "Get Thread Success!",
+                        Data = Result.Deserialize<ThreadModel>()
                     });
                 }
                 else
