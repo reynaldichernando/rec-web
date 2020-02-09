@@ -60,6 +60,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                             Session["UserID"] = User.UserID;
                             Session["Role"] = User.Role;
                             Session["Email"] = User.Email;
+                            Session["Name"] = User.Name;
                             if (User.Role.Equals("unapproved")) {
                                 Retdata = Json(new {
                                     Status = "Failed",

@@ -2,34 +2,6 @@
     ViewBag.Title = "Profile";
 }
 
-<h2>Profile</h2>
-
-<div class="centered">
-    @using (Html.BeginForm("ChangePassword", "Password", "POST"))
-    {
-        <input type="hidden" class="form-control mb-2" name="hash" value="">
-        <input type="text" id="inputEmail" class="form-control mb-2" name="Email" placeholder="Email" value="@HttpContext.Current.Session["Email"].ToString()">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
-        <span class="text-danger" style="display: none" id="error-empty-password">
-            Please input
-            password <br>
-        </span>
-        <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
-        <input type="password" id="inputConfirmPassword" class="form-control mb-2" name="ConfirmPassword" placeholder="Confirm Password" required>
-        <span class="text-danger" style="display: none" id="error-confirm-password">
-            Please correctly confirm the
-            password <br>
-        </span>
-
-        <span id="divMessage" style="color:red">@TempData["PasswordChangeMessage"]</span><br />
-        {
-            TempData["PasswordChangeMessage"] = null;
-        }
-        <button class="btn btn-info" id="btnLoginDB" type="submit">Send request</button>
-    }
-
-</div>
 
 @* VIEWS *@
 
@@ -40,11 +12,40 @@
 <div class="layout-content p-5 text-center h-100">
     <div class="m-3">
         <h3>Nama</h3>
-        <p>Blabla</p>
+        <p>@Session["Name"]</p>
     </div>
     <div class="m-3">
-        <h3>Email</h3>
-        <p>a.a@aa</p>
+        <h3>E-mail</h3>
+        <p>@Session["Email"]</p>
     </div>
-    <button type="submit" class="m-3">Forgot Password?</button>
+    <div class="m-3 centered">
+
+        @using (Html.BeginForm("ChangePassword", "Password", "POST")) {
+
+            <input type="hidden" id="inputEmail" class="form-control mb-2" name="Email" placeholder="Email" value="@HttpContext.Current.Session["Email"].ToString()">
+            
+            <div>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control mb-2" name="Password" placeholder="Password" required>
+                <span class="text-danger" style="display: none" id="error-empty-password">
+                    Please input
+                    password <br>
+                </span>
+                <label for="inputConfirmPassword" class="sr-only">Confirm Password</label>
+                <input type="password" id="inputConfirmPassword" class="form-control mb-2" name="ConfirmPassword" placeholder="Confirm Password" required>
+                <span class="text-danger" style="display: none" id="error-confirm-password">
+                    Please correctly confirm the
+                    password <br>
+                </span>
+
+            </div>
+ 
+            <span id="divMessage" style="color:red">@TempData["PasswordChangeMessage"]</span><br />
+            {
+                TempData["PasswordChangeMessage"] = null;
+            }
+            <button class="btn btn-info" id="btnLoginDB" type="submit">Change Password</button>
+        }
+    </div>
+
 </div>
