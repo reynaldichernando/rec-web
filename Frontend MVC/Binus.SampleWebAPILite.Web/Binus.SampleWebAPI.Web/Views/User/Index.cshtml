@@ -5,40 +5,38 @@
     ViewBag.Title = "User";
 }
 
-
-
 <link rel="stylesheet" href="~/Sources/CustomCSS/user.css" />
 <div class="layout-header p-3">
     <h1 class="text-white"><i>Verify User</i></h1>
 </div>
 
-<div class="layout-content p-5 text-justify h-100 d-flex flex-column">
-    <table id="t">
-        <thead class="thead-dark">
+<div class="layout-content p-5 text-justify h-100">
+    <table class="table">
+        <thead class="thead-light">
             <tr>
-                <th style="width: 30px;">#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Handle</th>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Handle</th>
             </tr>
         </thead>
         <tbody>
             @{ int i = 1; }
 
-            @foreach (var Data in Model.ListUser) {
+            @foreach (var Data in Model.ListUser)
+            {
                 <tr>
-                    <td>@i</td>
+                    <th class="v" scope="row">@i</th>
                     <td class="w">@Data.Name</td>
                     <td class="w">@Data.Email</td>
                     <td class="w">
                         @*@Html.ActionLink("Verify", "VerifyUser", Data)*@
-                        <a href="@Url.Action("VerifyUser", "User",Data)"><img height="50px" src="@Address/Sources/src/checkmark-flat.png" alt="VerifyUser"></a>
+                        <a href="@Url.Action("VerifyUser", "User",Data)"><img height="50" src="@Address/Sources/src/checkmark-flat.png" alt="VerifyUser"></a>
 
                     </td>
                     @{ i += 1; }
                 </tr>
             }
-            
         </tbody>
     </table>
 </div>

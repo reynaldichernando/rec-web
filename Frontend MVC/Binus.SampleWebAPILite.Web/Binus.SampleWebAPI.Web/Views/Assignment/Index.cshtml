@@ -118,9 +118,9 @@
     </div>
 </div>
 @* Assignment Item *@
-@foreach (var Item in Model.GetCurrentAssignment())
-{
-    <div id="myDIV2" class="layout-content p-4 text-justify">
+<div id="myDIV" class="layout-content p-4 text-justify">
+    @foreach (var Item in Model.GetCurrentAssignment())
+    {
         <div class="assignment-box">
             <div class="float-left">
                 <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#detailModal" data-title="@Item.Title" data-description="@Item.Description" data-due="@Item.DateDue">@Item.Title</a></h1>
@@ -128,22 +128,29 @@
             <div class="float-left">
             </div>
             <div class="tombol-upload float-right">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
-                <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                @if (Session["role"].Equals("admin"))
+                {
+                    @Html.ActionLink("Answers", "Index", "Answer", new { AssignmentID = @Item.AssignmentID }, new { @class = "btn btn-info" })
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
+                    <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                }
                 @* buttons *@
                 <a href="@Url.Action("DownloadFile", "Assignment",  new { fileName = Item.AssignmentFilepath })" class="image-upload">
                     <img src="~/Sources/icons/download.svg" title="Download Case" />
                 </a>
-                <a href="@Url.Action("", "Assignment",  new { })" class="image-upload" data-toggle="modal" data-target="#uploadAnswer" data-title="@Item.Title" data-id="@Item.AssignmentID">
-                    <img src="~/Sources/icons/upload.svg" title="Upload Answer" />
-                </a>
-                <a href="@Url.Action("DownloadAnswer", "Assignment",  new { AssignmentID = Item.AssignmentID })" class="image-upload">
-                    <img src="~/Sources/icons/archive.svg" title="Download Answer" />
-                </a>
+                @if (!Session["role"].Equals("admin"))
+                {
+                    <a href="@Url.Action("", "Assignment",  new { })" class="image-upload" data-toggle="modal" data-target="#uploadAnswer" data-title="@Item.Title" data-id="@Item.AssignmentID">
+                        <img src="~/Sources/icons/upload.svg" title="Upload Answer" />
+                    </a>
+                    <a href="@Url.Action("DownloadAnswer", "Assignment",  new { AssignmentID = Item.AssignmentID })" class="image-upload">
+                        <img src="~/Sources/icons/archive.svg" title="Download Answer" />
+                    </a>
+                }
             </div>
         </div>
-    </div>
-}
+    }
+</div>
 
 
 <div class="layout-header p-3">
@@ -158,9 +165,9 @@
     </div>
 </div>
 @* Assignment Item *@
-@foreach (var Item in Model.GetPastAssignment())
-{
-    <div id="myDIV2" class="layout-content p-4 text-justify">
+<div id="myDIV2" class="layout-content p-4 text-justify">
+    @foreach (var Item in Model.GetPastAssignment())
+    {
         <div class="assignment-box">
             <div class="float-left">
                 <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#detailModal" data-title="@Item.Title" data-description="@Item.Description" data-due="@Item.DateDue">@Item.Title</a></h1>
@@ -168,22 +175,26 @@
             <div class="float-left">
             </div>
             <div class="tombol-upload float-right">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
-                <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                @if (Session["role"].Equals("admin"))
+                {
+                    @Html.ActionLink("Answers", "Index", "Answer", new { AssignmentID = @Item.AssignmentID }, new { @class = "btn btn-info" })
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
+                    <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                }
                 @* buttons *@
                 <a href="@Url.Action("DownloadFile", "Assignment",  new { fileName = Item.AssignmentFilepath })" class="image-upload">
-                    <img src="~/Sources/icons/download.svg" title="Download Case"/>
+                    <img src="~/Sources/icons/download.svg" title="Download Case" />
                 </a>
-                <a href="@Url.Action("", "Assignment",  new { })" class="image-upload" data-toggle="modal" data-target="#uploadAnswer" data-title="@Item.Title" data-id="@Item.AssignmentID">
-                    <img src="~/Sources/icons/upload.svg" title="Upload Answer"/>
-                </a>
-                <a href="@Url.Action("DownloadAnswer", "Assignment",  new { AssignmentID = Item.AssignmentID })" class="image-upload">
-                    <img src="~/Sources/icons/archive.svg" title="Download Answer"/>
-                </a>
+                @if (!Session["role"].Equals("admin"))
+                {
+                    <a href="@Url.Action("DownloadAnswer", "Assignment",  new { AssignmentID = Item.AssignmentID })" class="image-upload">
+                        <img src="~/Sources/icons/archive.svg" title="Download Answer" />
+                    </a>
+                }
             </div>
         </div>
-    </div>
-}
+     }
+</div>
 
 @* Assignment Detail Modal *@
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -196,12 +207,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            
+
             <div class="modal-body" style="text-align: left;">
                 <div>Description: </div>
                 <p id="detail-description">Assignment Detail</p>
             </div>
-            
+
             <div class="modal-body" style="text-align: left;">
                 <div>Due Date: </div>
                 <p id="detail-due">Due date</p>
@@ -209,5 +220,10 @@
         </div>
     </div>
 </div>
-<div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
+@if (Session["role"].Equals("admin"))
+{
+<button type="button" class="btn btn-primary rounded-circle floating-button" data-toggle="modal" data-target="#insertModal">
+    <i class="fas fa-plus fa-lg text-white"></i>
+</button>
+}
 <script src="~/Sources/PageJS/Backend/assignment.js"></script>

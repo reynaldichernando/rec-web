@@ -750,6 +750,7 @@
     <Content Include="Sources\icons\x-square.svg" />
     <Content Include="Sources\icons\x.svg" />
     <Content Include="Sources\PageJS\Backend\assignment.js" />
+    <Content Include="Sources\PageJS\Backend\post.js" />
     <Content Include="Sources\PageJS\Backend\schedule.js" />
     <Content Include="Sources\PageJS\Backend\thread.js" />
     <Content Include="Sources\PageJS\index.js" />
@@ -845,6 +846,7 @@
     <Content Include="Sources\Scripts\bootstrap.min.js.map" />
     <Content Include="Sources\Scripts\jquery-3.1.1.min.map" />
     <Content Include="Sources\Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Views\Answer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,10 +14,14 @@ table, td, th {
 
 th, td {
     padding: 10px;
-    border: solid 1px;
+    /*border: solid 1px;*/
     text-align: center;
 }
 
 .w {
     width: 350px;
+}
+
+.v {
+    width: 50px;
 }

@@ -1,0 +1,43 @@
+﻿@model Binus.SampleWebAPI.Web.ViewModels.AnswerViewModel
+@{
+    ViewBag.Title = "Answer";
+}
+@*css yg ini hrus berurutan*@
+<link rel="stylesheet" href="~/Sources/CustomCSS/index.css">
+<link rel="stylesheet" href="~/Sources/CustomCSS/assignment.css">
+
+<script src="~/Sources/PageJS/index.js"></script>
+
+<div class="layout-header p-3">
+    <div class="text-white">
+        <h1>
+            <i>Answers</i>
+            <label class="switch">
+                <input type="checkbox" name="c1" onclick="myFunction()">
+                <span class="slider round"></span>
+            </label>
+        </h1>
+    </div>
+</div>
+@* Answer Item *@
+<div id="myDIV" class="layout-content p-4 text-justify">
+    @foreach (var item in Model.answers)
+    {
+        <div class="assignment-box">
+            <div class="float-left">
+                <h1>@item.Name</h1>
+            </div>
+            <div class="float-left">
+            </div>
+            <div class="tombol-upload float-right">
+                @* buttons *@
+                @if (item.AnswerID != null)
+                {
+                    <a href="@Url.Action("DownloadAnswer", "Answer",  new { UserID = item.UserID, AssignmentID = item.AssignmentID})" class="image-upload">
+                        <img src="~/Sources/icons/archive.svg" title="Download Answer" />
+                    </a>
+                }
+            </div>
+        </div>
+    }
+</div>
