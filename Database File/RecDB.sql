@@ -68,11 +68,15 @@ CREATE PROC bn_RecDB_GetUserLogin
 @Password VARCHAR(250)
 AS
 BEGIN
-	SELECT *
-	FROM [msUser]
-	WHERE Email = @Email
-	AND [Password] = @Password
+	SELECT 
+		UserID, [Name], Email, [Password], [Role], Token
+	FROM 
+		[msUser]
+	WHERE 
+		Email = @Email
+		AND [Password] = @Password
 END
+
 
 GO
 CREATE PROC bn_RecDB_UpdatePassword
@@ -80,8 +84,12 @@ CREATE PROC bn_RecDB_UpdatePassword
 @Password VARCHAR(150)
 AS
 BEGIN
-	UPDATE [msUser] SET [Password] = @Password
-	WHERE Email = @Email
+	UPDATE 
+		[msUser] 
+	SET 
+		[Password] = @Password
+	WHERE 
+		Email = @Email
 END
 
 GO
@@ -91,14 +99,22 @@ CREATE PROC bn_RecDB_RegisterUser
 @Password VARCHAR(250)
 AS
 BEGIN
-	INSERT INTO [msUser](Name,Email,Password) VALUES (@Name,@Email,@Password)
+	INSERT INTO 
+		[msUser](Name,Email,Password) 
+	VALUES 
+		(@Name,@Email,@Password)
 END
 
 GO
 CREATE PROC bn_RecDB_GetUnapprovedUser
 AS
 BEGIN
-	SELECT * FROM msUser WHERE Role = 'unapproved'
+	SELECT 
+		UserID, [Name], Email, [Password], [Role], Token 
+	FROM 
+		[msUser] 
+	WHERE 
+		Role = 'unapproved'
 END
 
 GO
@@ -107,7 +123,12 @@ CREATE PROC bn_RecDB_InsertUserToken
 @Token VARCHAR(50)
 AS
 BEGIN
-	UPDATE msUser SET Token = @Token WHERE Email=@Email
+	UPDATE 
+		msUser 
+	SET 
+		Token = @Token 
+	WHERE 
+		Email=@Email
 END
 
 GO
@@ -115,15 +136,25 @@ CREATE PROC bn_RecDB_GetUserToken
 @Email VARCHAR(50)
 AS
 BEGIN
-	SELECT Token FROM msUser WHERE Email=@Email
+	SELECT 
+		Token 
+	FROM 
+		msUser 
+	WHERE 
+		Email = @Email
 END
 
-go
+GO
 CREATE PROC bn_RecDB_DeleteUserToken
 @Email VARCHAR(50)
 AS
 BEGIN
-	UPDATE msUser SET Token=null WHERE Email=@Email
+	UPDATE 
+		msUser 
+	SET 
+		Token=null 
+	WHERE 
+		Email=@Email
 END
 
 GO
@@ -131,7 +162,10 @@ CREATE PROC bn_RecDB_GetAllAssignment
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT * FROM msAssignment
+	SELECT 
+		AssignmentID, Title, DateDue, DateUploaded, [Description], AssignmentFilepath 
+	FROM 
+		msAssignment
 END
 
 GO
@@ -143,8 +177,10 @@ CREATE PROC bn_RecDB_InsertAssignment
 AS
 BEGIN
 	SET NOCOUNT ON
-	INSERT INTO msAssignment(Title, [Description], AssignmentFilepath, DateDue) VALUES
-	(@Title, @Description, @AssignmentFilePath, @DateDue)
+	INSERT INTO 
+		msAssignment(Title, [Description], AssignmentFilepath, DateDue) 
+	VALUES
+		(@Title, @Description, @AssignmentFilePath, @DateDue)
 END
 
 GO
@@ -157,12 +193,15 @@ CREATE PROC bn_RecDB_UpdateAssignment
 AS
 BEGIN
 	SET NOCOUNT ON
-	UPDATE msAssignment
-	SET Title = @Title,
-	[Description] = @Description,
-	[AssignmentFilepath] = @AssignmentFilePath,
-	[DateDue] = @DateDue
-	WHERE AssignmentID = @AssignmentID
+	UPDATE 
+		msAssignment
+	SET 
+		Title = @Title,
+		[Description] = @Description,
+		[AssignmentFilepath] = @AssignmentFilePath,
+		[DateDue] = @DateDue
+	WHERE 
+		AssignmentID = @AssignmentID
 END
 
 GO
@@ -171,8 +210,10 @@ CREATE PROC bn_RecDB_DeleteAssignment
 AS
 BEGIN
 	SET NOCOUNT ON
-	DELETE FROM msAssignment
-	WHERE AssignmentID = @AssignmentID
+	DELETE FROM 
+		msAssignment
+	WHERE 
+		AssignmentID = @AssignmentID
 END
 
 GO
@@ -181,8 +222,12 @@ CREATE PROC bn_RecDB_GetAssignment
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT * FROM msAssignment
-	WHERE AssignmentID = @AssignmentID
+	SELECT 
+		AssignmentID, Title, DateDue, DateUploaded, [Description], AssignmentFilepath 
+	FROM 
+		msAssignment
+	WHERE 
+		AssignmentID = @AssignmentID
 END
 
 GO
@@ -193,16 +238,22 @@ CREATE PROC bn_RecDB_InsertAnswer
 AS
 BEGIN
 	SET NOCOUNT ON
-	IF EXISTS(SELECT * FROM trAnswer WHERE UserID = @UserID AND AssignmentID = @AssignmentID)
+	IF EXISTS(SELECT AnswerID, UserID, AssignmentID, AnswerFilepath, DateUploaded FROM trAnswer WHERE UserID = @UserID AND AssignmentID = @AssignmentID)
 	BEGIN
-		UPDATE trAnswer
-		SET AnswerFilepath = @AnswerFilePath
-		WHERE UserID = @UserID AND AssignmentID = @AssignmentID
+		UPDATE 
+			trAnswer
+		SET 
+			AnswerFilepath = @AnswerFilePath
+		WHERE 
+			UserID = @UserID 
+			AND AssignmentID = @AssignmentID
 	END
 	ELSE
 	BEGIN
-		INSERT INTO trAnswer(UserID, AssignmentID, AnswerFilepath) VALUES
-		(@UserID, @AssignmentID, @AnswerFilePath)
+		INSERT INTO 
+			trAnswer(UserID, AssignmentID, AnswerFilepath) 
+		VALUES
+			(@UserID, @AssignmentID, @AnswerFilePath)
 	END
 END
 
@@ -212,10 +263,13 @@ CREATE PROC bn_RecDB_GetAllAnswer
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT B.AnswerID, A.[Name], B.AssignmentID, B.AnswerFilepath, A.UserID, B.DateUploaded
-	FROM msUser A LEFT JOIN trAnswer B
-	ON A.UserID = B.UserID
-	AND B.AssignmentID = @AssignmentID
+	SELECT 
+		B.AnswerID, A.[Name], B.AssignmentID, B.AnswerFilepath, A.UserID, B.DateUploaded
+	FROM 
+		msUser A LEFT 
+			JOIN trAnswer B	
+				ON A.UserID = B.UserID
+		AND B.AssignmentID = @AssignmentID
 END
 
 GO
@@ -225,8 +279,12 @@ CREATE PROC bn_RecDB_GetAnswer
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT * FROM trAnswer
-	WHERE AssignmentID = @AssignmentID AND UserID = @UserID
+	SELECT 
+		AnswerID, UserID, AssignmentID, AnswerFilepath, DateUploaded 
+	FROM 
+		trAnswer
+	WHERE 
+		AssignmentID = @AssignmentID AND UserID = @UserID
 END
 
 GO
@@ -236,18 +294,23 @@ CREATE PROC bn_RecDB_InsertThread
 @Content VARCHAR(MAX)
 AS
 BEGIN
-	INSERT INTO trThread VALUES
-	(@UserID,@Title,@Content)
+	INSERT INTO 
+		trThread(UserID,Title,Content) 
+	VALUES
+		(@UserID,@Title,@Content)
 END
 
-go
-
+GO
 CREATE PROC bn_RecDB_GetAllThread
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT ThreadID, trThread.UserID, Title, Content, [Name], [Role]
-	FROM trThread JOIN msUser ON trThread.UserID = msUser.UserID 
+	SELECT 
+		ThreadID, trThread.UserID, Title, Content, [Name], [Role]
+	FROM 
+		trThread 
+			JOIN msUser 
+				ON trThread.UserID = msUser.UserID 
 END
 
 go
@@ -257,9 +320,12 @@ CREATE PROC bn_RecDB_GetOneThread
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT ThreadID, trThread.UserID, Title, Content, [Name], [Role]
-	FROM trThread JOIN msUser ON trThread.UserID = msUser.UserID 
-	WHERE ThreadID = @ThreadID
+	SELECT 
+		ThreadID, trThread.UserID, Title, Content, [Name], [Role]
+	FROM 
+		trThread JOIN msUser ON trThread.UserID = msUser.UserID 
+	WHERE 
+		ThreadID = @ThreadID
 END
 
 GO
@@ -269,10 +335,13 @@ CREATE PROC bn_RecDB_UpdateThread
 @Content VARCHAR(MAX)
 AS
 BEGIN
-	UPDATE trThread
-	SET Title = @Title,
-	Content = @Content
-	WHERE ThreadID = @ThreadID
+	UPDATE
+		trThread
+	SET 
+		Title = @Title,
+		Content = @Content
+	WHERE 
+		ThreadID = @ThreadID
 END
 
 GO
@@ -280,10 +349,14 @@ CREATE PROC bn_RecDB_DeleteThread
 @ThreadID INT
 AS
 BEGIN
-	DELETE FROM trPost
-	WHERE ThreadID = @ThreadID
-	DELETE FROM trThread
-	WHERE ThreadID = @ThreadID
+	DELETE FROM 
+		trPost
+	WHERE 
+		ThreadID = @ThreadID
+	DELETE FROM 
+		trThread
+	WHERE 
+		ThreadID = @ThreadID
 END
 
 GO
@@ -293,8 +366,10 @@ CREATE PROC bn_RecDB_InsertPost
 @Content VARCHAR(MAX)
 AS
 BEGIN
-	INSERT INTO trPost VALUES
-	(@ThreadID,@UserID,@Content)
+	INSERT INTO 
+		trPost(ThreadID, UserID, Content) 
+	VALUES
+		(@ThreadID,@UserID,@Content)
 END
 
 GO
@@ -303,9 +378,12 @@ CREATE PROC bn_RecDB_GetPost
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT PostID, ThreadID, msUser.UserID, Content, [Name]
-	FROM trPost JOIN msUser ON trPost.UserID = msUser.UserID
-	WHERE ThreadID = @ThreadID
+	SELECT
+		PostID, ThreadID, msUser.UserID, Content, [Name]
+	FROM
+		trPost JOIN msUser ON trPost.UserID = msUser.UserID
+	WHERE
+		ThreadID = @ThreadID
 END
 
 GO
@@ -314,9 +392,12 @@ CREATE PROC bn_RecDB_UpdatePost
 @Content VARCHAR(MAX)
 AS
 BEGIN
-	UPDATE trPost
-	SET Content = @Content
-	WHERE PostID = @PostID
+	UPDATE
+		trPost
+	SET 
+		Content = @Content
+	WHERE 
+		PostID = @PostID
 END
 
 GO
@@ -324,8 +405,10 @@ CREATE PROC bn_RecDB_DeletePost
 @PostID INT
 AS
 BEGIN
-	DELETE FROM trPost
-	WHERE PostID = @PostID
+	DELETE FROM 
+		trPost
+	WHERE 
+		PostID = @PostID
 
 END
 
@@ -335,9 +418,12 @@ CREATE PROC bn_RecDB_GetPostByID
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT PostID, ThreadID, msUser.UserID, Content, [Name]
-	FROM trPost JOIN msUser ON trPost.UserID = msUser.UserID
-	WHERE PostID = @PostID
+	SELECT
+		PostID, ThreadID, msUser.UserID, Content, [Name]
+	FROM
+		trPost JOIN msUser ON trPost.UserID = msUser.UserID
+	WHERE
+		PostID = @PostID
 END
 
 GO
@@ -345,7 +431,10 @@ CREATE PROC bn_RecDB_GetAllSchedule
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT * FROM msSchedule
+	SELECT 
+		ScheduleID, StartTime, EndTime, Place, Topic, [Description]
+	FROM 
+		msSchedule
 END
 
 GO
@@ -357,8 +446,10 @@ CREATE PROC bn_RecDB_InsertSchedule
 @Description VARCHAR(MAX)
 AS
 BEGIN
-	INSERT INTO msSchedule (StartTime,EndTime,Place,Topic,[Description]) 
-	VALUES(@StartTime,@EndTime,@Place,@Topic,@Description)
+	INSERT INTO 
+		msSchedule(StartTime,EndTime,Place,Topic,[Description]) 
+	VALUES
+		(@StartTime,@EndTime,@Place,@Topic,@Description)
 END
 
 GO
@@ -371,12 +462,16 @@ CREATE PROC bn_RecDB_UpdateSchedule
 @Description VARCHAR(MAX)
 AS
 BEGIN
-	UPDATE msSchedule SET StartTime=@StartTime,
-	EndTime=@EndTime,
-	Place = @Place,
-	Topic = @Topic,
-	Description = @Description
-	WHERE ScheduleID = @ScheduleID
+	UPDATE 
+		msSchedule 
+	SET 
+		StartTime=@StartTime,
+		EndTime=@EndTime,
+		Place = @Place,
+		Topic = @Topic,
+		[Description] = @Description
+	WHERE 
+		ScheduleID = @ScheduleID
 END
 
 GO
@@ -384,7 +479,10 @@ CREATE PROC bn_RecDB_DeleteSchedule
 @ScheduleID INT
 AS
 BEGIN
-	DELETE FROM msSchedule WHERE ScheduleID = @ScheduleID
+	DELETE FROM
+		msSchedule 
+	WHERE 
+		ScheduleID = @ScheduleID
 END
 
 GO
@@ -392,7 +490,12 @@ CREATE PROC bn_RecDB_GetScheduleByID
 @ScheduleID INT
 AS
 BEGIN
-	SELECT * FROM msSchedule WHERE ScheduleID = @ScheduleID
+	SELECT 
+		ScheduleID, StartTime, EndTime, Place, Topic, [Description] 
+	FROM 
+		msSchedule 
+	WHERE 
+		ScheduleID = @ScheduleID
 END
 
 GO
