@@ -10,49 +10,6 @@
 <script src="~/Sources/PageJS/index.js"></script>
 
 <div class="container">
-    <br />
-    <div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date Due</th>
-                <th>Action</th>
-                <th>Admin</th>
-            </tr>
-        </thead>
-        <tbody>
-            @try
-            {
-                foreach (var Item in Model.assignments)
-                {
-                    <tr>
-                        <td>@Item.Title</td>
-                        <td>@Item.Description</td>
-                        <td>@Item.DateDue</td>
-                        <td>
-                            @Html.ActionLink("Download Case", "DownloadFile", "Assignment", new { fileName = Item.AssignmentFilepath }, new { @class = "btn btn-info" })
-                            @Html.ActionLink("Upload Answer", "", "Assignment", new { }, new { @class = "btn btn-info", data_toggle = "modal", data_target = "#uploadAnswer", data_title = Item.Title, data_id = Item.AssignmentID })
-                            @Html.ActionLink("Download Answer", "DownloadAnswer", "Assignment", new { AssignmentID = Item.AssignmentID }, new { @class = "btn btn-info" })
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
-                            <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                }
-            }
-            catch (Exception ex)
-            {
-                <tr>No data</tr>
-
-            }
-
-        </tbody>
-    </table>
-
-
     @* Insert *@
     @using (Ajax.BeginForm("Insert", "Assignment", new AjaxOptions
     {
@@ -149,9 +106,6 @@
         </div>
     }
 </div>
-
-@* VIEWS *@
-
 <div class="layout-header p-3">
     <div class="text-white">
         <h1>
@@ -163,36 +117,35 @@
         </h1>
     </div>
 </div>
-<div id="myDIV" class="layout-content p-4 text-justify">
-    <div class="assignment-box">
-        <div class="float-left">
-            <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#exampleModal">Title</a></h1>
-        </div>
-        <div>
-
-        </div>
-        <div class="tombol-upload float-right">
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/download.svg" />
-                </label>
-                <input class="file-download-soal" type="file" />
+@* Assignment Item *@
+@foreach (var Item in Model.GetCurrentAssignment())
+{
+    <div id="myDIV2" class="layout-content p-4 text-justify">
+        <div class="assignment-box">
+            <div class="float-left">
+                <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#detailModal" data-title="@Item.Title" data-description="@Item.Description" data-due="@Item.DateDue">@Item.Title</a></h1>
             </div>
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/upload.svg" />
-                </label>
-                <input class="file-upload-jawaban" type="file" />
+            <div class="float-left">
             </div>
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/archive.svg" />
-                </label>
-                <input class="file-download-jawaban" type="file" />
+            <div class="tombol-upload float-right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
+                <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                @* buttons *@
+                <a href="@Url.Action("DownloadFile", "Assignment",  new { fileName = Item.AssignmentFilepath })" class="image-upload">
+                    <img src="~/Sources/icons/download.svg" title="Download Case" />
+                </a>
+                <a href="@Url.Action("", "Assignment",  new { })" class="image-upload" data-toggle="modal" data-target="#uploadAnswer" data-title="@Item.Title" data-id="@Item.AssignmentID">
+                    <img src="~/Sources/icons/upload.svg" title="Upload Answer" />
+                </a>
+                <a href="@Url.Action("DownloadAnswer", "Assignment",  new { AssignmentID = Item.AssignmentID })" class="image-upload">
+                    <img src="~/Sources/icons/archive.svg" title="Download Answer" />
+                </a>
             </div>
         </div>
     </div>
-</div>
+}
+
+
 <div class="layout-header p-3">
     <div class="text-white">
         <h1>
@@ -204,44 +157,57 @@
         </h1>
     </div>
 </div>
-<div id="myDIV2" class="layout-content p-4 text-justify">
-    <div class="assignment-box">
-        <div class="float-left">
-            <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#exampleModal">Title</a></h1>
-        </div>
-        <div class="tombol-upload float-right">
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/download.svg" />
-                </label>
-                <input class="file-download-soal" type="file" />
+@* Assignment Item *@
+@foreach (var Item in Model.GetPastAssignment())
+{
+    <div id="myDIV2" class="layout-content p-4 text-justify">
+        <div class="assignment-box">
+            <div class="float-left">
+                <h1 style="cursor: pointer;"><a data-toggle="modal" data-target="#detailModal" data-title="@Item.Title" data-description="@Item.Description" data-due="@Item.DateDue">@Item.Title</a></h1>
             </div>
-            <div class="image-upload">
-                <label for="file-input" style="cursor: pointer;">
-                    <img src="~/Sources/icons/archive.svg" />
-                </label>
-                <input class="file-download-jawaban" type="file" />
+            <div class="float-left">
+            </div>
+            <div class="tombol-upload float-right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" data-type="edit" data-id="@Item.AssignmentID">Edit</button>
+                <button onclick="Delete(@Item.AssignmentID)" class="btn btn-danger">Delete</button>
+                @* buttons *@
+                <a href="@Url.Action("DownloadFile", "Assignment",  new { fileName = Item.AssignmentFilepath })" class="image-upload">
+                    <img src="~/Sources/icons/download.svg" title="Download Case"/>
+                </a>
+                <a href="@Url.Action("", "Assignment",  new { })" class="image-upload" data-toggle="modal" data-target="#uploadAnswer" data-title="@Item.Title" data-id="@Item.AssignmentID">
+                    <img src="~/Sources/icons/upload.svg" title="Upload Answer"/>
+                </a>
+                <a href="@Url.Action("DownloadAnswer", "Assignment",  new { AssignmentID = Item.AssignmentID })" class="image-upload">
+                    <img src="~/Sources/icons/archive.svg" title="Download Answer"/>
+                </a>
             </div>
         </div>
     </div>
-</div>
+}
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+@* Assignment Detail Modal *@
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="text-align: left;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Assignment title</h5>
+                <h5 class="modal-title" id="detail-title">Assignment title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            
             <div class="modal-body" style="text-align: left;">
-                Assignment Detail
+                <div>Description: </div>
+                <p id="detail-description">Assignment Detail</p>
             </div>
+            
             <div class="modal-body" style="text-align: left;">
-                Due date
+                <div>Due Date: </div>
+                <p id="detail-due">Due date</p>
             </div>
         </div>
     </div>
 </div>
+<div class="pull-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button> </div>
+<script src="~/Sources/PageJS/Backend/assignment.js"></script>
