@@ -5,29 +5,7 @@
     ViewBag.Title = "User";
 }
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Role</td>
-            <td>Action</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var Data in Model.ListUser)
-        {
-            <tr>
-                <td>@Data.Name</td>
-                <td>@Data.Email</td>
-                <td>@Data.Role</td>
-                <td>
-                    @Html.ActionLink("Verify", "VerifyUser", Data)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
 
 <link rel="stylesheet" href="~/Sources/CustomCSS/user.css" />
 <div class="layout-header p-3">
@@ -45,18 +23,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td class="w">Blabla</td>
-                <td class="w">a.a@aa</td>
-                <td class="w"><button type="submit">Verify</button></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td class="w">Blablabla</td>
-                <td class="w">b.b@bb</td>
-                <td class="w"><button type="submit">Verify</button></td>
-            </tr>
+            @{ int i = 1; }
+
+            @foreach (var Data in Model.ListUser) {
+                <tr>
+                    <td>@i</td>
+                    <td class="w">@Data.Name</td>
+                    <td class="w">@Data.Email</td>
+                    <td class="w">
+                        @*@Html.ActionLink("Verify", "VerifyUser", Data)*@
+                        <a href="@Url.Action("VerifyUser", "User",Data)"><img height="50px" src="@Address/Sources/src/checkmark-flat.png" alt="VerifyUser"></a>
+
+                    </td>
+                    @{ i += 1; }
+                </tr>
+            }
+            
         </tbody>
     </table>
 </div>

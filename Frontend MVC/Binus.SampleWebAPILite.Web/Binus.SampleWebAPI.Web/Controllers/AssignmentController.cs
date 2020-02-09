@@ -245,7 +245,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                     {
                         Status = "Failed",
                         Message = "Failed When Inserting Data.."
-                    });
+                    }, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
@@ -254,7 +254,7 @@ namespace Binus.SampleWebAPI.Web.Controllers
                 {
                     Status = "Failed",
                     Message = ex.Message
-                });
+                }, JsonRequestBehavior.AllowGet);
             }
             return retData;
         }

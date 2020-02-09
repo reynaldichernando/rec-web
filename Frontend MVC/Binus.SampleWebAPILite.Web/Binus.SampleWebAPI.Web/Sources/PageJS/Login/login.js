@@ -17,7 +17,7 @@ $(document).ready(function () {
             isValid = false;
         }
 
-        if (isValid) {
+        if (isValid) {  
             $(this).submit();
         } else {
             event.preventDefault();
