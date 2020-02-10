@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     var Request = HttpContext.Current.Request;
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 }
@@ -22,24 +23,24 @@
     <script>Address = '@Address'</script>
 </head>
 <body>
-    <div class="split left layout-menu p-3">
-        <a href="@Url.Action("Index", "Thread")">
-            <img src="@Address/Sources/src/perusahaan.png" alt="Logo" class="border-0 border-rounded">
-        </a>
-
-        <hr class="w-75">
-        <div class="d-flex flex-column justify-content-center">
+    <div class="split left layout-menu p-2 d-flex align-items-start flex-column">
+        <div class="mb-auto p-2">
+            <a href="@Url.Action("Index", "Thread")">
+                <img src="@Address/Sources/src/perusahaan.png" alt="Logo" class="border-0 border-rounded">
+            </a>
+            <hr class="w-75 border-light">
             <a href="@Url.Action("Index", "Profile")"><img src="@Address/Sources/src/user-icon.png" id="userlogo" alt="Profile"></a>
             <a href="@Url.Action("Index", "Schedule")"><img src="@Address/Sources/src/calendar-icon.png" alt="Schedule"></a>
             <a href="@Url.Action("Index", "Assignment")"><img src="@Address/Sources/src/assignment-icon.png" alt="Assignment"></a>
             <a href="@Url.Action("AboutUs", "Home")"><img src="@Address/Sources/src/call-icon.png" alt="Contact"></a>
-            @if (Session["role"].Equals("admin") )
-            {
+            @if (Session["role"].Equals("admin")) {
                 <a href="@Url.Action("Index", "User")"><img src="@Address/Sources/src/checkmark-flat.png" alt="VerifyUser"></a>
             }
+            <hr class="w-75 border-light">
         </div>
-        <hr class="w-75">
-        <a href="@Url.Action("Logout", "Login")"><img src="@Address/Sources/src/signout.png" alt=""></a>
+        <div class="p-2">
+            <a href="@Url.Action("Logout", "Login")"><img src="@Address/Sources/src/signout.png" alt=""></a>
+        </div>
     </div>
 
     <div class="split right">
