@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#MessageContainer2').hide();
-    $('#updatePostModal').on('show.bs.modal', function (event) {
+    $(document).on('show.bs.modal', '#update-modal', function (event) {
         CleanForm();
         let modal = $(this);
         let button = $(event.relatedTarget)

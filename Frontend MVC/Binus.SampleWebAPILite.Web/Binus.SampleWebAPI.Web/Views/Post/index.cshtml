@@ -7,22 +7,19 @@
     string Address = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/');
 }
 <link rel="stylesheet" href="~/Sources/CustomCSS/thread.css">
-<script src="~/Sources/PageJS/Backend/thread.js"></script>
-<script src="~/Sources/PageJS/Backend/post.js"></script>
-
-
-
-
 @* Update *@
 @using (Ajax.BeginForm(
     actionName: "UpdateThread",
     controllerName: "Thread",
     routeValues: null,
-    ajaxOptions: new AjaxOptions {
+    ajaxOptions: new AjaxOptions
+    {
         HttpMethod = "POST",
         OnSuccess = "LoadResult(data)"
     },
-     htmlAttributes: new { id = "form-create-thread", enctype = "multipart/form-data" })) {
+     htmlAttributes: new { id = "form-update-thread", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
     @Html.AntiForgeryToken()
 
     <!-- Modal -->
@@ -67,19 +64,16 @@
 
 
 @* Update Post *@
-@using (Ajax.BeginForm(
-    actionName: "UpdatePost",
-    controllerName: "Post",
-    routeValues: null,
-    ajaxOptions: new AjaxOptions {
-        HttpMethod = "POST",
-        OnSuccess = "LoadResult(data)"
-    },
-     htmlAttributes: new { id = "form-create-post", enctype = "multipart/form-data" })) {
+@using (Ajax.BeginForm("UpdatePost", "Post", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "LoadResult(data)",
+    OnFailure = "alert(1)"
+}))
+{
     @Html.AntiForgeryToken()
-
     <!-- Modal -->
-    <div id="updatePostModal" class="modal fade" role="dialog">
+    <div id="update-modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
             <div class="modal-content">
@@ -109,7 +103,6 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
 }
@@ -118,10 +111,12 @@
 
 
 @* Insert *@
-@using (Ajax.BeginForm("CreateThread", "Thread", new AjaxOptions {
+@using (Ajax.BeginForm("CreateThread", "Thread", new AjaxOptions
+{
     HttpMethod = "POST",
     OnSuccess = "LoadResult(data)"
-}, new { id = "form-create-thread", enctype = "multipart/form-data" })) {
+}, new { id = "form-create-thread", enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
 
     <!-- Modal -->
@@ -164,87 +159,96 @@
 
 @* Views *@
 <div class="layout-header p-3">
-    <h1 class="text-white"><i>@Model.Thread.Title</i></h1>
+    <h1 class="text-white">
+        <i>@Model.Thread.Title</i>
+    </h1>
 </div>
 
-<div class="layout-content p-5 text-justify h-100">
-    <div class="thread-title border-rounded"></div>
-    <p>
-        @Model.Thread.Content
-    </p>
-    <p class="text-right mt-3">Posted by @Model.Thread.Name</p>
-    <div class="pull-right">
-        @if (Model.UserID == Model.Thread.UserID) {
-            <div class="text-center mt-2">
-                @Html.ActionLink("Update Thread", "", "Thread", new { }, new {
-                    @class = "btn btn-primary",
-                    data_toggle =
-                "modal",
-                    data_target = "#updateModal",
-                    data_id = Model.Thread.ThreadID
-                })
+<div class="layout-content p-5 text-justify">
+    <div class="thread-title border-rounded">
+        <p>
+            @Model.Thread.Content
+        </p>
+        <p class="text-right mt-3">Posted by @Model.Thread.Name</p>
+        <div class="pull-right">
+            @if (Model.UserID == Model.Thread.UserID)
+            {
+                <div class="text-center mt-2">
+                    @Html.ActionLink("Update Thread", "", "Thread", new { }, new
+                    {
+                        @class = "btn btn-primary",
+                        data_toggle =
+                    "modal",
+                        data_target = "#updateModal",
+                        data_id = Model.Thread.ThreadID
+                    })
+                    <button onclick="Delete(@Model.Thread.ThreadID)" on class="btn btn-danger">Delete</button>
+                </div>
+            }
+            else if (Session["Role"].Equals("admin"))
+            {
                 <button onclick="Delete(@Model.Thread.ThreadID)" on class="btn btn-danger">Delete</button>
-            </div>
-        } else if (Session["Role"].Equals("admin")) {
-            <button onclick="Delete(@Model.Thread.ThreadID)" on class="btn btn-danger">Delete</button>
-        } else {
-            <p>
-                action restricted
-            </p>
-        }
+            }
+            else
+            {
+                
+            }
+        </div>
     </div>
 </div>
 
-@foreach (var Data in Model.ListPost) {
+@foreach (var Data in Model.ListPost)
+{
     <div class="reply-thread m-3 border-rounded">
         <div class="reply-left text-center d-inline-block p-3">
             <img src="~/Sources/src/user-icon.png" alt="">
             <p>@Data.Name</p>
-        </div>
-        <div class="reply-right d-inline-block m-1">
-            <p>
-                @Data.Content
-            </p>
-        </div>
-        <div class="text-center mt-4 mb-0">
-            if (Model.UserID == Data.UserID) {
-            <button onclick="DeletePost(@Data.PostID)" on class="btn btn-danger">Delete</button>
-            @Html.ActionLink("Update Post", "", "Post", new { }, new {
-                @class = "btn btn-info",
-                data_toggle =
-            "modal",
-                data_target = "#updatePostModal",
-                data_id = Data.PostID
-            })
-            } else if (Session["Role"].Equals("admin")) {
-            <button onclick="DeletePost(@Data.PostID)" on class="btn btn-danger">Delete</button>
-            } else {
-            <p>
-                action restricted
-            </p>
-            }
-        </div>
-    </div>
-
-    <div class="reply-box">
-        <h3>Reply</h3>
-        <textarea class="mt-2 mb-3 p-3 border-light rounded" name="" id="" cols="30" rows="5" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum asperiores similique, itaque deserunt error qui voluptates ducimus commodi praesentium et excepturi nemo culpa beatae, recusandae nihil. Nesciunt autem aperiam velit!" style="width: 100%;"></textarea>
-        <div class="text-center">
-            <button type="button" class="btn btn-primary">Send</button>
-        </div>
-    </div>
-
-    <div class="reply-box">
-        @using (Html.BeginForm("CreatePost", "Post", FormMethod.Post)) {
-            <input type="hidden" name="ThreadID" value="" />
-            <input type="hidden" name="UserID" value="" />
-            <h3>Reply</h3>
-            <textarea class="mt-2 mb-3 p-3 border-light rounded" name="" id="" cols="30" rows="5" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum asperiores similique, itaque deserunt error qui voluptates ducimus commodi praesentium et excepturi nemo culpa beatae, recusandae nihil. Nesciunt autem aperiam velit!" style="width: 100%;"></textarea>
-            <div class="text-center">
-                <button type="button" class="btn btn-primary">Send</button>
+            <div class="reply-right d-inline-block m-1">
+                <p>
+                    @Data.Content
+                </p>
             </div>
-        }
+            <div class="text-center mt-4 mb-0">
+                @if (Model.UserID == Data.UserID)
+                {
+                    <button onclick="DeletePost(@Data.PostID)" on class="btn btn-danger">Delete</button>
+                    @Html.ActionLink("Update Post", "", "Post", new { }, new
+                {
+                   @class = "btn btn-info",
+                   data_toggle =
+                    "modal",
+                   data_target = "#update-modal",
+                   data_id = Data.PostID
+                })
+                }
+                else if (Session["Role"].Equals("admin"))
+                {
+                    <button onclick="DeletePost(@Data.PostID)" on class="btn btn-danger">Delete</button>
+                }
+                else
+                {
+                    
+                }
+            </div>
+        </div>
     </div>
+}
+
+<div class="reply-box">
+    @using (Html.BeginForm("CreatePost", "Post", FormMethod.Post))
+    {
+        <input type="hidden" name="ThreadID" value="@Session["ThreadID"]" />
+        <input type="hidden" name="UserID" value="@Session["UserID"]" />
+        <h3>Reply</h3>
+        <textarea class="mt-2 mb-3 p-3 border-light rounded" name="Content" id="" cols="30" rows="5" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum asperiores similique, itaque deserunt error qui voluptates ducimus commodi praesentium et excepturi nemo culpa beatae, recusandae nihil. Nesciunt autem aperiam velit!" style="width: 100%;"></textarea>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    }
+</div>
 
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Sources/Scripts/bootstrap.js"></script>
+<script src="~/Sources/PageJS/Backend/thread.js"></script>
+<script src="~/Sources/PageJS/Backend/post.js"></script>
