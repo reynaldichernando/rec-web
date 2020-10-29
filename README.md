@@ -13,7 +13,7 @@ The main features of the web are:
 - Assignments
 - Schedule
 - Contact Person
-- Sign in, Sign Out, Request Account, Forgot Password, Verify User
+- Sign in, Sign Out, Request Account, Forgot Password, Verify User, With Hashed Password
 
 Below are the screenshots from the web. For the mockups, please open the mockup folder on this repository.
 
