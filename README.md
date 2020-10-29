@@ -1,19 +1,19 @@
 # rec-web
 
-### This project is made as the final project during the IT Division Bina Nusantara’s Bootcamp. It is a simple website used for the IT Division’s recruitment process, and consists of 2 parts, that is website for recruiter and recruitee. This website is developed using ASP.NET MVC Framework with Visual Studio as the IDE, C# as the programming  language and Microsoft SQL Server as the database management system (dbms). The project team consists of:
-### - Hans Jandris Liongga (System Analyst)
-### - Ivana Angelia Khusuma (Front-end Developer)
-### - Johanes Peter Vincentius (Front-end Developer)
-### - Reynaldi Chernando (Back-end Developer)
-### - Christian Soetanto (Back-end Developer)
-### - Luis Indracahya (Back-end Developer)
+This project is made as the final project during the IT Division Bina Nusantara’s Bootcamp. It is a simple website used for the IT Division’s recruitment process, and consists of 2 parts, that is website for recruiter and recruitee. This website is developed using ASP.NET MVC Framework with Visual Studio as the IDE, C# as the programming  language and Microsoft SQL Server as the database management system (dbms). The project team consists of:
+- Hans Jandris Liongga (System Analyst)
+- Ivana Angelia Khusuma (Front-end Developer)
+- Johanes Peter Vincentius (Front-end Developer)
+- Reynaldi Chernando (Back-end Developer)
+- Christian Soetanto (Back-end Developer)
+- Luis Indracahya (Back-end Developer)
 
-### The main features of the web are:
-### - Announcement & Forum
-### - Assignments
-### - Schedule
-### - Contact Person
-### - Sign in, Sign Out, Request Account, Forgot Password, Verify User
+The main features of the web are:
+- Announcement & Forum
+- Assignments
+- Schedule
+- Contact Person
+- Sign in, Sign Out, Request Account, Forgot Password, Verify User
 
 Below are the screenshots from the web. For the mockups, please open the mockup folder on this repository.
 
