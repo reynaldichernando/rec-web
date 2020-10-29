@@ -15,6 +15,8 @@
 ### - Contact Person
 ### - Sign in, Sign Out, Request Account, Forgot Password, Verify User
 
+Below are the screenshots from the web. For the mockups, please open the mockup folder on this repository.
+
 Homepage
 ![](https://github.com/reynaldichernando/rec-web/blob/master/screenshots/1.png?raw=true)
 
