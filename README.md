@@ -47,9 +47,6 @@ Create Thread
 Update Thread
 ![](https://github.com/reynaldichernando/rec-web/blob/master/screenshots/10.png?raw=true)
 
-Update Schedule (Admin)
-![](https://github.com/reynaldichernando/rec-web/blob/master/screenshots/7.png?raw=true)
-
 Reply Thread - 1
 ![](https://github.com/reynaldichernando/rec-web/blob/master/screenshots/13.png?raw=true)
 
@@ -58,3 +55,10 @@ Reply Thread - 2
 
 Update Reply
 ![](https://github.com/reynaldichernando/rec-web/blob/master/screenshots/12.png?raw=true)
+
+Update Schedule (Admin)
+![](https://github.com/reynaldichernando/rec-web/blob/master/screenshots/7.png?raw=true)
+
+Add Assignment (Admin)
+![](https://github.com/reynaldichernando/rec-web/blob/master/screenshots/14.png?raw=true)
+
